@@ -1,0 +1,1123 @@
+{
+  "created_at": "2026-05-21T10:12:14.792111Z",
+  "updated_at": "2026-05-21T10:14:25.187184Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 538,
+  "pipeline_name": "cinqcare",
+  "pipeline_key": "cinqcare",
+  "bh_project_id": 2,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "jaya_project",
+  "bh_github_username": "bh-jaya-git",
+  "pipeline_json": {
+    "name": "cinqcare",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428",
+        "value": "bhargs/ADT/safeharbor_VBP0211_Inpatient_Census_PG_report_CINQDOWNSTATE_20260428.xlsx"
+      },
+      {
+        "key": "safeharbor_vbp0211_inpatient_census_pg_report_cinqupstate_20260429",
+        "value": "bhargs/ADT/safeharbor_VBP0211_Inpatient_Census_PG_report_CINQUPSTATE_20260429.xlsx"
+      }
+    ],
+    "connections": {
+      "landing_report_cinqdownstate_file_connection_obj6": {
+        "name": "landing_report_cinqdownstate_file_connection_obj6",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblob",
+        "connection_config_id": 6
+      },
+      "bronze_report_cinqdownstate_db_connection_obj6": {
+        "name": "bronze_report_cinqdownstate_db_connection_obj6",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "bronze_adt",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunity",
+        "connection_config_id": 7
+      },
+      "landing_report_cinqupstate_file_connection_obj7": {
+        "name": "landing_report_cinqupstate_file_connection_obj7",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblob",
+        "connection_config_id": 6
+      },
+      "bronze_report_cinqupstate_db_connection_obj7": {
+        "name": "bronze_report_cinqupstate_db_connection_obj7",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "bronze_adt",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunity",
+        "connection_config_id": 7
+      }
+    },
+    "sources": {
+      "landing_source_report_cinqdownstate_obj6": {
+        "name": "landing_source_report_cinqdownstate_obj6",
+        "source_type": "File",
+        "file_name": "${safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428}",
+        "connection": {
+          "$ref": "#/connections/landing_report_cinqdownstate_file_connection_obj6"
+        },
+        "data_src_id": 73
+      },
+      "landing_source_report_cinqupstate_obj7": {
+        "name": "landing_source_report_cinqupstate_obj7",
+        "source_type": "File",
+        "file_name": "${safeharbor_vbp0211_inpatient_census_pg_report_cinqupstate_20260429}",
+        "connection": {
+          "$ref": "#/connections/landing_report_cinqupstate_file_connection_obj7"
+        },
+        "data_src_id": 75
+      }
+    },
+    "targets": {
+      "bronze_target_report_cinqdownstate_obj6": {
+        "name": "bronze_target_report_cinqdownstate_obj6",
+        "target_type": "Relational",
+        "table_name": "report_cinqdownstate",
+        "connection": {
+          "$ref": "#/connections/bronze_report_cinqdownstate_db_connection_obj6"
+        },
+        "load_mode": "append",
+        "schema": "bronze_adt",
+        "data_src_id": 74
+      },
+      "bronze_target_report_cinqupstate_obj7": {
+        "name": "bronze_target_report_cinqupstate_obj7",
+        "target_type": "Relational",
+        "table_name": "report_cinqupstate",
+        "connection": {
+          "$ref": "#/connections/bronze_report_cinqupstate_db_connection_obj7"
+        },
+        "load_mode": "append",
+        "schema": "bronze_adt",
+        "data_src_id": 76
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_report_cinqdownstate_obj6",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_report_cinqdownstate_obj6"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Sheet1",
+          "sheet_name": "Sheet1",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "lineSep": "\r\n",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10,
+          "mode": "PERMISSIVE",
+          "columnNameOfCorruptRecord": "corrupt_record"
+        },
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string"
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string"
+          },
+          {
+            "name": "GROUP",
+            "type": "string"
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string"
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string"
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long"
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string"
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double"
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double"
+          },
+          {
+            "name": "AGE",
+            "type": "double"
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double"
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "long"
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long"
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string"
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double"
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string"
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long"
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string"
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string"
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string"
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string"
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string"
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string"
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string"
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string"
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "string"
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string"
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string"
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string"
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string"
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj6",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_report_cinqdownstate_obj6"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'cinqcare'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj6",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj6"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "expected_schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          }
+        ],
+        "dataset_id": "report_cinqdownstate",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_report_cinqdownstate_obj6",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj6"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_report_cinqdownstate_obj6"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_report_cinqupstate_obj7",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_report_cinqupstate_obj7"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Sheet1",
+          "sheet_name": "Sheet1",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "lineSep": "\r\n",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10,
+          "mode": "PERMISSIVE",
+          "columnNameOfCorruptRecord": "corrupt_record"
+        },
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string"
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string"
+          },
+          {
+            "name": "GROUP",
+            "type": "string"
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string"
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string"
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long"
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string"
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double"
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double"
+          },
+          {
+            "name": "AGE",
+            "type": "double"
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double"
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "double"
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long"
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string"
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double"
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string"
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long"
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string"
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string"
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string"
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string"
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string"
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string"
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string"
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string"
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "double"
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string"
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string"
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string"
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string"
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string"
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj7",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_report_cinqupstate_obj7"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'cinqcare'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj7",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj7"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "expected_schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "double",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          }
+        ],
+        "dataset_id": "report_cinqupstate",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_report_cinqupstate_obj7",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj7"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_report_cinqupstate_obj7"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "cinqcare",
+      "business_date": "2026-05-21",
+      "delivery_id": "cinqcare_2026-05-21",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_report_cinqdownstate_obj6",
+          "add_lineage_metadata_obj6",
+          "schema_drift_guard_obj6",
+          "bronze_write_report_cinqdownstate_obj6",
+          "landing_read_report_cinqupstate_obj7",
+          "add_lineage_metadata_obj7",
+          "schema_drift_guard_obj7",
+          "bronze_write_report_cinqupstate_obj7"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 3,
+      "expected_group_members": 2,
+      "group_run_id": "cinqcare_20260521T101425Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
