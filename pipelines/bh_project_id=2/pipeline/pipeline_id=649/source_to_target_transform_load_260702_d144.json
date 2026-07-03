@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-02T12:54:37.988939Z",
-  "updated_at": "2026-07-02T13:07:41.573195Z",
+  "updated_at": "2026-07-03T06:45:49.638899Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -19,35 +19,12 @@
   "bh_project_name": "jaya_project",
   "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
-    "$schema": "https://json-schema.org/draft-07/schema#",
-    "name": "source_to_target_transform_load_260702_d144",
-    "description": "Requirement Pipeline",
-    "version": "1.0.0",
-    "engine_type": "pyspark",
     "mode": "ENGINE",
-    "parameters": [],
-    "connections": {
-      "postgres_11_06": {
-        "connection_config_id": 15,
-        "name": "postgres_11_06",
-        "connection_type": "PostgreSQL",
-        "database": "sample_db",
-        "schema": "smaller_data",
-        "driver": "org.postgresql.Driver",
-        "host": "4.227.38.66",
-        "port": "5434",
-        "secret_name": "bh-postgres-postgres1106"
-      }
-    },
+    "name": "source_to_target_transform_load_260702_d144",
+    "$schema": "https://json-schema.org/draft-07/schema#",
     "sources": {
       "source_table": {
-        "data_src_id": 155,
         "name": "source_table",
-        "source_type": "Relational",
-        "table_name": "source_table",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
         "fields": [
           "id",
           "id",
@@ -322,41 +299,48 @@
             "nullable": true
           }
         ],
-        "db_schema": "smaller_data"
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "source_type": "Relational"
       }
     },
     "targets": {
       "target_table": {
-        "data_src_id": 151,
         "name": "target_table",
-        "target_type": "Relational",
-        "table_name": "target_table",
+        "schema": "smaller_data",
         "load_mode": "overwrite",
         "connection": {
           "$ref": "#/connections/postgres_11_06"
         },
-        "schema": "smaller_data"
+        "table_name": "target_table",
+        "data_src_id": 151,
+        "target_type": "Relational"
       }
     },
+    "version": "1.0.0",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15
+      }
+    },
+    "description": "Requirement Pipeline",
+    "engine_type": "pyspark",
     "transformations": [
       {
         "name": "source_table",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/source_table"
-        },
-        "rename_columns": {
-          "id": "id_src_1",
-          "email": "email_src_1",
-          "created_at": "created_at_src_1",
-          "is_active": "is_active_src_1",
-          "col45r4r4": "col45r4r4_src_1",
-          "col456r4r4": "col456r4r4_src_1",
-          "col456r4r44": "col456r4r44_src_1",
-          "col456r4r444": "col456r4r444_src_1",
-          "col456r4r4444": "col456r4r4444_src_1"
-        },
         "schema": [
           {
             "name": "id",
@@ -403,64 +387,28 @@
             "type": "string",
             "nullable": true
           }
-        ]
-      },
-      {
-        "name": "ExpressionTransform",
-        "transformation": "Expression",
-        "dependent_on": [
-          "source_table"
         ],
-        "derived_fields": [
-          {
-            "name": "id",
-            "expression": "id_src_1"
-          },
-          {
-            "name": "value",
-            "expression": "CAST(id_src_1 AS LONG)"
-          },
-          {
-            "name": "amount",
-            "expression": "CAST(id_src_1 * 3 AS DECIMAL(10,2))"
-          },
-          {
-            "name": "status",
-            "expression": "CAST(id_src_1 * 4 AS STRING)"
-          }
-        ],
-        "select_columns": [
-          "id",
-          "value",
-          "amount",
-          "status"
-        ],
-        "sort": [
-          {
-            "column": "value",
-            "order": "ASC"
-          }
-        ]
-      },
-      {
-        "name": "SortByValue",
-        "transformation": "Filter",
-        "dependent_on": [
-          "ExpressionTransform"
-        ],
-        "condition": "value IS NOT NULL",
-        "sort_columns": [
-          {
-            "column": "value",
-            "order": "DESC"
-          }
-        ]
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "dependent_on": [],
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "is_active": "is_active_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "created_at": "created_at_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "transformation": "Reader"
       },
       {
         "name": "target_table_final",
-        "transformation": "Expression",
         "dependent_on": [
-          "SortByValue"
+          "source_table"
         ],
         "rename_columns": {},
         "select_columns": [
@@ -468,23 +416,25 @@
           "value",
           "amount",
           "status"
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "target_table",
-        "transformation": "Writer",
-        "dependent_on": [
-          "target_table_final"
-        ],
         "target": {
           "$ref": "#/targets/target_table"
         },
+        "dependent_on": [
+          "target_table_final"
+        ],
         "write_options": {
           "mode": "overwrite"
-        }
+        },
+        "transformation": "Writer"
       }
     ]
   },
+  "draft_pipeline_json": null,
   "pipeline_type": "requirement",
   "engine_type": "pyspark",
   "total_test_scenario": null,
