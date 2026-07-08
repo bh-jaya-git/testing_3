@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-03T13:39:00.861283Z",
-  "updated_at": "2026-07-08T07:57:57.836628Z",
+  "updated_at": "2026-07-08T08:15:12.066252Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -18,11 +18,7 @@
       "test_impact": {
         "diff": {
           "removed_steps": [],
-          "added_steps": [
-            "target_table_reader",
-            "target_table_skipped",
-            "trail_table"
-          ],
+          "added_steps": [],
           "changed_steps": []
         },
         "total_scenarios": 5,
@@ -425,6 +421,28 @@
       }
     },
     "targets": {
+      "trail_table": {
+        "name": "trail_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "trail_table",
+        "data_src_id": 157,
+        "target_type": "Relational"
+      },
+      "source_table": {
+        "name": "source_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "target_type": "Relational"
+      },
       "target_table": {
         "name": "target_table",
         "schema": "smaller_data",
@@ -434,6 +452,17 @@
         },
         "table_name": "target_table",
         "data_src_id": 151,
+        "target_type": "Relational"
+      },
+      "target_students": {
+        "name": "target_students",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_students",
+        "data_src_id": 153,
         "target_type": "Relational"
       }
     },
