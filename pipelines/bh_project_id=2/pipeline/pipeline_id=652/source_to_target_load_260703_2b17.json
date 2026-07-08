@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-03T13:39:00.861283Z",
-  "updated_at": "2026-07-08T08:15:12.066252Z",
+  "updated_at": "2026-07-08T08:24:41.306314Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -452,6 +452,17 @@
         },
         "table_name": "target_table",
         "data_src_id": 151,
+        "target_type": "Relational"
+      },
+      "testing_table": {
+        "name": "testing_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "testing_table",
+        "data_src_id": 149,
         "target_type": "Relational"
       },
       "target_students": {
