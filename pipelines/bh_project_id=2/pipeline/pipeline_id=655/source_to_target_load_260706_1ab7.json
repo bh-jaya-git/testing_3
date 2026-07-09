@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-06T08:12:26.416008Z",
-  "updated_at": "2026-07-06T09:04:40.217530Z",
+  "updated_at": "2026-07-09T14:38:30.042716Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -12,42 +12,43 @@
   "bh_project_id": 2,
   "notes": "",
   "tags": {
-    "created_from": "chat-quick-action"
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 655,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [
+            "target_table_skipped",
+            "trail_table_writer"
+          ],
+          "changed_steps": [
+            {
+              "step": "target_table",
+              "transformation": "Writer"
+            }
+          ]
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-07-06T12:21:53.866310+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
   "bh_project_name": "jaya_project",
   "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
-    "$schema": "https://json-schema.org/draft-07/schema#",
-    "name": "source_to_target_load_260706_1ab7",
-    "description": "Requirement Pipeline",
-    "version": "1.0.0",
-    "engine_type": "pyspark",
     "mode": "ENGINE",
-    "parameters": [],
-    "connections": {
-      "postgres_11_06": {
-        "connection_config_id": 15,
-        "name": "postgres_11_06",
-        "connection_type": "PostgreSQL",
-        "database": "sample_db",
-        "schema": "smaller_data",
-        "driver": "org.postgresql.Driver",
-        "host": "4.227.38.66",
-        "port": "5434",
-        "secret_name": "bh-postgres-postgres1106"
-      }
-    },
+    "name": "source_to_target_load_260706_1ab7",
+    "$schema": "https://json-schema.org/draft-07/schema#",
     "sources": {
       "source_table": {
-        "data_src_id": 155,
         "name": "source_table",
-        "source_type": "Relational",
-        "table_name": "source_table",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
         "fields": [
           "id",
           "id",
@@ -322,41 +323,135 @@
             "nullable": true
           }
         ],
-        "db_schema": "smaller_data"
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "source_type": "Relational"
+      },
+      "target_table_skipped": {
+        "name": "target_table_skipped",
+        "fields": [
+          "id",
+          "value",
+          "description"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table_skipped",
+        "data_src_id": 154,
+        "source_type": "Relational"
       }
     },
     "targets": {
-      "target_table": {
-        "data_src_id": 151,
-        "name": "target_table",
-        "target_type": "Relational",
-        "table_name": "target_table",
+      "trail_table": {
+        "name": "trail_table",
+        "schema": "smaller_data",
         "load_mode": "overwrite",
         "connection": {
           "$ref": "#/connections/postgres_11_06"
         },
-        "schema": "smaller_data"
+        "table_name": "trail_table",
+        "data_src_id": 157,
+        "target_type": "Relational"
+      },
+      "source_table": {
+        "name": "source_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "target_type": "Relational"
+      },
+      "target_table": {
+        "name": "target_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table",
+        "data_src_id": 151,
+        "target_type": "Relational"
+      },
+      "source_students": {
+        "name": "source_students",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_students",
+        "data_src_id": 152,
+        "target_type": "Relational"
+      },
+      "testing_table_2": {
+        "name": "testing_table_2",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "testing_table_2",
+        "data_src_id": 150,
+        "target_type": "Relational"
+      },
+      "target_table_skipped": {
+        "name": "target_table_skipped",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table_skipped",
+        "data_src_id": 154,
+        "target_type": "Relational"
       }
     },
+    "version": "1.0.0",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15
+      }
+    },
+    "description": "Requirement Pipeline",
+    "engine_type": "pyspark",
     "transformations": [
       {
         "name": "source_table",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/source_table"
-        },
-        "rename_columns": {
-          "id": "id_src_1",
-          "email": "email_src_1",
-          "created_at": "created_at_src_1",
-          "is_active": "is_active_src_1",
-          "col45r4r4": "col45r4r4_src_1",
-          "col456r4r4": "col456r4r4_src_1",
-          "col456r4r44": "col456r4r44_src_1",
-          "col456r4r444": "col456r4r444_src_1",
-          "col456r4r4444": "col456r4r4444_src_1"
-        },
         "schema": [
           {
             "name": "id",
@@ -403,11 +498,26 @@
             "type": "string",
             "nullable": true
           }
-        ]
+        ],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "dependent_on": [],
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "is_active": "is_active_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "created_at": "created_at_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "transformation": "Reader"
       },
       {
         "name": "ExpressionTargetTable",
-        "transformation": "Expression",
         "dependent_on": [
           "source_table"
         ],
@@ -434,11 +544,11 @@
           "value",
           "amount",
           "status"
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "target_table_final",
-        "transformation": "Expression",
         "dependent_on": [
           "ExpressionTargetTable"
         ],
@@ -448,20 +558,59 @@
           "value",
           "amount",
           "status"
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
-        "name": "target_table",
-        "transformation": "Writer",
+        "name": "trail_table_writer",
+        "target": {
+          "$ref": "#/targets/trail_table"
+        },
         "dependent_on": [
           "target_table_final"
         ],
+        "write_options": {
+          "mode": "overwrite"
+        },
+        "transformation": "Writer"
+      },
+      {
+        "name": "target_table",
         "target": {
           "$ref": "#/targets/target_table"
         },
+        "dependent_on": [
+          "trail_table_writer"
+        ],
         "write_options": {
           "mode": "overwrite"
-        }
+        },
+        "transformation": "Writer"
+      },
+      {
+        "name": "target_table_skipped",
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/target_table_skipped"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
       }
     ]
   },
