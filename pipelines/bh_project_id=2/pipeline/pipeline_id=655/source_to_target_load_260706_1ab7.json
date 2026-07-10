@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-06T08:12:26.416008Z",
-  "updated_at": "2026-07-10T08:47:06.123709Z",
+  "updated_at": "2026-07-10T10:28:32.733420Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -17,7 +17,9 @@
       "pipeline_id": 655,
       "test_impact": {
         "diff": {
-          "removed_steps": [],
+          "removed_steps": [
+            "target_table_skipped"
+          ],
           "added_steps": [],
           "changed_steps": []
         },
@@ -25,7 +27,9 @@
         "stale_scenario_count": 0,
         "stale_scenarios": [],
         "coverage_gaps": [],
-        "affected_steps": []
+        "affected_steps": [
+          "target_table_skipped"
+        ]
       },
       "saved_at": "2026-07-06T12:21:53.866310+00:00",
       "published_at": "2026-07-09T14:38:38.054563+00:00",
@@ -542,9 +546,25 @@
         "transformation": "Expression"
       },
       {
-        "name": "target_table_final",
+        "name": "filter2",
         "dependent_on": [
           "ExpressionTargetTable"
+        ],
+        "transformation": "Filter",
+        "filter_expression": "value < 200"
+      },
+      {
+        "name": "filter1",
+        "dependent_on": [
+          "filter2"
+        ],
+        "transformation": "Filter",
+        "filter_expression": "amount > 300"
+      },
+      {
+        "name": "target_table_final",
+        "dependent_on": [
+          "filter1"
         ],
         "rename_columns": {},
         "select_columns": [
@@ -580,31 +600,6 @@
           "mode": "overwrite"
         },
         "transformation": "Writer"
-      },
-      {
-        "name": "target_table_skipped",
-        "schema": [
-          {
-            "name": "id",
-            "type": "integer",
-            "nullable": false
-          },
-          {
-            "name": "value",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "description",
-            "type": "string",
-            "nullable": true
-          }
-        ],
-        "source": {
-          "$ref": "#/sources/target_table_skipped"
-        },
-        "dependent_on": [],
-        "transformation": "Reader"
       }
     ]
   },
