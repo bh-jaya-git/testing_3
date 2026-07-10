@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-06T08:12:26.416008Z",
-  "updated_at": "2026-07-10T11:27:27.412441Z",
+  "updated_at": "2026-07-10T11:44:31.249672Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -40,40 +40,7 @@
     "mode": "ENGINE",
     "name": "source_to_target_load_260706_1ab7",
     "$schema": "https://json-schema.org/draft-07/schema#",
-    "sources": {
-      "target_table_skipped": {
-        "name": "target_table_skipped",
-        "fields": [
-          "id",
-          "value",
-          "description"
-        ],
-        "schema": [
-          {
-            "name": "id",
-            "type": "integer",
-            "nullable": false
-          },
-          {
-            "name": "value",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "description",
-            "type": "string",
-            "nullable": true
-          }
-        ],
-        "db_schema": "smaller_data",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "target_table_skipped",
-        "data_src_id": 154,
-        "source_type": "Relational"
-      }
-    },
+    "sources": {},
     "targets": {
       "trail_table": {
         "name": "trail_table",
@@ -128,17 +95,6 @@
         },
         "table_name": "testing_table_2",
         "data_src_id": 150,
-        "target_type": "Relational"
-      },
-      "target_table_skipped": {
-        "name": "target_table_skipped",
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "target_table_skipped",
-        "data_src_id": 154,
         "target_type": "Relational"
       }
     },
