@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-06T08:12:26.416008Z",
-  "updated_at": "2026-07-10T11:12:20.454164Z",
+  "updated_at": "2026-07-10T11:19:02.751345Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -17,111 +17,19 @@
       "pipeline_id": 655,
       "test_impact": {
         "diff": {
-          "removed_steps": [
-            "ExpressionTargetTable",
-            "source_table"
-          ],
+          "removed_steps": [],
           "added_steps": [],
-          "changed_steps": [
-            {
-              "step": "filter2",
-              "transformation": "Filter"
-            }
-          ]
+          "changed_steps": []
         },
         "total_scenarios": 5,
-        "stale_scenario_count": 5,
-        "stale_scenarios": [
-          {
-            "test_scenario_id": 1084,
-            "name": "Arithmetic Boundary \u2013 ID Values of 0 and 1",
-            "reasons": [
-              "references removed step 'source_table'",
-              "upstream step 'filter2' was modified"
-            ],
-            "references_removed_steps": [
-              "source_table"
-            ],
-            "references_changed_steps": [
-              "filter2"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1083,
-            "name": "Happy Path \u2013 Valid Records with Typical Integer IDs",
-            "reasons": [
-              "references removed step 'source_table'",
-              "upstream step 'filter2' was modified"
-            ],
-            "references_removed_steps": [
-              "source_table"
-            ],
-            "references_changed_steps": [
-              "filter2"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1087,
-            "name": "Large ID Values \u2013 Overflow and Scale Verification",
-            "reasons": [
-              "references removed step 'source_table'",
-              "upstream step 'filter2' was modified"
-            ],
-            "references_removed_steps": [
-              "source_table"
-            ],
-            "references_changed_steps": [
-              "filter2"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1085,
-            "name": "Null Handling \u2013 Nullable Source Fields with Non-Null ID",
-            "reasons": [
-              "references removed step 'source_table'",
-              "upstream step 'filter2' was modified"
-            ],
-            "references_removed_steps": [
-              "source_table"
-            ],
-            "references_changed_steps": [
-              "filter2"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1086,
-            "name": "Type Cast Correctness \u2013 DECIMAL Precision and VARCHAR Representation",
-            "reasons": [
-              "references removed step 'source_table'",
-              "upstream step 'filter2' was modified"
-            ],
-            "references_removed_steps": [
-              "source_table"
-            ],
-            "references_changed_steps": [
-              "filter2"
-            ],
-            "stale": true
-          }
-        ],
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
         "coverage_gaps": [],
-        "affected_steps": [
-          "ExpressionTargetTable",
-          "filter1",
-          "filter2",
-          "source_table",
-          "target_table",
-          "target_table_final",
-          "trail_table_writer"
-        ]
+        "affected_steps": []
       },
       "saved_at": "2026-07-06T12:21:53.866310+00:00",
-      "published_at": "2026-07-09T14:38:38.054563+00:00",
-      "pending_test_updates": false
+      "published_at": "2026-07-10T11:12:26.449397+00:00",
+      "pending_test_updates": true
     }
   },
   "status": "active",
