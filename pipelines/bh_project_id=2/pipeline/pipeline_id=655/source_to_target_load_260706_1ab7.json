@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-06T08:12:26.416008Z",
-  "updated_at": "2026-07-10T11:45:23.371666Z",
+  "updated_at": "2026-07-12T19:00:01.527380Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -51,17 +51,6 @@
         },
         "table_name": "trail_table",
         "data_src_id": 157,
-        "target_type": "Relational"
-      },
-      "source_table": {
-        "name": "source_table",
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "source_table",
-        "data_src_id": 155,
         "target_type": "Relational"
       },
       "target_table": {
