@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-13T05:51:08.771301Z",
-  "updated_at": "2026-07-13T06:23:35.261214Z",
+  "updated_at": "2026-07-13T07:57:31.004863Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -19,15 +19,86 @@
         "diff": {
           "removed_steps": [],
           "added_steps": [
-            "target_table_reader"
+            "FilterAmountGt200"
           ],
-          "changed_steps": []
+          "changed_steps": [
+            {
+              "step": "target_table_final",
+              "transformation": "Expression"
+            }
+          ]
         },
         "total_scenarios": 5,
-        "stale_scenario_count": 0,
-        "stale_scenarios": [],
-        "coverage_gaps": [],
-        "affected_steps": []
+        "stale_scenario_count": 5,
+        "stale_scenarios": [
+          {
+            "test_scenario_id": 1102,
+            "name": "All Source Rows Below Filter Threshold \u2013 Empty Target Result",
+            "reasons": [
+              "upstream step 'target_table_final' was modified"
+            ],
+            "references_removed_steps": [],
+            "references_changed_steps": [
+              "target_table_final"
+            ],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1100,
+            "name": "Boundary Value \u2013 Row with id Exactly Equal to 10 Is Excluded",
+            "reasons": [
+              "upstream step 'target_table_final' was modified"
+            ],
+            "references_removed_steps": [],
+            "references_changed_steps": [
+              "target_table_final"
+            ],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1099,
+            "name": "Field Transformation Correctness \u2013 All Four Target Columns",
+            "reasons": [
+              "upstream step 'target_table_final' was modified"
+            ],
+            "references_removed_steps": [],
+            "references_changed_steps": [
+              "target_table_final"
+            ],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1098,
+            "name": "Happy Path \u2013 Filter Correctly Retains and Excludes Rows",
+            "reasons": [
+              "upstream step 'target_table_final' was modified"
+            ],
+            "references_removed_steps": [],
+            "references_changed_steps": [
+              "target_table_final"
+            ],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1101,
+            "name": "Null Handling in Nullable Source Columns",
+            "reasons": [
+              "upstream step 'target_table_final' was modified"
+            ],
+            "references_removed_steps": [],
+            "references_changed_steps": [
+              "target_table_final"
+            ],
+            "stale": true
+          }
+        ],
+        "coverage_gaps": [
+          "FilterAmountGt200"
+        ],
+        "affected_steps": [
+          "target_table",
+          "target_table_final"
+        ]
       },
       "saved_at": "2026-07-13T05:54:42.666208+00:00"
     }
@@ -365,17 +436,6 @@
       }
     },
     "targets": {
-      "trail_table": {
-        "name": "trail_table",
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "trail_table",
-        "data_src_id": 157,
-        "target_type": "Relational"
-      },
       "target_table": {
         "name": "target_table",
         "schema": "smaller_data",
@@ -481,9 +541,34 @@
         "transformation": "Filter"
       },
       {
-        "name": "ExpressionTargetTable",
+        "name": "ExprGt12",
         "dependent_on": [
           "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          }
+        ],
+        "select_columns": [
+          "col456r4r4444_src_1",
+          "col456r4r444_src_1",
+          "col456r4r44_src_1",
+          "col456r4r4_src_1",
+          "col45r4r4_src_1",
+          "created_at_src_1",
+          "email_src_1",
+          "id_src_1",
+          "is_active_src_1",
+          "value"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "ExpressionTargetTable",
+        "dependent_on": [
+          "ExprGt12"
         ],
         "derived_fields": [
           {
@@ -512,9 +597,25 @@
         "transformation": "Expression"
       },
       {
-        "name": "target_table_final",
+        "name": "FilterIdGt30",
+        "condition": "id > 30",
         "dependent_on": [
           "ExpressionTargetTable"
+        ],
+        "transformation": "Filter"
+      },
+      {
+        "name": "FilterAmountGt200",
+        "condition": "amount > 200",
+        "dependent_on": [
+          "FilterIdGt30"
+        ],
+        "transformation": "Filter"
+      },
+      {
+        "name": "target_table_final",
+        "dependent_on": [
+          "FilterAmountGt200"
         ],
         "rename_columns": {},
         "select_columns": [
