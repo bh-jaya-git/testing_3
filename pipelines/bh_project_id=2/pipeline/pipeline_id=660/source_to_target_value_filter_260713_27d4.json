@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-13T05:51:08.771301Z",
-  "updated_at": "2026-07-13T07:57:31.004863Z",
+  "updated_at": "2026-07-13T08:28:29.160084Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -18,87 +18,14 @@
       "test_impact": {
         "diff": {
           "removed_steps": [],
-          "added_steps": [
-            "FilterAmountGt200"
-          ],
-          "changed_steps": [
-            {
-              "step": "target_table_final",
-              "transformation": "Expression"
-            }
-          ]
+          "added_steps": [],
+          "changed_steps": []
         },
         "total_scenarios": 5,
-        "stale_scenario_count": 5,
-        "stale_scenarios": [
-          {
-            "test_scenario_id": 1102,
-            "name": "All Source Rows Below Filter Threshold \u2013 Empty Target Result",
-            "reasons": [
-              "upstream step 'target_table_final' was modified"
-            ],
-            "references_removed_steps": [],
-            "references_changed_steps": [
-              "target_table_final"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1100,
-            "name": "Boundary Value \u2013 Row with id Exactly Equal to 10 Is Excluded",
-            "reasons": [
-              "upstream step 'target_table_final' was modified"
-            ],
-            "references_removed_steps": [],
-            "references_changed_steps": [
-              "target_table_final"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1099,
-            "name": "Field Transformation Correctness \u2013 All Four Target Columns",
-            "reasons": [
-              "upstream step 'target_table_final' was modified"
-            ],
-            "references_removed_steps": [],
-            "references_changed_steps": [
-              "target_table_final"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1098,
-            "name": "Happy Path \u2013 Filter Correctly Retains and Excludes Rows",
-            "reasons": [
-              "upstream step 'target_table_final' was modified"
-            ],
-            "references_removed_steps": [],
-            "references_changed_steps": [
-              "target_table_final"
-            ],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1101,
-            "name": "Null Handling in Nullable Source Columns",
-            "reasons": [
-              "upstream step 'target_table_final' was modified"
-            ],
-            "references_removed_steps": [],
-            "references_changed_steps": [
-              "target_table_final"
-            ],
-            "stale": true
-          }
-        ],
-        "coverage_gaps": [
-          "FilterAmountGt200"
-        ],
-        "affected_steps": [
-          "target_table",
-          "target_table_final"
-        ]
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
       },
       "saved_at": "2026-07-13T05:54:42.666208+00:00"
     }
