@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-13T04:37:35.329920Z",
-  "updated_at": "2026-07-13T04:41:02.923853Z",
+  "updated_at": "2026-07-16T09:47:50.140848Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -35,10 +35,53 @@
   "bh_project_name": "jaya_project",
   "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
-    "mode": "ENGINE",
-    "name": "source_to_target_value_filter_260713_1b97",
     "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260713_1b97",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15
+      }
+    },
     "sources": {
+      "trail_table": {
+        "name": "trail_table",
+        "fields": [
+          "name",
+          "email"
+        ],
+        "schema": [
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "trail_table",
+        "data_src_id": 157,
+        "source_type": "Relational"
+      },
       "source_table": {
         "name": "source_table",
         "fields": [
@@ -348,23 +391,6 @@
         "target_type": "Relational"
       }
     },
-    "version": "1.0.0",
-    "parameters": [],
-    "connections": {
-      "postgres_11_06": {
-        "host": "4.227.38.66",
-        "name": "postgres_11_06",
-        "port": "5434",
-        "driver": "org.postgresql.Driver",
-        "schema": "smaller_data",
-        "database": "sample_db",
-        "secret_name": "bh-postgres-postgres1106",
-        "connection_type": "PostgreSQL",
-        "connection_config_id": 15
-      }
-    },
-    "description": "Requirement Pipeline",
-    "engine_type": "pyspark",
     "transformations": [
       {
         "name": "source_table",
@@ -497,6 +523,26 @@
           "mode": "overwrite"
         },
         "transformation": "Writer"
+      },
+      {
+        "name": "trail_table",
+        "schema": [
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/trail_table"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
       }
     ]
   },
