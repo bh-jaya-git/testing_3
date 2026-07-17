@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-17T02:34:23.016989Z",
-  "updated_at": "2026-07-17T10:06:23.375315Z",
+  "updated_at": "2026-07-17T10:38:54.824670Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -477,7 +477,7 @@
         "derived_fields": [
           {
             "name": "id",
-            "expression": "id_src_1"
+            "expression": "id_src_1 * 8"
           },
           {
             "name": "value",
@@ -485,7 +485,7 @@
           },
           {
             "name": "amount",
-            "expression": "id_src_1 * 7"
+            "expression": "CAST(id_src_1 * 8 AS DECIMAL(10,2))"
           },
           {
             "name": "status",
