@@ -1,0 +1,540 @@
+{
+  "created_at": "2026-07-17T02:34:23.016989Z",
+  "updated_at": "2026-07-17T09:22:38.059904Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 666,
+  "pipeline_name": "source_to_target_value_filter_260717_83ce",
+  "pipeline_key": "source_to_target_value_filter_260717_83ce",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 666,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [
+            "trail_table"
+          ],
+          "changed_steps": []
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-07-17T02:41:48.030022+00:00"
+    }
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "jaya_project",
+  "bh_github_username": "bh-jaya-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260717_83ce",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15
+      }
+    },
+    "sources": {
+      "source_table": {
+        "name": "source_table",
+        "fields": [
+          "id",
+          "id",
+          "id",
+          "id",
+          "id",
+          "email",
+          "email",
+          "email",
+          "email",
+          "email",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "source_type": "Relational"
+      }
+    },
+    "targets": {
+      "trail_table": {
+        "name": "trail_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "trail_table",
+        "data_src_id": 157,
+        "target_type": "Relational"
+      },
+      "target_table": {
+        "name": "target_table",
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table",
+        "data_src_id": 151,
+        "target_type": "Relational"
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "dependent_on": [],
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "is_active": "is_active_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "created_at": "created_at_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "transformation": "Reader"
+      },
+      {
+        "name": "target_table",
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "write_options": {
+          "mode": "overwrite"
+        },
+        "transformation": "Writer"
+      },
+      {
+        "name": "target_table_final",
+        "dependent_on": [
+          "ExpressionTargetFields"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "FilterValueGt10",
+        "condition": "id_src_1 > 10",
+        "dependent_on": [
+          "source_table"
+        ],
+        "transformation": "Filter"
+      },
+      {
+        "name": "ExpressionTargetFields",
+        "dependent_on": [
+          "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          },
+          {
+            "name": "amount",
+            "expression": "id_src_1 * 7"
+          },
+          {
+            "name": "status",
+            "expression": "CAST('KILLED' AS STRING)"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "trail_table_final",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": [
+          {
+            "name": "email",
+            "expression": "email_src_1"
+          }
+        ],
+        "select_columns": [
+          "email"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "trail_table",
+        "target": {
+          "$ref": "#/targets/trail_table"
+        },
+        "dependent_on": [
+          "trail_table_final"
+        ],
+        "transformation": "Writer"
+      }
+    ]
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
