@@ -1,0 +1,1863 @@
+{
+  "created_at": "2026-07-21T21:15:13.987995Z",
+  "updated_at": "2026-07-22T20:25:24.332217Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 671,
+  "pipeline_name": "source_to_target_value_filter_260721_3265",
+  "pipeline_key": "source_to_target_value_filter_260721_3265",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action"
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "jaya_project",
+  "bh_github_username": "bh-jaya-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260721_3265",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
+      },
+      "azureblob_2": {
+        "name": "azureblob_2",
+        "bucket": "unknown",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblob2",
+        "connection_type": "azure_blob",
+        "file_path_prefix": "",
+        "connection_config_id": 22
+      },
+      "databrick-26-06_main": {
+        "name": "databrick-26-06_main",
+        "schema": "staging",
+        "catalog": "main",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19
+      },
+      "databrick-26-06_cinqdev": {
+        "name": "databrick-26-06_cinqdev",
+        "schema": "silverraw_enrollment",
+        "catalog": "cinqdev",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19
+      },
+      "databrick-26-06_samples": {
+        "name": "databrick-26-06_samples",
+        "schema": "wanderbricks",
+        "catalog": "samples",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19
+      }
+    },
+    "sources": {
+      "source_table": {
+        "data_src_id": 155,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "id",
+          "id",
+          "id",
+          "id",
+          "email",
+          "email",
+          "email",
+          "email",
+          "email",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      },
+      "members": {
+        "name": "members",
+        "fields": [
+          "source_system_id",
+          "first_name",
+          "last_name",
+          "middle_name",
+          "suffix",
+          "date_of_birth",
+          "gender",
+          "race",
+          "ethnicity",
+          "language",
+          "location",
+          "care_management_program",
+          "last_contact",
+          "dual_status_code",
+          "death_date",
+          "record_creation_date",
+          "secure_id",
+          "dnc",
+          "guardian_first_name",
+          "guardian_last_name",
+          "guardian_phone_number",
+          "guardian_email",
+          "is_active",
+          "record_hash",
+          "source_system_id_type",
+          "feed_name",
+          "source_system",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "batch_id"
+        ],
+        "schema": [
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "suffix",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "race",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "care_management_program",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_contact",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "death_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "record_creation_date",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "secure_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dnc",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "guardian_first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_phone_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_enrollment",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "members",
+        "data_src_id": 166,
+        "source_type": "Relational"
+      },
+      "distributor_order_items": {
+        "name": "distributor_order_items",
+        "fields": [
+          "order_id",
+          "order_date",
+          "store_id",
+          "product_id",
+          "units",
+          "unit_price",
+          "discount_amount",
+          "status"
+        ],
+        "schema": [
+          {
+            "name": "order_id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "order_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "store_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "units",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "unit_price",
+            "type": "decimal(10,2)",
+            "nullable": false
+          },
+          {
+            "name": "discount_amount",
+            "type": "decimal(10,2)",
+            "nullable": false
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "nullable": false
+          }
+        ],
+        "db_schema": "consumer_demo",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "distributor_order_items",
+        "data_src_id": 156,
+        "source_type": "Relational"
+      },
+      "members_enrollment_segments": {
+        "name": "members_enrollment_segments",
+        "fields": [
+          "member_plan",
+          "member_payor",
+          "insurance_id",
+          "add_reason",
+          "control_number",
+          "control_number_pbp",
+          "lob",
+          "enrollment_start_date",
+          "enrollment_end_date",
+          "is_active",
+          "record_hash",
+          "source_system_id",
+          "feed_name",
+          "source_system",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "batch_id"
+        ],
+        "schema": [
+          {
+            "name": "member_plan",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "member_payor",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "insurance_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "add_reason",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "control_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "control_number_pbp",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "lob",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "enrollment_start_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "enrollment_end_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_enrollment",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "members_enrollment_segments",
+        "data_src_id": 164,
+        "source_type": "Relational"
+      },
+      "safeharbor_cinqcare_elig_202604_n": {
+        "name": "safeharbor_cinqcare_elig_202604_n",
+        "fields": [
+          "sbscr_nbr",
+          "source_patient_id",
+          "empi",
+          "mbr_lst_nm",
+          "mbr_midl_init",
+          "mbr_fst_nm",
+          "mbr_gdr_cd",
+          "bth_dt",
+          "contr_curr_pln_nm",
+          "contr_nbr",
+          "contr_pbp",
+          "contr_nbr_pbp",
+          "curr_mbi",
+          "dth_dt",
+          "record_start_dt",
+          "record_end_dt",
+          "mbr_adr_loc_adr1",
+          "mbr_adr_loc_adr2",
+          "mbr_adr_loc_cty",
+          "mbr_adr_loc_st_cd",
+          "mbr_adr_loc_zip_cd",
+          "column21",
+          "mbr_do_not_cntc_flg",
+          "assigned_provider_npi",
+          "assigned_tin"
+        ],
+        "schema": [
+          {
+            "name": "sbscr_nbr",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "source_patient_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "empi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_lst_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_midl_init",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_fst_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_gdr_cd",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "bth_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "contr_curr_pln_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "contr_pbp",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr_pbp",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "curr_mbi",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "dth_dt",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_start_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "record_end_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_adr_loc_cty",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_st_cd",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_zip_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "column21",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_do_not_cntc_flg",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "assigned_provider_npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "assigned_tin",
+            "type": "string",
+            "nullable": false
+          }
+        ],
+        "db_schema": null,
+        "file_name": "safeharbor_cinqcare_elig_202604_n",
+        "connection": {
+          "$ref": "#/connections/azureblob_2"
+        },
+        "data_src_id": 160,
+        "source_type": "File"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "data_src_id": 151,
+        "name": "target_table",
+        "target_type": "Relational",
+        "table_name": "target_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data"
+      },
+      "members_emails": {
+        "name": "members_emails",
+        "fields": [
+          {
+            "name": "email_type",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "email_address",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "silverraw_enrollment",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "members_emails",
+        "data_src_id": 165,
+        "target_type": "Relational"
+      },
+      "safeharbor_cinqcare_elig_202604_n_1hxv7": {
+        "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "fields": [
+          {
+            "name": "sbscr_nbr",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "source_patient_id",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "empi",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "mbr_lst_nm",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_midl_init",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "mbr_fst_nm",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_gdr_cd",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "bth_dt",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "contr_curr_pln_nm",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "contr_pbp",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr_pbp",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "curr_mbi",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "dth_dt",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "record_start_dt",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "record_end_dt",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr1",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr2",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "mbr_adr_loc_cty",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_st_cd",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_zip_cd",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "column21",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "mbr_do_not_cntc_flg",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "assigned_provider_npi",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "assigned_tin",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          }
+        ],
+        "schema": null,
+        "file_name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/azureblob_2"
+        },
+        "data_src_id": 167,
+        "target_type": "File"
+      },
+      "trail_table": {
+        "data_src_id": 157,
+        "name": "trail_table",
+        "target_type": "Relational",
+        "table_name": "trail_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data",
+        "fields": [
+          {
+            "name": "name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "is_active": "is_active_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "created_at": "created_at_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite"
+        }
+      },
+      {
+        "name": "target_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ExpressionTarget"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "FilterValueGt10",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "id_src_1 > 10"
+      },
+      {
+        "name": "ExpressionTarget",
+        "transformation": "Expression",
+        "dependent_on": [
+          "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          },
+          {
+            "name": "amount",
+            "expression": "CAST(id_src_1 * 5 AS DECIMAL(10,2))"
+          },
+          {
+            "name": "status",
+            "expression": "CAST('DRAFT' AS STRING)"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "members_emails",
+        "target": {
+          "$ref": "#/targets/members_emails"
+        },
+        "dependent_on": [],
+        "transformation": "Writer"
+      },
+      {
+        "name": "members_enrollment_segments",
+        "schema": [
+          {
+            "name": "member_plan",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "member_payor",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "insurance_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "add_reason",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "control_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "control_number_pbp",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "lob",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "enrollment_start_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "enrollment_end_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/members_enrollment_segments"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
+      },
+      {
+        "name": "members",
+        "schema": [
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "suffix",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "race",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "care_management_program",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_contact",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "death_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "record_creation_date",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "secure_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dnc",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "guardian_first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_phone_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/members"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
+      },
+      {
+        "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "target": {
+          "$ref": "#/targets/safeharbor_cinqcare_elig_202604_n_1hxv7"
+        },
+        "dependent_on": [],
+        "transformation": "Writer"
+      },
+      {
+        "name": "safeharbor_cinqcare_elig_202604_n",
+        "schema": [
+          {
+            "name": "sbscr_nbr",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "source_patient_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "empi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_lst_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_midl_init",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_fst_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_gdr_cd",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "bth_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "contr_curr_pln_nm",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "contr_pbp",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "contr_nbr_pbp",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "curr_mbi",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "dth_dt",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_start_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "record_end_dt",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_adr2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_adr_loc_cty",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_st_cd",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "mbr_adr_loc_zip_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "column21",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbr_do_not_cntc_flg",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "assigned_provider_npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "assigned_tin",
+            "type": "string",
+            "nullable": false
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/safeharbor_cinqcare_elig_202604_n"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
+      },
+      {
+        "name": "distributor_order_items",
+        "schema": [
+          {
+            "name": "order_id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "order_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "store_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "product_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "units",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "unit_price",
+            "type": "decimal(10,2)",
+            "nullable": false
+          },
+          {
+            "name": "discount_amount",
+            "type": "decimal(10,2)",
+            "nullable": false
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "nullable": false
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/distributor_order_items"
+        },
+        "dependent_on": [],
+        "transformation": "Reader"
+      },
+      {
+        "name": "Expression_trail_table",
+        "transformation": "Expression",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": [
+          {
+            "name": "email",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "name",
+            "expression": "regexp_replace(email_src_1, '@gmail\\.com$', '')"
+          }
+        ],
+        "select_columns": [
+          "email",
+          "name"
+        ]
+      },
+      {
+        "name": "trail_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "Expression_trail_table"
+        ],
+        "target": {
+          "$ref": "#/targets/trail_table"
+        }
+      }
+    ]
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
