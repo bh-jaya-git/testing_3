@@ -1,0 +1,869 @@
+{
+  "created_at": "2026-07-22T15:16:35.977537Z",
+  "updated_at": "2026-07-22T15:26:35.238679Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 675,
+  "pipeline_name": "silver_raw_employees_dedup_multi_target_load_260722_d721",
+  "pipeline_key": "silver_raw_employees_dedup_multi_target_load_260722_d721",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 4,
+    "data_domain_name": "employee",
+    "source_count": 1,
+    "target_count": 3
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_employees_dedup_multi_target_load_260722_d721",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "databrick-26-06_main": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_main",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "databrick-26-06_cinqdev": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      }
+    },
+    "sources": {
+      "employees_6g1dt": {
+        "data_src_id": 179,
+        "name": "employees_6g1dt",
+        "source_type": "Relational",
+        "table_name": "employees_6g1dt",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "staging"
+      }
+    },
+    "targets": {
+      "employee_compensation": {
+        "data_src_id": 177,
+        "name": "employee_compensation",
+        "target_type": "Relational",
+        "table_name": "employee_compensation",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "merge_keys": [
+          "employee_id",
+          "salary",
+          "performance_rating"
+        ],
+        "process_deletes": true,
+        "scd_config": {
+          "scd_type_1_columns": []
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        },
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "target_type": "Relational",
+        "table_name": "emergency_contacts",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "merge_keys": [
+          "employee_id",
+          "Contact_Name",
+          "Relationship",
+          "Contact_Phone"
+        ],
+        "process_deletes": true,
+        "scd_config": {
+          "scd_type_1_columns": []
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        },
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Relationship",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "merge_keys": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
+        ],
+        "process_deletes": true,
+        "scd_config": {
+          "scd_type_1_columns": []
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        },
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      }
+    },
+    "transformations": [
+      {
+        "name": "employees_6g1dt",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees_6g1dt"
+        },
+        "rename_columns": {
+          "employee_id": "employee_id_src_1",
+          "first_name": "first_name_src_1",
+          "last_name": "last_name_src_1",
+          "email": "email_src_1",
+          "phone": "phone_src_1",
+          "department": "department_src_1",
+          "job_title": "job_title_src_1",
+          "salary": "salary_src_1",
+          "hire_date": "hire_date_src_1",
+          "performance_rating": "performance_rating_src_1",
+          "office_location": "office_location_src_1",
+          "employment_status": "employment_status_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "ingest_day": "ingest_day_src_1"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "employee_compensation",
+        "transformation": "Writer",
+        "dependent_on": [
+          "employee_compensation_final"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Writer",
+        "dependent_on": [
+          "emergency_contacts_final"
+        ],
+        "target": {
+          "$ref": "#/targets/emergency_contacts"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "employee_careers",
+        "transformation": "Writer",
+        "dependent_on": [
+          "employee_careers_final"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "employee_compensation_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "EmployeeCompensationExpr"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "salary",
+          "performance_rating",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "emergency_contacts_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "EmergencyContactsExpr"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "Contact_Name",
+          "Relationship",
+          "Contact_Phone",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ],
+        "derived_fields": [
+          {
+            "name": "Contact_Name",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Relationship",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Contact_Phone",
+            "expression": "CAST(NULL AS STRING)"
+          }
+        ]
+      },
+      {
+        "name": "employee_careers_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "EmployeeCareersExpr"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "employees_6g1dt_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_6g1dt"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "employees_6g1dt_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "employees_6g1dt_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+      },
+      {
+        "name": "DeduplicateEmployees",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "employees_6g1dt_IngestFilter"
+        ],
+        "dedup_by": {
+          "columns": [
+            "employee_id_src_1"
+          ],
+          "order_by": [
+            {
+              "column": "ingest_ts_src_1",
+              "order": "desc"
+            }
+          ],
+          "keep": "first"
+        }
+      },
+      {
+        "name": "EmployeeCompensationExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "salary",
+            "expression": "salary_src_1"
+          },
+          {
+            "name": "performance_rating",
+            "expression": "performance_rating_src_1"
+          },
+          {
+            "name": "created_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "salary",
+          "performance_rating",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "EmergencyContactsExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "created_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "EmployeeCareersExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name_src_1"
+          },
+          {
+            "name": "Department",
+            "expression": "department_src_1"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title_src_1"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status_src_1"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "phone_src_1"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date_src_1"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location_src_1"
+          },
+          {
+            "name": "created_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      }
+    ],
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "employment118",
+      "business_date": "2026-07-22",
+      "stages": [
+        "silver_raw"
+      ],
+      "stage_to_transformations": {
+        "silver_raw": [
+          "employees_6g1dt",
+          "employees_6g1dt_MaxBatchExpr",
+          "employees_6g1dt_IngestFilter",
+          "DeduplicateEmployees",
+          "EmployeeCompensationExpr",
+          "EmergencyContactsExpr",
+          "EmployeeCareersExpr",
+          "employee_compensation_final",
+          "employee_compensation",
+          "emergency_contacts_final",
+          "emergency_contacts",
+          "employee_careers_final",
+          "employee_careers"
+        ]
+      },
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "seed_stage_rows": true,
+      "delivery_id": "employment118_2026-07-22",
+      "storage": {
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        },
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        }
+      }
+    }
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
