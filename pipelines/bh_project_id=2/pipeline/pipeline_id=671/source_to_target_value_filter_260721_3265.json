@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T21:15:13.987995Z",
-  "updated_at": "2026-07-22T20:25:24.332217Z",
+  "updated_at": "2026-07-22T20:38:09.026781Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -12,7 +12,101 @@
   "bh_project_id": 2,
   "notes": "",
   "tags": {
-    "created_from": "chat-quick-action"
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 671,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "members_emails"
+          ],
+          "column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1137,
+              "name": "All Rows Filtered Out \u2013 No Qualifying Rows",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1135,
+              "name": "Field Transformation Correctness \u2013 Type Casting and Derived Fields",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1134,
+              "name": "Filter Boundary \u2013 Rows Exactly at the Threshold",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1133,
+              "name": "Happy Path \u2013 Filter Correctly Retains and Excludes Rows",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1136,
+              "name": "Null Handling on Nullable Source Fields",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "members_emails"
+            ],
+            "column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-07-22T20:37:43.918452+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -929,97 +1023,6 @@
         },
         "schema": "smaller_data"
       },
-      "members_emails": {
-        "name": "members_emails",
-        "fields": [
-          {
-            "name": "email_type",
-            "type": "String",
-            "is_pk": true,
-            "nullable": false
-          },
-          {
-            "name": "source_system_id",
-            "type": "String",
-            "is_pk": true,
-            "nullable": false
-          },
-          {
-            "name": "email_address",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "can_contact",
-            "type": "Boolean",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "is_active",
-            "type": "Boolean",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "record_hash",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "source_system",
-            "type": "String",
-            "is_pk": true,
-            "nullable": false
-          },
-          {
-            "name": "created_by",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "created_at",
-            "type": "Timestamp",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "updated_by",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "updated_at",
-            "type": "Timestamp",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "Integer",
-            "is_pk": false,
-            "nullable": true
-          }
-        ],
-        "schema": "silverraw_enrollment",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "table_name": "members_emails",
-        "data_src_id": 165,
-        "target_type": "Relational"
-      },
       "safeharbor_cinqcare_elig_202604_n_1hxv7": {
         "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
         "fields": [
@@ -1341,14 +1344,6 @@
           "amount",
           "status"
         ]
-      },
-      {
-        "name": "members_emails",
-        "target": {
-          "$ref": "#/targets/members_emails"
-        },
-        "dependent_on": [],
-        "transformation": "Writer"
       },
       {
         "name": "members_enrollment_segments",
