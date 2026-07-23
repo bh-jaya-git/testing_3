@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T12:00:44.129081Z",
-  "updated_at": "2026-07-23T19:06:47.729481Z",
+  "updated_at": "2026-07-23T19:13:38.766471Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -24,15 +24,18 @@
         "change_set": {
           "bound_sources": [],
           "unbound_sources": [],
-          "bound_targets": [],
-          "unbound_targets": [
-            "employee_careers",
-            "employees_dh88h"
+          "bound_targets": [
+            "emergency_contacts",
+            "employee_careers"
           ],
+          "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
-          "bound_target_columns": {},
+          "bound_target_columns": {
+            "emergency_contacts": [],
+            "employee_careers": []
+          },
           "membership_changed": false,
           "cardinality_changed": false,
           "cosmetic_only": false
@@ -84,15 +87,18 @@
           "change_set": {
             "bound_sources": [],
             "unbound_sources": [],
-            "bound_targets": [],
-            "unbound_targets": [
-              "employee_careers",
-              "employees_dh88h"
+            "bound_targets": [
+              "emergency_contacts",
+              "employee_careers"
             ],
+            "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
-            "bound_target_columns": {},
+            "bound_target_columns": {
+              "emergency_contacts": [],
+              "employee_careers": []
+            },
             "membership_changed": false,
             "cardinality_changed": false,
             "cosmetic_only": false
@@ -593,118 +599,6 @@
           }
         ],
         "db_schema": "silverraw_employees"
-      },
-      "emergency_contacts": {
-        "data_src_id": 175,
-        "name": "emergency_contacts",
-        "source_type": "Relational",
-        "table_name": "emergency_contacts",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "fields": [
-          "employee_id",
-          "Contact_Name",
-          "Relationship",
-          "Contact_Phone"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Contact_Name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Relationship",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Contact_Phone",
-            "type": "string",
-            "nullable": true
-          }
-        ],
-        "db_schema": "silverraw_employees"
-      },
-      "employee_demographics": {
-        "data_src_id": 176,
-        "name": "employee_demographics",
-        "source_type": "Relational",
-        "table_name": "employee_demographics",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "fields": [
-          "employee_id",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "personal_phone",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Gender",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "date_of_birth",
-            "type": "date",
-            "nullable": true
-          },
-          {
-            "name": "marital_status",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "personal_email",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "personal_phone",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "street_address",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "City",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "State",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "zip_code",
-            "type": "long",
-            "nullable": true
-          }
-        ],
-        "db_schema": "silverraw_employees"
       }
     },
     "targets": {
@@ -718,6 +612,116 @@
           "$ref": "#/connections/postgres_11_06"
         },
         "schema": "smaller_data"
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "target_type": "Relational",
+        "table_name": "emergency_contacts",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Relationship",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -985,93 +989,19 @@
       },
       {
         "name": "emergency_contacts",
-        "transformation": "Reader",
+        "transformation": "Writer",
         "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/emergency_contacts"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Contact_Name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Relationship",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Contact_Phone",
-            "type": "string",
-            "nullable": true
-          }
-        ]
+        "target": {
+          "$ref": "#/targets/emergency_contacts"
+        }
       },
       {
-        "name": "employee_demographics",
-        "transformation": "Reader",
+        "name": "employee_careers",
+        "transformation": "Writer",
         "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employee_demographics"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "Gender",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "date_of_birth",
-            "type": "date",
-            "nullable": true
-          },
-          {
-            "name": "marital_status",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "personal_email",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "personal_phone",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "street_address",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "City",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "State",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "zip_code",
-            "type": "long",
-            "nullable": true
-          }
-        ]
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        }
       }
     ]
   },
