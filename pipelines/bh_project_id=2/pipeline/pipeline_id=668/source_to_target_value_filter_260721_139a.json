@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T12:00:44.129081Z",
-  "updated_at": "2026-07-23T19:13:38.766471Z",
+  "updated_at": "2026-07-23T21:11:31.959445Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -25,16 +25,14 @@
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [
-            "emergency_contacts",
-            "employee_careers"
+            "trail_table"
           ],
           "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
           "bound_target_columns": {
-            "emergency_contacts": [],
-            "employee_careers": []
+            "trail_table": []
           },
           "membership_changed": false,
           "cardinality_changed": false,
@@ -88,16 +86,14 @@
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [
-              "emergency_contacts",
-              "employee_careers"
+              "trail_table"
             ],
             "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
             "bound_target_columns": {
-              "emergency_contacts": [],
-              "employee_careers": []
+              "trail_table": []
             },
             "membership_changed": false,
             "cardinality_changed": false,
@@ -722,6 +718,237 @@
             "is_pk": false
           }
         ]
+      },
+      "trail_table": {
+        "data_src_id": 157,
+        "name": "trail_table",
+        "target_type": "Relational",
+        "table_name": "trail_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data",
+        "fields": [
+          {
+            "name": "name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_compensation": {
+        "data_src_id": 177,
+        "name": "employee_compensation",
+        "target_type": "Relational",
+        "table_name": "employee_compensation",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "testing_table": {
+        "data_src_id": 149,
+        "name": "testing_table",
+        "target_type": "Relational",
+        "table_name": "testing_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name_",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name_2",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name_3",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name_5",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "statuws",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col3",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col5",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col54",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col5r4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col45r4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col45r44",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "col454r4r4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col2",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col5",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col54",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col454",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "test_col4454",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "address2",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "address633",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "address_city",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -990,7 +1217,9 @@
       {
         "name": "emergency_contacts",
         "transformation": "Writer",
-        "dependent_on": [],
+        "dependent_on": [
+          "emergency_contacts_expression"
+        ],
         "target": {
           "$ref": "#/targets/emergency_contacts"
         }
@@ -998,9 +1227,196 @@
       {
         "name": "employee_careers",
         "transformation": "Writer",
-        "dependent_on": [],
+        "dependent_on": [
+          "employee_careers_expression"
+        ],
         "target": {
           "$ref": "#/targets/employee_careers"
+        }
+      },
+      {
+        "name": "emergency_contacts_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "Contact_Name",
+            "expression": "emergency_contact_name"
+          },
+          {
+            "name": "Relationship",
+            "expression": "emergency_contact_relationship"
+          },
+          {
+            "name": "Contact_Phone",
+            "expression": "emergency_contact_phone"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "Contact_Name",
+          "Relationship",
+          "Contact_Phone"
+        ]
+      },
+      {
+        "name": "employee_careers_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name"
+          },
+          {
+            "name": "Department",
+            "expression": "Department"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "Email"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "Phone"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
+        ]
+      },
+      {
+        "name": "employee_compensation_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "salary",
+            "expression": "salary"
+          },
+          {
+            "name": "performance_rating",
+            "expression": "performance_rating"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "salary",
+          "performance_rating"
+        ]
+      },
+      {
+        "name": "employee_compensation",
+        "transformation": "Writer",
+        "dependent_on": [
+          "employee_compensation_expression"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        }
+      },
+      {
+        "name": "testing_table_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "col45r4r4",
+            "expression": "col45r4r4_src_1"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "col45r4r4"
+        ]
+      },
+      {
+        "name": "testing_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "testing_table_expression"
+        ],
+        "target": {
+          "$ref": "#/targets/testing_table"
+        }
+      },
+      {
+        "name": "trail_table_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": [
+          {
+            "name": "email",
+            "expression": "email_src_1"
+          }
+        ],
+        "select_columns": [
+          "email"
+        ]
+      },
+      {
+        "name": "trail_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "trail_table_expression"
+        ],
+        "target": {
+          "$ref": "#/targets/trail_table"
         }
       }
     ]
