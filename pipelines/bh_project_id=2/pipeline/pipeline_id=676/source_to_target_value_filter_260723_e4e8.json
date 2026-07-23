@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-23T18:04:29.380294Z",
-  "updated_at": "2026-07-23T18:46:30.212807Z",
+  "updated_at": "2026-07-23T18:52:54.763848Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -25,14 +25,16 @@
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [
-            "safeharbor_cinqcare_elig_202604_n_1hxv7"
+            "members_addresses",
+            "members_emails"
           ],
           "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
           "bound_target_columns": {
-            "safeharbor_cinqcare_elig_202604_n_1hxv7": []
+            "members_addresses": [],
+            "members_emails": []
           },
           "membership_changed": false,
           "cardinality_changed": false,
@@ -86,14 +88,16 @@
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [
-              "safeharbor_cinqcare_elig_202604_n_1hxv7"
+              "members_addresses",
+              "members_emails"
             ],
             "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
             "bound_target_columns": {
-              "safeharbor_cinqcare_elig_202604_n_1hxv7": []
+              "members_addresses": [],
+              "members_emails": []
             },
             "membership_changed": false,
             "cardinality_changed": false,
@@ -1044,6 +1048,248 @@
             "is_pk": false
           }
         ]
+      },
+      "members_emails": {
+        "data_src_id": 165,
+        "name": "members_emails",
+        "target_type": "Relational",
+        "table_name": "members_emails",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_enrollment",
+        "fields": [
+          {
+            "name": "email_type",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "email_address",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "members_addresses": {
+        "data_src_id": 163,
+        "name": "members_addresses",
+        "target_type": "Relational",
+        "table_name": "members_addresses",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_enrollment",
+        "fields": [
+          {
+            "name": "address_type",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "address1",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "address2",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "city",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "state",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "zip",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "region",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "county",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "county_ssa",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "county_fips",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "zip4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_zip4",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -1299,6 +1545,22 @@
         "dependent_on": [],
         "target": {
           "$ref": "#/targets/safeharbor_cinqcare_elig_202604_n_1hxv7"
+        }
+      },
+      {
+        "name": "members_emails",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/members_emails"
+        }
+      },
+      {
+        "name": "members_addresses",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/members_addresses"
         }
       }
     ]
