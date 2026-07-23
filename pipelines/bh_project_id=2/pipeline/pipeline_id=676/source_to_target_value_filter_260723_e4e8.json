@@ -1,0 +1,1315 @@
+{
+  "created_at": "2026-07-23T18:04:29.380294Z",
+  "updated_at": "2026-07-23T18:46:30.212807Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 676,
+  "pipeline_name": "source_to_target_value_filter_260723_e4e8",
+  "pipeline_key": "source_to_target_value_filter_260723_e4e8",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 676,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [
+            "safeharbor_cinqcare_elig_202604_n_1hxv7"
+          ],
+          "unbound_targets": [],
+          "column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {
+            "safeharbor_cinqcare_elig_202604_n_1hxv7": []
+          },
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1178,
+              "name": "All Rows Below Filter Threshold Produce Empty Target",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1175,
+              "name": "Boundary Edge Values on the Filter Threshold",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1176,
+              "name": "Field Transformation Correctness \u2013 Type Casting and Derived Amount",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1174,
+              "name": "Happy Path \u2013 Filter Passes and All Field Mappings Are Correct",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1177,
+              "name": "Nullable Source Columns Do Not Affect Output",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [
+              "safeharbor_cinqcare_elig_202604_n_1hxv7"
+            ],
+            "unbound_targets": [],
+            "column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {
+              "safeharbor_cinqcare_elig_202604_n_1hxv7": []
+            },
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-07-23T18:33:43.459596+00:00"
+    }
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "jaya_project",
+  "bh_github_username": "bh-jaya-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260723_e4e8",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
+      },
+      "databrick-26-06_cinqdev": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "azureblob_2": {
+        "connection_config_id": 22,
+        "name": "azureblob_2",
+        "connection_type": "azure_blob",
+        "file_path_prefix": "",
+        "bucket": "unknown",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblob2"
+      },
+      "databrick-26-06_main": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_main",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      }
+    },
+    "sources": {
+      "source_table": {
+        "data_src_id": 155,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "id",
+          "id",
+          "id",
+          "id",
+          "email",
+          "email",
+          "email",
+          "email",
+          "email",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      },
+      "employee_demographics": {
+        "data_src_id": 176,
+        "name": "employee_demographics",
+        "source_type": "Relational",
+        "table_name": "employee_demographics",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "source_type": "Relational",
+        "table_name": "emergency_contacts",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "Contact_Name",
+          "Relationship",
+          "Contact_Phone"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "data_src_id": 151,
+        "name": "target_table",
+        "target_type": "Relational",
+        "table_name": "target_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "value",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "amount",
+            "type": "Decimal",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employees_6g1dt": {
+        "data_src_id": 178,
+        "name": "employees_6g1dt",
+        "target_type": "File",
+        "file_name": "employees_6g1dt",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/azureblob_2"
+        },
+        "schema": null,
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "phone",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "department",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employees_dh88h": {
+        "data_src_id": 172,
+        "name": "employees_dh88h",
+        "target_type": "Relational",
+        "table_name": "employees_dh88h",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "schema": "staging",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "phone",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "department",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "BigInteger",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "safeharbor_cinqcare_elig_202604_n_1hxv7": {
+        "data_src_id": 167,
+        "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "target_type": "File",
+        "file_name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/azureblob_2"
+        },
+        "schema": null,
+        "fields": [
+          {
+            "name": "sbscr_nbr",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "source_patient_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "empi",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_lst_nm",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_midl_init",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_fst_nm",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_gdr_cd",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "bth_dt",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "contr_curr_pln_nm",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "contr_nbr",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "contr_pbp",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "contr_nbr_pbp",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "curr_mbi",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "dth_dt",
+            "type": "Long",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_start_dt",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "record_end_dt",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_adr_loc_adr1",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_adr_loc_adr2",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_adr_loc_cty",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_adr_loc_st_cd",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_adr_loc_zip_cd",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "column21",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "mbr_do_not_cntc_flg",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "assigned_provider_npi",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "assigned_tin",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          }
+        ]
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "created_at": "created_at_src_1",
+          "is_active": "is_active_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite"
+        }
+      },
+      {
+        "name": "target_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ExpressionTargetTable"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "FilterValueGt10",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "id_src_1 > 10"
+      },
+      {
+        "name": "ExpressionTargetTable",
+        "transformation": "Expression",
+        "dependent_on": [
+          "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          },
+          {
+            "name": "amount",
+            "expression": "CAST(id_src_1 * 7 AS DECIMAL(10,2))"
+          },
+          {
+            "name": "status",
+            "expression": "CAST('PENDING' AS STRING)"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "employee_demographics",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employee_demographics"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/emergency_contacts"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "employees_6g1dt",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/employees_6g1dt"
+        }
+      },
+      {
+        "name": "employee_careers",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        }
+      },
+      {
+        "name": "employees_dh88h",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/employees_dh88h"
+        }
+      },
+      {
+        "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/safeharbor_cinqcare_elig_202604_n_1hxv7"
+        }
+      }
+    ]
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
