@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T12:00:44.129081Z",
-  "updated_at": "2026-07-23T21:26:19.567571Z",
+  "updated_at": "2026-07-23T21:31:36.345990Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -1376,11 +1376,21 @@
           {
             "name": "col45r4r4",
             "expression": "col45r4r4_src_1"
+          },
+          {
+            "name": "address_city",
+            "expression": "'HYD'"
+          },
+          {
+            "name": "col3",
+            "expression": "134"
           }
         ],
         "select_columns": [
           "id",
-          "col45r4r4"
+          "col45r4r4",
+          "address_city",
+          "col3"
         ]
       },
       {
