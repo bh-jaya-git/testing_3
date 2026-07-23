@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T12:00:44.129081Z",
-  "updated_at": "2026-07-23T21:31:36.345990Z",
+  "updated_at": "2026-07-23T22:20:50.903881Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -25,14 +25,14 @@
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [
-            "trail_table"
+            "members_emails"
           ],
           "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
           "bound_target_columns": {
-            "trail_table": []
+            "members_emails": []
           },
           "membership_changed": false,
           "cardinality_changed": false,
@@ -86,14 +86,14 @@
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [
-              "trail_table"
+              "members_emails"
             ],
             "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
             "bound_target_columns": {
-              "trail_table": []
+              "members_emails": []
             },
             "membership_changed": false,
             "cardinality_changed": false,
@@ -949,6 +949,97 @@
             "is_pk": false
           }
         ]
+      },
+      "members_emails": {
+        "data_src_id": 165,
+        "name": "members_emails",
+        "target_type": "Relational",
+        "table_name": "members_emails",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_enrollment",
+        "fields": [
+          {
+            "name": "email_type",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "email_address",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -1441,6 +1532,14 @@
         ],
         "target": {
           "$ref": "#/targets/trail_table"
+        }
+      },
+      {
+        "name": "members_emails",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/members_emails"
         }
       }
     ]
