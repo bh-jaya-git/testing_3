@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-23T18:04:29.380294Z",
-  "updated_at": "2026-07-23T18:52:54.763848Z",
+  "updated_at": "2026-07-23T19:04:20.949858Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -24,18 +24,18 @@
         "change_set": {
           "bound_sources": [],
           "unbound_sources": [],
-          "bound_targets": [
+          "bound_targets": [],
+          "unbound_targets": [
+            "employee_careers",
+            "employees_6g1dt",
+            "employees_dh88h",
             "members_addresses",
             "members_emails"
           ],
-          "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
-          "bound_target_columns": {
-            "members_addresses": [],
-            "members_emails": []
-          },
+          "bound_target_columns": {},
           "membership_changed": false,
           "cardinality_changed": false,
           "cosmetic_only": false
@@ -87,18 +87,18 @@
           "change_set": {
             "bound_sources": [],
             "unbound_sources": [],
-            "bound_targets": [
+            "bound_targets": [],
+            "unbound_targets": [
+              "employee_careers",
+              "employees_6g1dt",
+              "employees_dh88h",
               "members_addresses",
               "members_emails"
             ],
-            "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
-            "bound_target_columns": {
-              "members_addresses": [],
-              "members_emails": []
-            },
+            "bound_target_columns": {},
             "membership_changed": false,
             "cardinality_changed": false,
             "cosmetic_only": false
@@ -601,291 +601,6 @@
           }
         ]
       },
-      "employees_6g1dt": {
-        "data_src_id": 178,
-        "name": "employees_6g1dt",
-        "target_type": "File",
-        "file_name": "employees_6g1dt",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/azureblob_2"
-        },
-        "schema": null,
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "first_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "email",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "phone",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "department",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "salary",
-            "type": "Long",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          }
-        ]
-      },
-      "employee_careers": {
-        "data_src_id": 173,
-        "name": "employee_careers",
-        "target_type": "Relational",
-        "table_name": "employee_careers",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "first_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Department",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
-      },
-      "employees_dh88h": {
-        "data_src_id": 172,
-        "name": "employees_dh88h",
-        "target_type": "Relational",
-        "table_name": "employees_dh88h",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "schema": "staging",
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "first_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "email",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "phone",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "department",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "salary",
-            "type": "Long",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "batch_id",
-            "type": "BigInteger",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "feed_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_ts",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_year",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_month",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_day",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
-      },
       "safeharbor_cinqcare_elig_202604_n_1hxv7": {
         "data_src_id": 167,
         "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
@@ -1045,248 +760,6 @@
             "name": "assigned_tin",
             "type": "String",
             "nullable": false,
-            "is_pk": false
-          }
-        ]
-      },
-      "members_emails": {
-        "data_src_id": 165,
-        "name": "members_emails",
-        "target_type": "Relational",
-        "table_name": "members_emails",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_enrollment",
-        "fields": [
-          {
-            "name": "email_type",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "source_system_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "email_address",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "can_contact",
-            "type": "Boolean",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "is_active",
-            "type": "Boolean",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "record_hash",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "feed_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "source_system",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "created_by",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "created_at",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "updated_by",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "updated_at",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "batch_id",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
-      },
-      "members_addresses": {
-        "data_src_id": 163,
-        "name": "members_addresses",
-        "target_type": "Relational",
-        "table_name": "members_addresses",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_enrollment",
-        "fields": [
-          {
-            "name": "address_type",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "address1",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "address2",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "city",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "state",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "zip",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "region",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "can_contact",
-            "type": "Boolean",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "county",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "county_ssa",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "county_fips",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "zip4",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "is_zip4",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "is_active",
-            "type": "Boolean",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "record_hash",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "source_system_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "feed_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "source_system",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "created_by",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "created_at",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "updated_by",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "updated_at",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "batch_id",
-            "type": "Integer",
-            "nullable": true,
             "is_pk": false
           }
         ]
@@ -1516,51 +989,11 @@
         ]
       },
       {
-        "name": "employees_6g1dt",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/employees_6g1dt"
-        }
-      },
-      {
-        "name": "employee_careers",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/employee_careers"
-        }
-      },
-      {
-        "name": "employees_dh88h",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/employees_dh88h"
-        }
-      },
-      {
         "name": "safeharbor_cinqcare_elig_202604_n_1hxv7",
         "transformation": "Writer",
         "dependent_on": [],
         "target": {
           "$ref": "#/targets/safeharbor_cinqcare_elig_202604_n_1hxv7"
-        }
-      },
-      {
-        "name": "members_emails",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/members_emails"
-        }
-      },
-      {
-        "name": "members_addresses",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/members_addresses"
         }
       }
     ]
