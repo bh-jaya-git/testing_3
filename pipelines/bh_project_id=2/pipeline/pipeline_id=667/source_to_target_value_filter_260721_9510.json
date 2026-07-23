@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T06:59:02.583642Z",
-  "updated_at": "2026-07-23T12:16:19.398637Z",
+  "updated_at": "2026-07-23T12:55:02.736916Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -25,14 +25,14 @@
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [
-            "emergency_contacts"
+            "employees_dh88h"
           ],
           "unbound_targets": [],
           "column_changes": [],
           "step_changes": [],
           "bound_source_targets": {},
           "bound_target_columns": {
-            "emergency_contacts": []
+            "employees_dh88h": []
           },
           "membership_changed": false,
           "cardinality_changed": false,
@@ -86,14 +86,14 @@
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [
-              "emergency_contacts"
+              "employees_dh88h"
             ],
             "unbound_targets": [],
             "column_changes": [],
             "step_changes": [],
             "bound_source_targets": {},
             "bound_target_columns": {
-              "emergency_contacts": []
+              "employees_dh88h": []
             },
             "membership_changed": false,
             "cardinality_changed": false,
@@ -142,6 +142,14 @@
         "connection_type": "DatabricksDeltaLake",
         "catalog": "cinqdev",
         "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "databrick-26-06_main": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_main",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "staging",
         "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
       }
     },
@@ -637,6 +645,333 @@
             "is_pk": false
           }
         ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employees_6g1dt": {
+        "data_src_id": 179,
+        "name": "employees_6g1dt",
+        "target_type": "Relational",
+        "table_name": "employees_6g1dt",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "schema": "staging",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "phone",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "department",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "BigInteger",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employees_dh88h": {
+        "data_src_id": 172,
+        "name": "employees_dh88h",
+        "target_type": "Relational",
+        "table_name": "employees_dh88h",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "schema": "staging",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "phone",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "department",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "BigInteger",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -705,6 +1040,80 @@
             "nullable": true
           }
         ]
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite"
+        }
+      },
+      {
+        "name": "target_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ExpressionTargetTable"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "FilterValueGt10",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "id_src_1 > 10"
+      },
+      {
+        "name": "ExpressionTargetTable",
+        "transformation": "Expression",
+        "dependent_on": [
+          "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          },
+          {
+            "name": "amount",
+            "expression": "CAST(id_src_1 * 5 AS DECIMAL(10,2))"
+          },
+          {
+            "name": "status",
+            "expression": "CAST('PENDING' AS STRING)"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/emergency_contacts"
+        }
       },
       {
         "name": "employees",
@@ -837,83 +1246,7 @@
         ]
       },
       {
-        "name": "FilterValueGt10",
-        "transformation": "Filter",
-        "dependent_on": [
-          "source_table"
-        ],
-        "condition": "id_src_1 > 10"
-      },
-      {
-        "name": "JoinSourceWithEmployees",
-        "transformation": "Joiner",
-        "dependent_on": [
-          "FilterValueGt10",
-          "employees"
-        ],
-        "join_type": "left",
-        "join_conditions": []
-      },
-      {
-        "name": "ExpressionTargetTable",
-        "transformation": "Expression",
-        "dependent_on": [
-          "JoinSourceWithEmployees"
-        ],
-        "derived_fields": [
-          {
-            "name": "id",
-            "expression": "id_src_1"
-          },
-          {
-            "name": "value",
-            "expression": "salary"
-          },
-          {
-            "name": "amount",
-            "expression": "CAST(id_src_1 * 5 AS DECIMAL(10,2))"
-          },
-          {
-            "name": "status",
-            "expression": "is_active_src_1"
-          }
-        ],
-        "select_columns": [
-          "id",
-          "value",
-          "amount",
-          "status"
-        ]
-      },
-      {
-        "name": "target_table_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "ExpressionTargetTable"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "id",
-          "value",
-          "amount",
-          "status"
-        ]
-      },
-      {
-        "name": "target_table",
-        "transformation": "Writer",
-        "dependent_on": [
-          "target_table_final"
-        ],
-        "target": {
-          "$ref": "#/targets/target_table"
-        },
-        "write_options": {
-          "mode": "overwrite"
-        }
-      },
-      {
-        "name": "ExpressionEmergencyContacts",
+        "name": "employee_careers_expression",
         "transformation": "Expression",
         "dependent_on": [
           "employees"
@@ -924,47 +1257,313 @@
             "expression": "employee_id"
           },
           {
-            "name": "Contact_Name",
-            "expression": "emergency_contact_name"
+            "name": "first_name",
+            "expression": "first_name"
           },
           {
-            "name": "Relationship",
-            "expression": "emergency_contact_relationship"
+            "name": "last_name",
+            "expression": "last_name"
           },
           {
-            "name": "Contact_Phone",
-            "expression": "emergency_contact_phone"
+            "name": "Department",
+            "expression": "Department"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "Email"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "Phone"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location"
           }
         ],
         "select_columns": [
           "employee_id",
-          "Contact_Name",
-          "Relationship",
-          "Contact_Phone"
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
         ]
       },
       {
-        "name": "emergency_contacts_final",
+        "name": "employee_careers_final",
         "transformation": "Expression",
         "dependent_on": [
-          "ExpressionEmergencyContacts"
+          "employee_careers_expression"
         ],
         "rename_columns": {},
         "select_columns": [
           "employee_id",
-          "Contact_Name",
-          "Relationship",
-          "Contact_Phone"
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
         ]
       },
       {
-        "name": "emergency_contacts",
+        "name": "employee_careers",
         "transformation": "Writer",
         "dependent_on": [
-          "emergency_contacts_final"
+          "employee_careers_final"
         ],
         "target": {
-          "$ref": "#/targets/emergency_contacts"
+          "$ref": "#/targets/employee_careers"
+        }
+      },
+      {
+        "name": "employees_6g1dt_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name"
+          },
+          {
+            "name": "email",
+            "expression": "Email"
+          },
+          {
+            "name": "phone",
+            "expression": "Phone"
+          },
+          {
+            "name": "department",
+            "expression": "Department"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title"
+          },
+          {
+            "name": "salary",
+            "expression": "salary"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date"
+          },
+          {
+            "name": "performance_rating",
+            "expression": "performance_rating"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status"
+          },
+          {
+            "name": "batch_id",
+            "expression": "CAST(employee_id AS BIGINT)"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "CURRENT_TIMESTAMP()"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "batch_id",
+          "ingest_ts"
+        ]
+      },
+      {
+        "name": "employees_6g1dt_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_6g1dt_expression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "batch_id",
+          "ingest_ts"
+        ]
+      },
+      {
+        "name": "employees_6g1dt",
+        "transformation": "Writer",
+        "dependent_on": [
+          "employees_6g1dt_final"
+        ],
+        "target": {
+          "$ref": "#/targets/employees_6g1dt"
+        }
+      },
+      {
+        "name": "employees_dh88h_expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name"
+          },
+          {
+            "name": "email",
+            "expression": "Email"
+          },
+          {
+            "name": "phone",
+            "expression": "Phone"
+          },
+          {
+            "name": "department",
+            "expression": "Department"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title"
+          },
+          {
+            "name": "salary",
+            "expression": "salary"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date"
+          },
+          {
+            "name": "performance_rating",
+            "expression": "performance_rating"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status"
+          },
+          {
+            "name": "batch_id",
+            "expression": "CAST(uuid() AS BIGINT)"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "CURRENT_TIMESTAMP()"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "batch_id",
+          "ingest_ts"
+        ]
+      },
+      {
+        "name": "employees_dh88h_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_dh88h_expression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "batch_id",
+          "ingest_ts"
+        ]
+      },
+      {
+        "name": "employees_dh88h",
+        "transformation": "Writer",
+        "dependent_on": [
+          "employees_dh88h_final"
+        ],
+        "target": {
+          "$ref": "#/targets/employees_dh88h"
         }
       }
     ]
