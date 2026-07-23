@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-21T12:00:44.129081Z",
-  "updated_at": "2026-07-23T21:11:31.959445Z",
+  "updated_at": "2026-07-23T21:26:19.567571Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -1394,18 +1394,32 @@
         }
       },
       {
+        "name": "trail_table_join",
+        "transformation": "Joiner",
+        "dependent_on": [
+          "source_table",
+          "employees"
+        ],
+        "join_type": "cross"
+      },
+      {
         "name": "trail_table_expression",
         "transformation": "Expression",
         "dependent_on": [
-          "source_table"
+          "trail_table_join"
         ],
         "derived_fields": [
+          {
+            "name": "name",
+            "expression": "CONCAT(first_name, ' ', last_name)"
+          },
           {
             "name": "email",
             "expression": "email_src_1"
           }
         ],
         "select_columns": [
+          "name",
           "email"
         ]
       },
