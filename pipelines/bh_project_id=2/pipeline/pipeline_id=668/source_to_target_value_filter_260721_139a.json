@@ -1,0 +1,1087 @@
+{
+  "created_at": "2026-07-21T12:00:44.129081Z",
+  "updated_at": "2026-07-23T19:06:47.729481Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 668,
+  "pipeline_name": "source_to_target_value_filter_260721_139a",
+  "pipeline_key": "source_to_target_value_filter_260721_139a",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 668,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "employee_careers",
+            "employees_dh88h"
+          ],
+          "column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1132,
+              "name": "All Rows Filtered \u2013 Empty Target When All Ids Below Threshold",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1129,
+              "name": "Boundary Edge \u2013 Rows Exactly At and Just Above Filter Threshold",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1130,
+              "name": "Field Transformation Correctness \u2013 Type Casting and Derived Fields Validated",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1128,
+              "name": "Happy Path \u2013 Filter Retains Rows Where Id Greater Than 10",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1131,
+              "name": "Null Nullable Fields \u2013 Non-Nullable Id and Is Active Populated",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "employee_careers",
+              "employees_dh88h"
+            ],
+            "column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-07-21T21:05:03.397527+00:00"
+    }
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "jaya_project",
+  "bh_github_username": "bh-jaya-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260721_139a",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
+      },
+      "databrick-26-06_cinqdev": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "databrick-26-06_main": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_main",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      }
+    },
+    "sources": {
+      "source_table": {
+        "data_src_id": 155,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "id",
+          "id",
+          "id",
+          "id",
+          "email",
+          "email",
+          "email",
+          "email",
+          "email",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      },
+      "employees": {
+        "data_src_id": 174,
+        "name": "employees",
+        "source_type": "Relational",
+        "table_name": "employees",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Email",
+          "Phone",
+          "Department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code",
+          "emergency_contact_name",
+          "emergency_contact_relationship",
+          "emergency_contact_phone"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Department",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_phone",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "source_type": "Relational",
+        "table_name": "emergency_contacts",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "Contact_Name",
+          "Relationship",
+          "Contact_Phone"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
+      },
+      "employee_demographics": {
+        "data_src_id": 176,
+        "name": "employee_demographics",
+        "source_type": "Relational",
+        "table_name": "employee_demographics",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "data_src_id": 151,
+        "name": "target_table",
+        "target_type": "Relational",
+        "table_name": "target_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "schema": "smaller_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "created_at": "created_at_src_1",
+          "is_active": "is_active_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite"
+        }
+      },
+      {
+        "name": "target_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ExpressionTarget"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "FilterValueGt10",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "id_src_1 > 10"
+      },
+      {
+        "name": "ExpressionTarget",
+        "transformation": "Expression",
+        "dependent_on": [
+          "FilterValueGt10"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "CAST(id_src_1 AS LONG)"
+          },
+          {
+            "name": "amount",
+            "expression": "CAST(id_src_1 * 7 AS DECIMAL(10,2))"
+          },
+          {
+            "name": "status",
+            "expression": "'DRAFT'"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value",
+          "amount",
+          "status"
+        ]
+      },
+      {
+        "name": "employees",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Department",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_phone",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/emergency_contacts"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "employee_demographics",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employee_demographics"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          }
+        ]
+      }
+    ]
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
