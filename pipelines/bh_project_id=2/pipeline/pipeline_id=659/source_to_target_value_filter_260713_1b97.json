@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-13T04:37:35.329920Z",
-  "updated_at": "2026-07-16T09:47:50.140848Z",
+  "updated_at": "2026-07-24T07:30:17.006703Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -20,6 +20,84 @@
           "removed_steps": [],
           "added_steps": [],
           "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "emergency_contacts"
+          ],
+          "column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1094,
+              "name": "Filter Exclusion \u2013 Rows with id \u2264 10 Are Rejected",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1093,
+              "name": "Happy Path \u2013 Rows Passing the Filter Are Correctly Transformed",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1096,
+              "name": "Hardcoded Status and Nullable Source Column Handling",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1097,
+              "name": "No Rows Survive the Filter \u2013 All Source id \u2264 10",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1095,
+              "name": "Type Cast Correctness \u2013 Integer to Long and Decimal",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "emergency_contacts"
+            ],
+            "column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
         },
         "total_scenarios": 5,
         "stale_scenario_count": 0,
@@ -53,35 +131,17 @@
         "secret_name": "bh-postgres-postgres1106",
         "connection_type": "PostgreSQL",
         "connection_config_id": 15
+      },
+      "databrick-26-06_cinqdev": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
       }
     },
     "sources": {
-      "trail_table": {
-        "name": "trail_table",
-        "fields": [
-          "name",
-          "email"
-        ],
-        "schema": [
-          {
-            "name": "name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": true
-          }
-        ],
-        "db_schema": "smaller_data",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "trail_table",
-        "data_src_id": 157,
-        "source_type": "Relational"
-      },
       "source_table": {
         "name": "source_table",
         "fields": [
@@ -365,6 +425,164 @@
         "table_name": "source_table",
         "data_src_id": 155,
         "source_type": "Relational"
+      },
+      "employees": {
+        "data_src_id": 174,
+        "name": "employees",
+        "source_type": "Relational",
+        "table_name": "employees",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Email",
+          "Phone",
+          "Department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code",
+          "emergency_contact_name",
+          "emergency_contact_relationship",
+          "emergency_contact_phone"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Department",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_phone",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_employees"
       }
     },
     "targets": {
@@ -389,6 +607,79 @@
         "table_name": "target_table",
         "data_src_id": 151,
         "target_type": "Relational"
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -525,24 +816,205 @@
         "transformation": "Writer"
       },
       {
-        "name": "trail_table",
+        "name": "employees",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees"
+        },
         "schema": [
           {
-            "name": "name",
+            "name": "employee_id",
             "type": "string",
             "nullable": true
           },
           {
-            "name": "email",
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Department",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_relationship",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "emergency_contact_phone",
             "type": "string",
             "nullable": true
           }
+        ]
+      },
+      {
+        "name": "ExpressionEmployeeCareers",
+        "dependent_on": [
+          "employees"
         ],
-        "source": {
-          "$ref": "#/sources/trail_table"
-        },
-        "dependent_on": [],
-        "transformation": "Reader"
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name"
+          },
+          {
+            "name": "Department",
+            "expression": "Department"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "Email"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "Phone"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_careers",
+        "transformation": "Writer",
+        "dependent_on": [
+          "ExpressionEmployeeCareers"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        }
       }
     ]
   },
