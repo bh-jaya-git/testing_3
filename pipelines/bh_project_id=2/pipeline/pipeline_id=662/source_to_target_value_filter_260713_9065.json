@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-13T14:43:26.218087Z",
-  "updated_at": "2026-07-14T08:22:45.758640Z",
+  "updated_at": "2026-07-24T06:43:55.209242Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -18,10 +18,90 @@
       "test_impact": {
         "diff": {
           "removed_steps": [],
-          "added_steps": [
-            "trail_table_writer"
-          ],
+          "added_steps": [],
           "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [
+            "emergency_contacts"
+          ],
+          "unbound_targets": [],
+          "column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {
+            "emergency_contacts": []
+          },
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1104,
+              "name": "Boundary Values \u2013 Rows at and Adjacent to Filter Threshold",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1106,
+              "name": "Field Transformation Correctness \u2013 Type Casting and Literal Hardcode",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1103,
+              "name": "Happy Path \u2013 Filter Passes Qualifying Rows Only",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1107,
+              "name": "Non-Null Constraint Enforcement on Target id and value",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1105,
+              "name": "Null Nullable Fields \u2013 Passthrough of Non-Mapped Columns",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [
+              "emergency_contacts"
+            ],
+            "unbound_targets": [],
+            "column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {
+              "emergency_contacts": []
+            },
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
         },
         "total_scenarios": 5,
         "stale_scenario_count": 0,
@@ -37,9 +117,34 @@
   "bh_project_name": "jaya_project",
   "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
-    "mode": "ENGINE",
-    "name": "source_to_target_value_filter_260713_9065",
     "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_to_target_value_filter_260713_9065",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15
+      },
+      "databrick-26-06_cinqdev": {
+        "connection_config_id": 19,
+        "name": "databrick-26-06_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "silverraw_employees",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      }
+    },
     "sources": {
       "trail_table": {
         "name": "trail_table",
@@ -353,17 +458,6 @@
       }
     },
     "targets": {
-      "trail_table": {
-        "name": "trail_table",
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "trail_table",
-        "data_src_id": 157,
-        "target_type": "Relational"
-      },
       "target_table": {
         "name": "target_table",
         "schema": "smaller_data",
@@ -375,35 +469,44 @@
         "data_src_id": 151,
         "target_type": "Relational"
       },
-      "source_students": {
-        "name": "source_students",
-        "schema": "smaller_data",
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "target_type": "Relational",
+        "table_name": "emergency_contacts",
         "load_mode": "overwrite",
         "connection": {
-          "$ref": "#/connections/postgres_11_06"
+          "$ref": "#/connections/databrick-26-06_cinqdev"
         },
-        "table_name": "source_students",
-        "data_src_id": 152,
-        "target_type": "Relational"
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Relationship",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
-    "version": "1.0.0",
-    "parameters": [],
-    "connections": {
-      "postgres_11_06": {
-        "host": "4.227.38.66",
-        "name": "postgres_11_06",
-        "port": "5434",
-        "driver": "org.postgresql.Driver",
-        "schema": "smaller_data",
-        "database": "sample_db",
-        "secret_name": "bh-postgres-postgres1106",
-        "connection_type": "PostgreSQL",
-        "connection_config_id": 15
-      }
-    },
-    "description": "Requirement Pipeline",
-    "engine_type": "pyspark",
     "transformations": [
       {
         "name": "source_table",
@@ -538,55 +641,6 @@
         "transformation": "Writer"
       },
       {
-        "name": "ExpressionSourceStudents",
-        "dependent_on": [
-          "source_table"
-        ],
-        "derived_fields": [
-          {
-            "name": "id",
-            "expression": "id_src_1"
-          },
-          {
-            "name": "name",
-            "expression": "UPPER(email_src_1)"
-          },
-          {
-            "name": "marks",
-            "expression": "col456r4r4_src_1"
-          }
-        ],
-        "select_columns": [
-          "id",
-          "name",
-          "marks"
-        ],
-        "transformation": "Expression"
-      },
-      {
-        "name": "source_students_final",
-        "dependent_on": [
-          "ExpressionSourceStudents"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "id",
-          "name",
-          "marks"
-        ],
-        "transformation": "Expression"
-      },
-      {
-        "name": "source_students",
-        "target": {
-          "$ref": "#/targets/source_students"
-        },
-        "dependent_on": [
-          "source_students_final"
-        ],
-        "transformation": "Writer"
-      },
-      {
         "name": "trail_table",
         "schema": [
           {
@@ -607,57 +661,30 @@
         "transformation": "Reader"
       },
       {
-        "name": "JoinTrailWithSource",
-        "join_type": "LEFT",
+        "name": "ExpressionEmergencyContacts",
         "dependent_on": [
-          "trail_table",
-          "source_table"
-        ],
-        "join_condition": "trail_table.email = source_table.email_src_1",
-        "transformation": "Joiner"
-      },
-      {
-        "name": "ExpressionTrailTable",
-        "dependent_on": [
-          "JoinTrailWithSource"
+          "trail_table"
         ],
         "derived_fields": [
           {
-            "name": "email",
-            "expression": "trail_table.email"
-          },
-          {
-            "name": "name",
-            "expression": "CAST(id_src_1 AS STRING)"
+            "name": "Contact_Name",
+            "expression": "name"
           }
         ],
         "select_columns": [
-          "email",
-          "name"
+          "Contact_Name"
         ],
         "transformation": "Expression"
       },
       {
-        "name": "trail_table_final",
+        "name": "emergency_contacts",
+        "transformation": "Writer",
         "dependent_on": [
-          "ExpressionTrailTable"
+          "ExpressionEmergencyContacts"
         ],
-        "rename_columns": {},
-        "select_columns": [
-          "email",
-          "name"
-        ],
-        "transformation": "Expression"
-      },
-      {
-        "name": "trail_table_writer",
         "target": {
-          "$ref": "#/targets/trail_table"
-        },
-        "dependent_on": [
-          "trail_table_final"
-        ],
-        "transformation": "Writer"
+          "$ref": "#/targets/emergency_contacts"
+        }
       }
     ]
   },
