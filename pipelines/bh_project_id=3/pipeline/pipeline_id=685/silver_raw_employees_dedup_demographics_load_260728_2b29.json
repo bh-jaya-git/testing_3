@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T03:44:35.166147Z",
-  "updated_at": "2026-07-28T03:54:40.662313Z",
+  "updated_at": "2026-07-28T04:05:50.769023Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -922,10 +922,6 @@
           {
             "name": "employment_status",
             "expression": "employment_status_src_1"
-          },
-          {
-            "name": "Work_Email",
-            "expression": "email_src_1"
           },
           {
             "name": "Work_Phone",
