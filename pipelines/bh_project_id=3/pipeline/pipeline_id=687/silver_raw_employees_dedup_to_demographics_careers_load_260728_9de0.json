@@ -1,0 +1,72 @@
+{
+  "created_at": "2026-07-28T19:04:53.831304Z",
+  "updated_at": "2026-07-28T19:06:44.403048Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 687,
+  "pipeline_name": "silver_raw_employees_dedup_to_demographics_careers_load_260728_9de0",
+  "pipeline_key": "silver_raw_employees_dedup_to_demographics_careers_load_260728_9de0",
+  "bh_project_id": 3,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 4,
+    "data_domain_name": "employee",
+    "source_count": 1,
+    "target_count": 2
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "data_domain_id": 4,
+    "data_domain_name": "employee",
+    "ingestion_group_id": 38,
+    "source_rows": [
+      {
+        "data_src_id": 191,
+        "ingest_object_id": null,
+        "label": "employees_pbx9j \u00b7 staging.employees"
+      }
+    ],
+    "target_rows": [
+      {
+        "data_src_id": 176,
+        "label": "employee_demographics \u00b7 silverraw_employees.employee_demographics"
+      },
+      {
+        "data_src_id": 173,
+        "label": "employee_careers \u00b7 silverraw_employees.employee_careers"
+      }
+    ],
+    "batch_control": {
+      "enabled": true,
+      "stages": [
+        "silver_raw"
+      ],
+      "feed_name": "employment_testing_3",
+      "storage": {
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        },
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        }
+      }
+    }
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
