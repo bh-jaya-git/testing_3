@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:43:42.722857Z",
-  "updated_at": "2026-07-28T19:47:47.533423Z",
+  "updated_at": "2026-07-29T17:36:28.522029Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,12 +15,225 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 2
+    "target_count": 2,
+    "pipeline_editor_save": {
+      "pipeline_id": 691,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [
+            "DeduplicateEmployees",
+            "FilterCorruptRecords",
+            "employee_demographics_final",
+            "employees_yn8su_IngestFilter",
+            "employees_yn8su_MaxBatchExpr"
+          ],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "employee_careers",
+            "employee_demographics"
+          ],
+          "column_changes": [],
+          "step_changes": [
+            {
+              "step": "DeduplicateEmployees",
+              "transformation": "Deduplicator",
+              "kind": "cardinality",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "FilterCorruptRecords",
+              "transformation": "Filter",
+              "kind": "membership",
+              "action": "removed",
+              "detail": {
+                "old_condition": "corrupt_record_src_1 IS NULL",
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "employee_demographics_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "employees_yn8su_IngestFilter",
+              "transformation": "Filter",
+              "kind": "membership",
+              "action": "removed",
+              "detail": {
+                "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "employees_yn8su_MaxBatchExpr",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            }
+          ],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": true,
+          "cardinality_changed": true,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [],
+          "generate": [
+            {
+              "reason": "pipeline has no test scenarios yet",
+              "kind": "baseline"
+            },
+            {
+              "reason": "filter 'FilterCorruptRecords' removed; add rows on both sides of the new predicate",
+              "kind": "boundary",
+              "detail": {
+                "old_condition": "corrupt_record_src_1 IS NULL",
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "reason": "filter 'employees_yn8su_IngestFilter' removed; add rows on both sides of the new predicate",
+              "kind": "boundary",
+              "detail": {
+                "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            }
+          ],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "employee_careers",
+              "employee_demographics"
+            ],
+            "column_changes": [],
+            "step_changes": [
+              {
+                "step": "DeduplicateEmployees",
+                "transformation": "Deduplicator",
+                "kind": "cardinality",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "FilterCorruptRecords",
+                "transformation": "Filter",
+                "kind": "membership",
+                "action": "removed",
+                "detail": {
+                  "old_condition": "corrupt_record_src_1 IS NULL",
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "employee_demographics_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "employees_yn8su_IngestFilter",
+                "transformation": "Filter",
+                "kind": "membership",
+                "action": "removed",
+                "detail": {
+                  "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "employees_yn8su_MaxBatchExpr",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              }
+            ],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": true,
+            "cardinality_changed": true,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "generate": 3
+          }
+        },
+        "total_scenarios": 0,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [
+          "baseline",
+          "boundary",
+          "boundary"
+        ],
+        "affected_steps": [
+          "DeduplicateEmployees",
+          "FilterCorruptRecords",
+          "employee_demographics",
+          "employee_demographics_final",
+          "employees_yn8su_IngestFilter",
+          "employees_yn8su_MaxBatchExpr"
+        ]
+      },
+      "saved_at": "2026-07-29T16:55:26.202223+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
-  "bh_project_name": null,
-  "bh_github_username": null,
+  "bh_project_name": "jaya_project_2",
+  "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
     "$schema": "https://json-schema.org/draft-07/schema#",
     "name": "silver_raw_employees_dedup_to_demographics_careers_load_260728_1669",
@@ -183,31 +396,11 @@
         "name": "employee_demographics",
         "target_type": "Relational",
         "table_name": "employee_demographics",
-        "load_mode": "merge",
+        "load_mode": "overwrite",
         "connection": {
           "$ref": "#/connections/databrick-26-06_cinqdev"
         },
         "schema": "silverraw_employees",
-        "merge_keys": [
-          "employee_id",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "personal_phone",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
-        "process_deletes": true,
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
         "fields": [
           {
             "name": "employee_id",
@@ -271,36 +464,16 @@
           }
         ]
       },
-      "employee_careers": {
-        "data_src_id": 173,
-        "name": "employee_careers",
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
         "target_type": "Relational",
-        "table_name": "employee_careers",
-        "load_mode": "merge",
+        "table_name": "emergency_contacts",
+        "load_mode": "overwrite",
         "connection": {
           "$ref": "#/connections/databrick-26-06_cinqdev"
         },
         "schema": "silverraw_employees",
-        "merge_keys": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ],
-        "process_deletes": true,
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
         "fields": [
           {
             "name": "employee_id",
@@ -309,55 +482,19 @@
             "is_pk": false
           },
           {
-            "name": "first_name",
+            "name": "Contact_Name",
             "type": "String",
             "nullable": true,
             "is_pk": false
           },
           {
-            "name": "last_name",
+            "name": "Relationship",
             "type": "String",
             "nullable": true,
             "is_pk": false
           },
           {
-            "name": "Department",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
+            "name": "Contact_Phone",
             "type": "String",
             "nullable": true,
             "is_pk": false
@@ -496,152 +633,30 @@
       {
         "name": "employee_demographics",
         "transformation": "Writer",
-        "dependent_on": [
-          "employee_demographics_final"
-        ],
+        "dependent_on": [],
         "target": {
           "$ref": "#/targets/employee_demographics"
         },
-        "write_options": {
-          "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          }
+        ]
       },
       {
-        "name": "employee_careers",
+        "name": "emergency_contacts",
         "transformation": "Writer",
-        "dependent_on": [
-          "employee_careers_final"
-        ],
+        "dependent_on": [],
         "target": {
-          "$ref": "#/targets/employee_careers"
+          "$ref": "#/targets/emergency_contacts"
         },
-        "write_options": {
-          "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
-      },
-      {
-        "name": "employee_demographics_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "personal_phone",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
         "derived_fields": [
           {
-            "name": "Gender",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "date_of_birth",
-            "expression": "CAST(NULL AS DATE)"
-          },
-          {
-            "name": "marital_status",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "personal_email",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "street_address",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "City",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "State",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "zip_code",
-            "expression": "CAST(NULL AS LONG)"
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
           }
         ]
-      },
-      {
-        "name": "employee_careers_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ]
-      },
-      {
-        "name": "employees_yn8su_MaxBatchExpr",
-        "transformation": "Expression",
-        "dependent_on": [
-          "employees_yn8su"
-        ],
-        "derived_fields": [
-          {
-            "name": "max_batch_id",
-            "expression": "max(batch_id_src_1) OVER ()"
-          }
-        ]
-      },
-      {
-        "name": "employees_yn8su_IngestFilter",
-        "transformation": "Filter",
-        "dependent_on": [
-          "employees_yn8su_MaxBatchExpr"
-        ],
-        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
-      },
-      {
-        "name": "FilterCorruptRecords",
-        "transformation": "Filter",
-        "dependent_on": [
-          "employees_yn8su_IngestFilter"
-        ],
-        "condition": "corrupt_record_src_1 IS NULL"
-      },
-      {
-        "name": "DeduplicateEmployees",
-        "transformation": "Deduplicator",
-        "dependent_on": [
-          "FilterCorruptRecords"
-        ],
-        "dedup_by": [
-          "employee_id_src_1"
-        ],
-        "order_by": [
-          {
-            "column": "ingest_ts_src_1",
-            "order": "desc"
-          }
-        ],
-        "keep": "first"
       }
     ],
     "batch_control": {
@@ -654,14 +669,8 @@
       "stage_to_transformations": {
         "silver_raw": [
           "employees_yn8su",
-          "employees_yn8su_MaxBatchExpr",
-          "employees_yn8su_IngestFilter",
-          "FilterCorruptRecords",
-          "DeduplicateEmployees",
-          "employee_demographics_final",
-          "employee_demographics",
-          "employee_careers_final",
-          "employee_careers"
+          "emergency_contacts",
+          "employee_demographics"
         ]
       },
       "require_input_acceptance": true,
