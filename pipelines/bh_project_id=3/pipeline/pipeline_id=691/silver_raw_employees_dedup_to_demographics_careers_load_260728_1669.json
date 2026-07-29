@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:43:42.722857Z",
-  "updated_at": "2026-07-29T19:13:08.399613Z",
+  "updated_at": "2026-07-29T19:24:59.596025Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -366,6 +366,74 @@
             "is_pk": false
           }
         ]
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "target_type": "Relational",
+        "table_name": "emergency_contacts",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Relationship",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_compensation": {
+        "data_src_id": 177,
+        "name": "employee_compensation",
+        "target_type": "Relational",
+        "table_name": "employee_compensation",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -521,6 +589,68 @@
         "select_columns": [
           "employee_id"
         ]
+      },
+      {
+        "name": "Expression_emergency_contacts",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_yn8su"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id"
+        ]
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Writer",
+        "dependent_on": [
+          "Expression_emergency_contacts"
+        ],
+        "target": {
+          "$ref": "#/targets/emergency_contacts"
+        }
+      },
+      {
+        "name": "Expression_employee_compensation",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_yn8su"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "salary",
+            "expression": "salary_src_1"
+          },
+          {
+            "name": "performance_rating",
+            "expression": "performance_rating_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "salary",
+          "performance_rating"
+        ]
+      },
+      {
+        "name": "employee_compensation",
+        "transformation": "Writer",
+        "dependent_on": [
+          "Expression_employee_compensation"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        }
       }
     ],
     "batch_control": {
@@ -533,7 +663,9 @@
       "stage_to_transformations": {
         "silver_raw": [
           "employees_yn8su",
-          "employee_demographics"
+          "employee_demographics",
+          "emergency_contacts",
+          "employee_compensation"
         ]
       },
       "require_input_acceptance": true,
