@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:14:48.388980Z",
-  "updated_at": "2026-07-28T19:20:20.668493Z",
+  "updated_at": "2026-07-29T03:53:07.106172Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -358,6 +358,74 @@
           },
           {
             "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_compensation": {
+        "data_src_id": 177,
+        "name": "employee_compensation",
+        "target_type": "Relational",
+        "table_name": "employee_compensation",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "emergency_contacts": {
+        "data_src_id": 175,
+        "name": "emergency_contacts",
+        "target_type": "Relational",
+        "table_name": "emergency_contacts",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Relationship",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Contact_Phone",
             "type": "String",
             "nullable": true,
             "is_pk": false
@@ -762,6 +830,22 @@
           "source_system",
           "batch_id"
         ]
+      },
+      {
+        "name": "employee_compensation",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        }
+      },
+      {
+        "name": "emergency_contacts",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/emergency_contacts"
+        }
       }
     ],
     "batch_control": {
@@ -782,7 +866,9 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "employee_compensation",
+          "emergency_contacts"
         ]
       },
       "require_input_acceptance": true,
