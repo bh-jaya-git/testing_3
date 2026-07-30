@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T03:29:37.817126Z",
-  "updated_at": "2026-07-28T06:43:30.040668Z",
+  "updated_at": "2026-07-30T11:17:51.939211Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,7 +15,500 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 2
+    "target_count": 2,
+    "pipeline_editor_save": {
+      "pipeline_id": 683,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [
+            "DeduplicateEmployees",
+            "FilterCorruptRecords",
+            "emergency_contacts_final",
+            "employee_careers_filter_work_phone",
+            "employee_careers_final",
+            "employee_compensation_final",
+            "employee_demographics_final",
+            "employees_xr9of_IngestFilter",
+            "employees_xr9of_MaxBatchExpr"
+          ],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "emergency_contacts",
+            "employee_careers",
+            "employee_compensation",
+            "employee_demographics",
+            "members_emails"
+          ],
+          "column_changes": [],
+          "step_changes": [
+            {
+              "step": "DeduplicateEmployees",
+              "transformation": "Deduplicator",
+              "kind": "cardinality",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "FilterCorruptRecords",
+              "transformation": "Filter",
+              "kind": "membership",
+              "action": "removed",
+              "detail": {
+                "old_condition": "corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = ''",
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "emergency_contacts_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "emergency_contacts"
+                ]
+              }
+            },
+            {
+              "step": "employee_careers_filter_work_phone",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_careers"
+                ]
+              }
+            },
+            {
+              "step": "employee_careers_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_careers"
+                ]
+              }
+            },
+            {
+              "step": "employee_compensation_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_compensation"
+                ]
+              }
+            },
+            {
+              "step": "employee_demographics_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "employees_xr9of_IngestFilter",
+              "transformation": "Filter",
+              "kind": "membership",
+              "action": "removed",
+              "detail": {
+                "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "step": "employees_xr9of_MaxBatchExpr",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            }
+          ],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": true,
+          "cardinality_changed": true,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1234,
+              "name": "baseline_single_employee_all_targets",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1237,
+              "name": "batch_filter_keeps_only_max_batch",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (employee_careers, employee_compensation)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1235,
+              "name": "corrupt_record_filtered_out",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (employee_careers, employee_compensation)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1236,
+              "name": "deduplication_keeps_latest_ingest_ts",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (employee_careers, employee_compensation)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1238,
+              "name": "multiple_employees_all_targets_populated",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1239,
+              "name": "multiple_employees_all_targets_populated_three_records",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1240,
+              "name": "multiple_employees_mixed_departments_all_targets",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [
+            {
+              "reason": "filter 'FilterCorruptRecords' removed; add rows on both sides of the new predicate",
+              "kind": "boundary",
+              "detail": {
+                "old_condition": "corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = ''",
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            },
+            {
+              "reason": "filter 'employees_xr9of_IngestFilter' removed; add rows on both sides of the new predicate",
+              "kind": "boundary",
+              "detail": {
+                "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                "affected_targets": [
+                  "emergency_contacts",
+                  "employee_careers",
+                  "employee_compensation",
+                  "employee_demographics"
+                ]
+              }
+            }
+          ],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "emergency_contacts",
+              "employee_careers",
+              "employee_compensation",
+              "employee_demographics",
+              "members_emails"
+            ],
+            "column_changes": [],
+            "step_changes": [
+              {
+                "step": "DeduplicateEmployees",
+                "transformation": "Deduplicator",
+                "kind": "cardinality",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "emergency_contacts",
+                    "employee_careers",
+                    "employee_compensation",
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "FilterCorruptRecords",
+                "transformation": "Filter",
+                "kind": "membership",
+                "action": "removed",
+                "detail": {
+                  "old_condition": "corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = ''",
+                  "affected_targets": [
+                    "emergency_contacts",
+                    "employee_careers",
+                    "employee_compensation",
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "emergency_contacts_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "emergency_contacts"
+                  ]
+                }
+              },
+              {
+                "step": "employee_careers_filter_work_phone",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_careers"
+                  ]
+                }
+              },
+              {
+                "step": "employee_careers_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_careers"
+                  ]
+                }
+              },
+              {
+                "step": "employee_compensation_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_compensation"
+                  ]
+                }
+              },
+              {
+                "step": "employee_demographics_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "employees_xr9of_IngestFilter",
+                "transformation": "Filter",
+                "kind": "membership",
+                "action": "removed",
+                "detail": {
+                  "old_condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+                  "affected_targets": [
+                    "emergency_contacts",
+                    "employee_careers",
+                    "employee_compensation",
+                    "employee_demographics"
+                  ]
+                }
+              },
+              {
+                "step": "employees_xr9of_MaxBatchExpr",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "emergency_contacts",
+                    "employee_careers",
+                    "employee_compensation",
+                    "employee_demographics"
+                  ]
+                }
+              }
+            ],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": true,
+            "cardinality_changed": true,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "drop": 7,
+            "generate": 2
+          }
+        },
+        "total_scenarios": 7,
+        "stale_scenario_count": 7,
+        "stale_scenarios": [
+          {
+            "test_scenario_id": 1234,
+            "name": "baseline_single_employee_all_targets",
+            "reasons": [
+              "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1237,
+            "name": "batch_filter_keeps_only_max_batch",
+            "reasons": [
+              "every verified target was unbound (employee_careers, employee_compensation)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1235,
+            "name": "corrupt_record_filtered_out",
+            "reasons": [
+              "every verified target was unbound (employee_careers, employee_compensation)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1236,
+            "name": "deduplication_keeps_latest_ingest_ts",
+            "reasons": [
+              "every verified target was unbound (employee_careers, employee_compensation)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1238,
+            "name": "multiple_employees_all_targets_populated",
+            "reasons": [
+              "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1239,
+            "name": "multiple_employees_all_targets_populated_three_records",
+            "reasons": [
+              "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1240,
+            "name": "multiple_employees_mixed_departments_all_targets",
+            "reasons": [
+              "every verified target was unbound (emergency_contacts, employee_careers, employee_compensation, employee_demographics)"
+            ],
+            "action": "drop",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          }
+        ],
+        "coverage_gaps": [
+          "boundary",
+          "boundary"
+        ],
+        "affected_steps": [
+          "DeduplicateEmployees",
+          "FilterCorruptRecords",
+          "emergency_contacts",
+          "emergency_contacts_final",
+          "employee_careers",
+          "employee_careers_filter_work_phone",
+          "employee_careers_final",
+          "employee_compensation",
+          "employee_compensation_final",
+          "employee_demographics",
+          "employee_demographics_final",
+          "employees_xr9of_IngestFilter",
+          "employees_xr9of_MaxBatchExpr"
+        ]
+      },
+      "saved_at": "2026-07-30T11:15:10.008185+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -45,6 +538,29 @@
         "catalog": "cinqdev",
         "schema": "silverraw_employees",
         "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_config_name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "connection_name": "postgres",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
+      },
+      "azureblob_2": {
+        "connection_config_id": 22,
+        "name": "azureblob_2",
+        "connection_config_name": "azureblob_2",
+        "connection_type": "azure_blob",
+        "connection_name": "azure_blob",
+        "file_path_prefix": "",
+        "bucket": "unknown",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblob2"
       }
     },
     "sources": {
@@ -175,258 +691,121 @@
           }
         ],
         "db_schema": "staging"
-      }
-    },
-    "targets": {
-      "employee_demographics": {
-        "data_src_id": 176,
-        "name": "employee_demographics",
-        "target_type": "Relational",
-        "table_name": "employee_demographics",
-        "load_mode": "merge",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
-        "merge_keys": [
-          "employee_id",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "personal_phone",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
-        "process_deletes": true,
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Gender",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "date_of_birth",
-            "type": "Date",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "marital_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "personal_email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "personal_phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "street_address",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "City",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "State",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "zip_code",
-            "type": "Long",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
       },
-      "emergency_contacts": {
-        "data_src_id": 175,
-        "name": "emergency_contacts",
-        "target_type": "Relational",
-        "table_name": "emergency_contacts",
-        "load_mode": "merge",
+      "trail_table": {
+        "data_src_id": 157,
+        "name": "trail_table",
+        "source_type": "Relational",
+        "table_name": "trail_table",
         "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
+          "$ref": "#/connections/postgres_11_06"
         },
-        "schema": "silverraw_employees",
-        "merge_keys": [
-          "employee_id",
-          "Contact_Name",
-          "Relationship",
-          "Contact_Phone"
+        "fields": [
+          "name",
+          "email"
         ],
-        "process_deletes": true,
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
-        "fields": [
+        "schema": [
           {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "name": "name",
+            "type": "string",
+            "nullable": true
           },
           {
-            "name": "Contact_Name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Relationship",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Contact_Phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "name": "email",
+            "type": "string",
+            "nullable": true
           }
-        ]
+        ],
+        "db_schema": "smaller_data"
       },
-      "employee_careers": {
-        "data_src_id": 173,
-        "name": "employee_careers",
-        "target_type": "Relational",
-        "table_name": "employee_careers",
-        "load_mode": "overwrite",
+      "employees_hli87": {
+        "data_src_id": 184,
+        "name": "employees_hli87",
+        "source_type": "File",
+        "file_name": "employees_hli87",
         "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
+          "$ref": "#/connections/azureblob_2"
         },
-        "schema": "silverraw_employees",
         "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status"
+        ],
+        "schema": [
           {
             "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "first_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "last_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "type": "string",
+            "nullable": false
           },
           {
-            "name": "Department",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "job_title",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
-      },
-      "employee_compensation": {
-        "data_src_id": 177,
-        "name": "employee_compensation",
-        "target_type": "Relational",
-        "table_name": "employee_compensation",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "salary",
-            "type": "Long",
-            "nullable": true,
-            "is_pk": false
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
           },
           {
             "name": "performance_rating",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
           }
-        ]
+        ],
+        "db_schema": null
       }
     },
+    "targets": {},
     "transformations": [
       {
         "name": "employees_xr9of",
@@ -556,289 +935,92 @@
         "read_options": {}
       },
       {
-        "name": "employee_demographics",
-        "transformation": "Writer",
-        "dependent_on": [
-          "employee_demographics_final"
-        ],
-        "target": {
-          "$ref": "#/targets/employee_demographics"
+        "name": "trail_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/trail_table"
         },
-        "write_options": {
-          "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
+        "schema": [
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          }
+        ]
       },
       {
-        "name": "emergency_contacts",
-        "transformation": "Writer",
-        "dependent_on": [
-          "emergency_contacts_final"
-        ],
-        "target": {
-          "$ref": "#/targets/emergency_contacts"
+        "name": "employees_hli87",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees_hli87"
         },
-        "write_options": {
-          "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
-      },
-      {
-        "name": "employee_demographics_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "personal_phone",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
-        "derived_fields": [
-          {
-            "name": "Gender",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "date_of_birth",
-            "expression": "CAST(NULL AS DATE)"
-          },
-          {
-            "name": "marital_status",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "personal_email",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "street_address",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "City",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "State",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "zip_code",
-            "expression": "CAST(NULL AS LONG)"
-          }
-        ]
-      },
-      {
-        "name": "emergency_contacts_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "Contact_Name",
-          "Relationship",
-          "Contact_Phone"
-        ],
-        "derived_fields": [
-          {
-            "name": "Contact_Name",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "Relationship",
-            "expression": "CAST(NULL AS STRING)"
-          },
-          {
-            "name": "Contact_Phone",
-            "expression": "CAST(NULL AS STRING)"
-          }
-        ]
-      },
-      {
-        "name": "employees_xr9of_MaxBatchExpr",
-        "transformation": "Expression",
-        "dependent_on": [
-          "employees_xr9of"
-        ],
-        "derived_fields": [
-          {
-            "name": "max_batch_id",
-            "expression": "max(batch_id_src_1) OVER ()"
-          }
-        ]
-      },
-      {
-        "name": "employees_xr9of_IngestFilter",
-        "transformation": "Filter",
-        "dependent_on": [
-          "employees_xr9of_MaxBatchExpr"
-        ],
-        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
-      },
-      {
-        "name": "FilterCorruptRecords",
-        "transformation": "Filter",
-        "dependent_on": [
-          "employees_xr9of_IngestFilter"
-        ],
-        "condition": "corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = ''"
-      },
-      {
-        "name": "DeduplicateEmployees",
-        "transformation": "Deduplicator",
-        "dependent_on": [
-          "FilterCorruptRecords"
-        ],
-        "dedup_by": [
-          "employee_id_src_1"
-        ],
-        "order_by": [
-          {
-            "column": "ingest_ts_src_1",
-            "order": "desc"
-          }
-        ],
-        "keep": "first"
-      },
-      {
-        "name": "employee_careers",
-        "transformation": "Writer",
-        "dependent_on": [
-          "employee_careers_filter_work_phone"
-        ],
-        "target": {
-          "$ref": "#/targets/employee_careers"
-        }
-      },
-      {
-        "name": "employee_careers_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ],
-        "derived_fields": [
+        "schema": [
           {
             "name": "employee_id",
-            "expression": "employee_id_src_1"
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "first_name",
-            "expression": "first_name_src_1"
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "last_name",
-            "expression": "last_name_src_1"
+            "type": "string",
+            "nullable": false
           },
           {
-            "name": "Department",
-            "expression": "department_src_1"
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "job_title",
-            "expression": "job_title_src_1"
-          },
-          {
-            "name": "employment_status",
-            "expression": "employment_status_src_1"
-          },
-          {
-            "name": "Work_Email",
-            "expression": "email_src_1"
-          },
-          {
-            "name": "Work_Phone",
-            "expression": "phone_src_1"
-          },
-          {
-            "name": "hire_date",
-            "expression": "hire_date_src_1"
-          },
-          {
-            "name": "office_location",
-            "expression": "office_location_src_1"
-          }
-        ]
-      },
-      {
-        "name": "employee_careers_filter_work_phone",
-        "transformation": "Expression",
-        "dependent_on": [
-          "employee_careers_final"
-        ],
-        "select_columns": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ],
-        "filter": "NOT Work_Phone LIKE '%99'"
-      },
-      {
-        "name": "employee_compensation",
-        "transformation": "Writer",
-        "dependent_on": [
-          "employee_compensation_final"
-        ],
-        "target": {
-          "$ref": "#/targets/employee_compensation"
-        }
-      },
-      {
-        "name": "employee_compensation_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "DeduplicateEmployees"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "salary",
-          "performance_rating"
-        ],
-        "derived_fields": [
-          {
-            "name": "employee_id",
-            "expression": "employee_id_src_1"
+            "type": "string",
+            "nullable": false
           },
           {
             "name": "salary",
-            "expression": "salary_src_1"
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
           },
           {
             "name": "performance_rating",
-            "expression": "performance_rating_src_1"
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
           }
         ]
       }
@@ -853,17 +1035,8 @@
       "stage_to_transformations": {
         "silver_raw": [
           "employees_xr9of",
-          "employees_xr9of_MaxBatchExpr",
-          "employees_xr9of_IngestFilter",
-          "FilterCorruptRecords",
-          "DeduplicateEmployees",
-          "employee_demographics_final",
-          "employee_demographics",
-          "emergency_contacts_final",
-          "emergency_contacts",
-          "employee_careers",
-          "employee_compensation",
-          "employee_careers_filter_work_phone"
+          "trail_table",
+          "employees_hli87"
         ]
       },
       "require_input_acceptance": true,
