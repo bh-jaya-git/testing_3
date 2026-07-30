@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-30T14:00:54.865318Z",
-  "updated_at": "2026-07-30T14:06:25.250266Z",
+  "updated_at": "2026-07-30T14:09:30.783252Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -316,6 +316,79 @@
           },
           {
             "name": "Contact_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
             "type": "String",
             "nullable": true,
             "is_pk": false
@@ -693,6 +766,77 @@
           "source_system",
           "batch_id"
         ]
+      },
+      {
+        "name": "EmployeeCareersExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name_src_1"
+          },
+          {
+            "name": "Department",
+            "expression": "department_src_1"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title_src_1"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status_src_1"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "phone_src_1"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date_src_1"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
+        ]
+      },
+      {
+        "name": "employee_careers",
+        "transformation": "Writer",
+        "dependent_on": [
+          "EmployeeCareersExpr"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        }
       }
     ],
     "batch_control": {
@@ -714,7 +858,8 @@
           "employee_demographics_final",
           "employee_demographics",
           "emergency_contacts_final",
-          "emergency_contacts"
+          "emergency_contacts",
+          "employee_careers"
         ]
       },
       "require_input_acceptance": true,
