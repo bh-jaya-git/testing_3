@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:43:42.722857Z",
-  "updated_at": "2026-07-29T19:24:59.596025Z",
+  "updated_at": "2026-07-30T10:38:42.951417Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -20,42 +20,37 @@
       "pipeline_id": 691,
       "test_impact": {
         "diff": {
-          "removed_steps": [
-            "Expression_emergency_contacts",
-            "Expression_employee_careers"
-          ],
+          "removed_steps": [],
           "added_steps": [],
-          "changed_steps": []
+          "changed_steps": [
+            {
+              "step": "Expression_emergency_contacts",
+              "transformation": "Expression"
+            }
+          ]
         },
         "change_set": {
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [],
-          "unbound_targets": [
-            "emergency_contacts",
-            "employee_careers"
+          "unbound_targets": [],
+          "column_changes": [
+            {
+              "target": "emergency_contacts",
+              "column": "contact_name",
+              "kind": "removed",
+              "old_expression": "lit(\"JAYA1\")"
+            }
           ],
-          "column_changes": [],
           "step_changes": [
             {
               "step": "Expression_emergency_contacts",
               "transformation": "Expression",
               "kind": "structural",
-              "action": "removed",
+              "action": "modified",
               "detail": {
                 "affected_targets": [
                   "emergency_contacts"
-                ]
-              }
-            },
-            {
-              "step": "Expression_employee_careers",
-              "transformation": "Expression",
-              "kind": "structural",
-              "action": "removed",
-              "detail": {
-                "affected_targets": [
-                  "employee_careers"
                 ]
               }
             }
@@ -78,31 +73,24 @@
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [],
-            "unbound_targets": [
-              "emergency_contacts",
-              "employee_careers"
+            "unbound_targets": [],
+            "column_changes": [
+              {
+                "target": "emergency_contacts",
+                "column": "contact_name",
+                "kind": "removed",
+                "old_expression": "lit(\"JAYA1\")"
+              }
             ],
-            "column_changes": [],
             "step_changes": [
               {
                 "step": "Expression_emergency_contacts",
                 "transformation": "Expression",
                 "kind": "structural",
-                "action": "removed",
+                "action": "modified",
                 "detail": {
                   "affected_targets": [
                     "emergency_contacts"
-                  ]
-                }
-              },
-              {
-                "step": "Expression_employee_careers",
-                "transformation": "Expression",
-                "kind": "structural",
-                "action": "removed",
-                "detail": {
-                  "affected_targets": [
-                    "employee_careers"
                   ]
                 }
               }
@@ -124,10 +112,7 @@
           "baseline"
         ],
         "affected_steps": [
-          "Expression_emergency_contacts",
-          "Expression_employee_careers",
-          "emergency_contacts",
-          "employee_careers"
+          "emergency_contacts"
         ]
       },
       "saved_at": "2026-07-29T16:55:26.202223+00:00"
@@ -434,6 +419,79 @@
             "is_pk": false
           }
         ]
+      },
+      "employee_careers": {
+        "data_src_id": 173,
+        "name": "employee_careers",
+        "target_type": "Relational",
+        "table_name": "employee_careers",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_employees",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -584,10 +642,15 @@
           {
             "name": "employee_id",
             "expression": "employee_id_src_1"
+          },
+          {
+            "name": "personal_phone",
+            "expression": "CAST(batch_id_src_1 AS STRING)"
           }
         ],
         "select_columns": [
-          "employee_id"
+          "employee_id",
+          "personal_phone"
         ]
       },
       {
@@ -600,10 +663,20 @@
           {
             "name": "employee_id",
             "expression": "employee_id_src_1"
+          },
+          {
+            "name": "Contact_Name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "Contact_Phone",
+            "expression": "phone_src_1"
           }
         ],
         "select_columns": [
-          "employee_id"
+          "employee_id",
+          "Contact_Name",
+          "Contact_Phone"
         ]
       },
       {
@@ -651,6 +724,77 @@
         "target": {
           "$ref": "#/targets/employee_compensation"
         }
+      },
+      {
+        "name": "Expression_employee_careers",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_yn8su"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name_src_1"
+          },
+          {
+            "name": "Department",
+            "expression": "department_src_1"
+          },
+          {
+            "name": "job_title",
+            "expression": "job_title_src_1"
+          },
+          {
+            "name": "employment_status",
+            "expression": "employment_status_src_1"
+          },
+          {
+            "name": "Work_Email",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "Work_Phone",
+            "expression": "phone_src_1"
+          },
+          {
+            "name": "hire_date",
+            "expression": "hire_date_src_1"
+          },
+          {
+            "name": "office_location",
+            "expression": "office_location_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location"
+        ]
+      },
+      {
+        "name": "employee_careers",
+        "transformation": "Writer",
+        "dependent_on": [
+          "Expression_employee_careers"
+        ],
+        "target": {
+          "$ref": "#/targets/employee_careers"
+        }
       }
     ],
     "batch_control": {
@@ -665,7 +809,8 @@
           "employees_yn8su",
           "employee_demographics",
           "emergency_contacts",
-          "employee_compensation"
+          "employee_compensation",
+          "employee_careers"
         ]
       },
       "require_input_acceptance": true,
