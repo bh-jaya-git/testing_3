@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-30T18:43:58.404826Z",
-  "updated_at": "2026-07-31T07:38:46.432614Z",
+  "updated_at": "2026-07-31T07:59:38.320569Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -727,7 +727,7 @@
           },
           {
             "name": "first_name",
-            "expression": "'JAAAAYA'"
+            "expression": "'BHOGADI'"
           },
           {
             "name": "last_name",
