@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-03T11:12:16.983625Z",
-  "updated_at": "2026-08-03T11:32:50.196841Z",
+  "updated_at": "2026-08-03T11:50:27.605560Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -105,6 +105,17 @@
         "catalog": "cinqdev",
         "schema": "silverraw_employees",
         "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
       }
     },
     "sources": {
@@ -235,6 +246,74 @@
           }
         ],
         "db_schema": "staging"
+      },
+      "source_table": {
+        "data_src_id": 155,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "email",
+          "created_at",
+          "is_active",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
       }
     },
     "targets": {
@@ -704,6 +783,61 @@
           }
         ],
         "keep": "first"
+      },
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ]
       }
     ],
     "batch_control": {
@@ -723,7 +857,8 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "source_table"
         ]
       },
       "require_input_acceptance": true,
