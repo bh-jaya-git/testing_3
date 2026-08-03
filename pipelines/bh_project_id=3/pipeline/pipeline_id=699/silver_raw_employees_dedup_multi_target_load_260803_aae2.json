@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-03T06:53:12.360190Z",
-  "updated_at": "2026-08-03T08:49:34.422468Z",
+  "updated_at": "2026-08-03T10:29:50.526594Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -45,6 +45,19 @@
         "catalog": "cinqdev",
         "schema": "silverraw_employees",
         "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+      },
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_config_name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "connection_name": "postgres",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
       }
     },
     "sources": {
@@ -175,6 +188,38 @@
           }
         ],
         "db_schema": "staging"
+      },
+      "source_students": {
+        "data_src_id": 152,
+        "name": "source_students",
+        "source_type": "Relational",
+        "table_name": "source_students",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "name",
+          "marks"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
       }
     },
     "targets": {
@@ -1416,6 +1461,31 @@
         "target": {
           "$ref": "#/targets/members_emails"
         }
+      },
+      {
+        "name": "source_students",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_students"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
       }
     ],
     "batch_control": {
@@ -1442,7 +1512,8 @@
           "employee_careers_final",
           "employee_careers",
           "members_phones",
-          "members_emails"
+          "members_emails",
+          "source_students"
         ]
       },
       "require_input_acceptance": true,
