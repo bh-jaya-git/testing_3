@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-03T06:53:12.360190Z",
-  "updated_at": "2026-08-03T06:59:10.163729Z",
+  "updated_at": "2026-08-03T08:49:34.422468Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -19,8 +19,8 @@
   },
   "status": "active",
   "pipeline_version_id": null,
-  "bh_project_name": null,
-  "bh_github_username": null,
+  "bh_project_name": "jaya_project_2",
+  "bh_github_username": "bh-jaya-git",
   "pipeline_json": {
     "$schema": "https://json-schema.org/draft-07/schema#",
     "name": "silver_raw_employees_dedup_multi_target_load_260803_aae2",
@@ -649,6 +649,194 @@
             "is_pk": false
           }
         ]
+      },
+      "members_phones": {
+        "data_src_id": 162,
+        "name": "members_phones",
+        "target_type": "Relational",
+        "table_name": "members_phones",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_enrollment",
+        "fields": [
+          {
+            "name": "phone_type",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "phone_number",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "country_code",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "members_emails": {
+        "data_src_id": 165,
+        "name": "members_emails",
+        "target_type": "Relational",
+        "table_name": "members_emails",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "schema": "silverraw_enrollment",
+        "fields": [
+          {
+            "name": "email_type",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "email_address",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -1094,6 +1282,140 @@
             "order": "asc"
           }
         ]
+      },
+      {
+        "name": "members_phones_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DedupByEmployeeId"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "phone_type",
+          "phone_number",
+          "is_active",
+          "source_system_id",
+          "feed_name",
+          "batch_id",
+          "source_system",
+          "created_by",
+          "updated_by"
+        ],
+        "derived_fields": [
+          {
+            "name": "phone_type",
+            "expression": "'PRIMARY'"
+          },
+          {
+            "name": "phone_number",
+            "expression": "phone_src_1"
+          },
+          {
+            "name": "is_active",
+            "expression": "CASE WHEN employment_status_src_1 = 'Active' THEN TRUE ELSE FALSE END"
+          },
+          {
+            "name": "source_system_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "feed_name",
+            "expression": "feed_name_src_1"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          },
+          {
+            "name": "created_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          }
+        ]
+      },
+      {
+        "name": "members_phones",
+        "transformation": "Writer",
+        "dependent_on": [
+          "members_phones_final"
+        ],
+        "target": {
+          "$ref": "#/targets/members_phones"
+        }
+      },
+      {
+        "name": "members_emails_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DedupByEmployeeId"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "email_type",
+          "email_address",
+          "is_active",
+          "source_system_id",
+          "feed_name",
+          "batch_id",
+          "source_system",
+          "created_by",
+          "updated_by"
+        ],
+        "derived_fields": [
+          {
+            "name": "email_type",
+            "expression": "'PRIMARY'"
+          },
+          {
+            "name": "email_address",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "is_active",
+            "expression": "CASE WHEN employment_status_src_1 IN ('Active', 'Employed') THEN TRUE ELSE FALSE END"
+          },
+          {
+            "name": "source_system_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "feed_name",
+            "expression": "feed_name_src_1"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          },
+          {
+            "name": "created_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          }
+        ]
+      },
+      {
+        "name": "members_emails",
+        "transformation": "Writer",
+        "dependent_on": [
+          "members_emails_final"
+        ],
+        "target": {
+          "$ref": "#/targets/members_emails"
+        }
       }
     ],
     "batch_control": {
@@ -1118,7 +1440,9 @@
           "employees_final",
           "employees",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "members_phones",
+          "members_emails"
         ]
       },
       "require_input_acceptance": true,
