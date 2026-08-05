@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:43:42.722857Z",
-  "updated_at": "2026-08-05T08:08:42.759446Z",
+  "updated_at": "2026-08-05T08:23:57.131329Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -195,6 +195,16 @@
         "connection_type": "DatabricksDeltaLake",
         "connection_config_id": 19
       },
+      "databrick-26-06_sasi": {
+        "name": "databrick-26-06_sasi",
+        "schema": "drift1",
+        "catalog": "sasi",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_name": "azure_unity",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
+      },
       "databrick-26-06_cinqdev": {
         "name": "databrick-26-06_cinqdev",
         "schema": "silverraw_employees",
@@ -202,6 +212,16 @@
         "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
         "connection_type": "DatabricksDeltaLake",
         "connection_config_id": 19
+      },
+      "databrick-26-06_samples": {
+        "name": "databrick-26-06_samples",
+        "schema": "wanderbricks",
+        "catalog": "samples",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_name": "azure_unity",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
       }
     },
     "sources": {
@@ -573,6 +593,31 @@
       }
     },
     "targets": {
+      "trail_table": {
+        "name": "trail_table",
+        "fields": [
+          {
+            "name": "name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "trail_table",
+        "data_src_id": 157,
+        "target_type": "Relational"
+      },
       "members_emails": {
         "name": "members_emails",
         "fields": [
@@ -662,6 +707,85 @@
         },
         "table_name": "members_emails",
         "data_src_id": 165,
+        "target_type": "Relational"
+      },
+      "booking_updates": {
+        "name": "booking_updates",
+        "fields": [
+          {
+            "name": "booking_id",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "booking_update_id",
+            "type": "Long",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "check_in",
+            "type": "Date",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "check_out",
+            "type": "Date",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "guests_count",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "property_id",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "total_amount",
+            "type": "Float",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "user_id",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "wanderbricks",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_samples"
+        },
+        "table_name": "booking_updates",
+        "data_src_id": 159,
         "target_type": "Relational"
       },
       "target_students": {
@@ -840,6 +964,97 @@
         },
         "table_name": "emergency_contacts",
         "data_src_id": 175,
+        "target_type": "Relational"
+      },
+      "batch_reconciliation": {
+        "name": "batch_reconciliation",
+        "fields": [
+          {
+            "name": "batch_id",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "stage_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "records_in",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "records_out",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "error_count",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "run_scope",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "group_run_id",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "group_status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "expected_members",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "completed_members",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "failed_members",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "error_message",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "created_ts",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "drift1",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_sasi"
+        },
+        "table_name": "batch_reconciliation",
+        "data_src_id": 158,
         "target_type": "Relational"
       },
       "employee_compensation": {
@@ -1567,6 +1782,76 @@
           "Expression_target_students"
         ],
         "transformation": "Writer"
+      },
+      {
+        "name": "Expression_booking_updates",
+        "dependent_on": [
+          "members"
+        ],
+        "derived_fields": [
+          {
+            "name": "booking_update_id",
+            "expression": "source_system_id"
+          }
+        ],
+        "select_columns": [
+          "booking_update_id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "booking_updates",
+        "target": {
+          "$ref": "#/targets/booking_updates"
+        },
+        "dependent_on": [
+          "Expression_booking_updates"
+        ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "Expression_batch_reconciliation",
+        "dependent_on": [
+          "members"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          },
+          {
+            "name": "stage_name",
+            "expression": "'source_students'"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "stage_name",
+          "created_ts"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "batch_reconciliation",
+        "target": {
+          "$ref": "#/targets/batch_reconciliation"
+        },
+        "dependent_on": [
+          "Expression_batch_reconciliation"
+        ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "trail_table",
+        "target": {
+          "$ref": "#/targets/trail_table"
+        },
+        "dependent_on": [],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1600,7 +1885,10 @@
           "members",
           "testing_table_2",
           "source_students",
-          "target_students"
+          "target_students",
+          "booking_updates",
+          "batch_reconciliation",
+          "trail_table"
         ]
       },
       "auto_accept_input_on_batch_init": true
