@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-28T19:43:42.722857Z",
-  "updated_at": "2026-08-05T08:26:10.602560Z",
+  "updated_at": "2026-08-05T08:35:16.019213Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -593,6 +593,110 @@
       }
     },
     "targets": {
+      "source_table": {
+        "name": "source_table",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "target_type": "Relational"
+      },
+      "target_table": {
+        "name": "target_table",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "amount",
+            "type": "Decimal",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table",
+        "data_src_id": 151,
+        "target_type": "Relational"
+      },
       "members_emails": {
         "name": "members_emails",
         "fields": [
@@ -1032,6 +1136,37 @@
         "data_src_id": 158,
         "target_type": "Relational"
       },
+      "target_table_skipped": {
+        "name": "target_table_skipped",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table_skipped",
+        "data_src_id": 154,
+        "target_type": "Relational"
+      },
       "employee_compensation": {
         "name": "employee_compensation",
         "fields": [
@@ -1134,6 +1269,67 @@
         },
         "table_name": "employee_demographics",
         "data_src_id": 176,
+        "target_type": "Relational"
+      },
+      "distributor_order_items": {
+        "name": "distributor_order_items",
+        "fields": [
+          {
+            "name": "order_id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "order_date",
+            "type": "Date",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "store_id",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "product_id",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "units",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "unit_price",
+            "type": "Decimal",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "discount_amount",
+            "type": "Decimal",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": false
+          }
+        ],
+        "schema": "consumer_demo",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "distributor_order_items",
+        "data_src_id": 156,
         "target_type": "Relational"
       }
     },
@@ -1766,7 +1962,7 @@
         "derived_fields": [
           {
             "name": "booking_update_id",
-            "expression": "source_system_id"
+            "expression": "UUID()"
           }
         ],
         "select_columns": [
@@ -1819,6 +2015,159 @@
           "Expression_batch_reconciliation"
         ],
         "transformation": "Writer"
+      },
+      {
+        "name": "Expression_source_table",
+        "dependent_on": [
+          "members",
+          "source_students"
+        ],
+        "derived_fields": [
+          {
+            "name": "is_active",
+            "expression": "is_active"
+          },
+          {
+            "name": "id",
+            "expression": "id"
+          }
+        ],
+        "select_columns": [
+          "is_active",
+          "id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "source_table",
+        "target": {
+          "$ref": "#/targets/source_table"
+        },
+        "dependent_on": [
+          "Expression_source_table"
+        ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "Expression_target_table_skipped",
+        "dependent_on": [
+          "source_students"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id"
+          }
+        ],
+        "select_columns": [
+          "id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "target_table_skipped",
+        "target": {
+          "$ref": "#/targets/target_table_skipped"
+        },
+        "dependent_on": [
+          "Expression_target_table_skipped"
+        ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "Expression_target_table",
+        "dependent_on": [
+          "source_students",
+          "employees_yn8su"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id"
+          },
+          {
+            "name": "value",
+            "expression": "salary_src_1"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "value"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "target_table",
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "dependent_on": [
+          "Expression_target_table"
+        ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "Expression_distributor_order_items",
+        "dependent_on": [
+          "members",
+          "employees_yn8su",
+          "source_students"
+        ],
+        "derived_fields": [
+          {
+            "name": "order_id",
+            "expression": "UUID()"
+          },
+          {
+            "name": "order_date",
+            "expression": "created_at"
+          },
+          {
+            "name": "store_id",
+            "expression": "location"
+          },
+          {
+            "name": "product_id",
+            "expression": "id"
+          },
+          {
+            "name": "units",
+            "expression": "1"
+          },
+          {
+            "name": "unit_price",
+            "expression": "0.00"
+          },
+          {
+            "name": "discount_amount",
+            "expression": "0.00"
+          },
+          {
+            "name": "status",
+            "expression": "employment_status_src_1"
+          }
+        ],
+        "select_columns": [
+          "order_id",
+          "order_date",
+          "store_id",
+          "product_id",
+          "units",
+          "unit_price",
+          "discount_amount",
+          "status"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "distributor_order_items",
+        "target": {
+          "$ref": "#/targets/distributor_order_items"
+        },
+        "dependent_on": [
+          "Expression_distributor_order_items"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1854,7 +2203,11 @@
           "source_students",
           "target_students",
           "booking_updates",
-          "batch_reconciliation"
+          "batch_reconciliation",
+          "source_table",
+          "target_table_skipped",
+          "target_table",
+          "distributor_order_items"
         ]
       },
       "auto_accept_input_on_batch_init": true
