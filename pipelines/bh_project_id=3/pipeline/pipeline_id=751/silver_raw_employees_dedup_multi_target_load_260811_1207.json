@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-11T06:00:18.555475Z",
-  "updated_at": "2026-08-11T07:58:08.195301Z",
+  "updated_at": "2026-08-11T08:04:30.506144Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,7 +15,96 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 1
+    "target_count": 1,
+    "pipeline_editor_save": {
+      "pipeline_id": 751,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [
+            "employee_careers_final"
+          ],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "employee_careers"
+          ],
+          "column_changes": [],
+          "step_changes": [
+            {
+              "step": "employee_careers_final",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "employee_careers"
+                ]
+              }
+            }
+          ],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [],
+          "generate": [
+            {
+              "reason": "pipeline has no test scenarios yet",
+              "kind": "baseline"
+            }
+          ],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "employee_careers"
+            ],
+            "column_changes": [],
+            "step_changes": [
+              {
+                "step": "employee_careers_final",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "employee_careers"
+                  ]
+                }
+              }
+            ],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "generate": 1
+          }
+        },
+        "total_scenarios": 0,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [
+          "baseline"
+        ],
+        "affected_steps": [
+          "employee_careers_final",
+          "employee_careers_writer"
+        ]
+      },
+      "saved_at": "2026-08-11T08:03:09.422542+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -180,99 +269,6 @@
       }
     },
     "targets": {
-      "employee_careers": {
-        "name": "employee_careers",
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "first_name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "Department",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "Work_Email",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "Work_Phone",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          }
-        ],
-        "schema": "silverraw_employees",
-        "load_mode": "merge",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "merge_keys": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ],
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "table_name": "employee_careers",
-        "data_src_id": 173,
-        "target_type": "Relational",
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
-        "process_deletes": true
-      },
       "employee_compensation": {
         "name": "employee_compensation",
         "fields": [
@@ -588,24 +584,6 @@
         "transformation": "Expression"
       },
       {
-        "name": "employee_careers_final",
-        "dependent_on": [],
-        "rename_columns": {},
-        "select_columns": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location"
-        ],
-        "transformation": "Expression"
-      },
-      {
         "name": "employees_7ke39_MaxBatchExpr",
         "dependent_on": [
           "employees_7ke39"
@@ -648,21 +626,6 @@
           "employees_7ke39_IngestFilter"
         ],
         "transformation": "Deduplicator"
-      },
-      {
-        "name": "employee_careers_writer",
-        "target": {
-          "$ref": "#/targets/employee_careers"
-        },
-        "dependent_on": [
-          "employee_careers_final"
-        ],
-        "write_options": {
-          "mode": "merge",
-          "writeMethod": "direct",
-          "createDisposition": "CREATE_IF_NEEDED"
-        },
-        "transformation": "Writer"
       },
       {
         "name": "employee_demographics_expr",
@@ -743,8 +706,6 @@
           "employees_7ke39_MaxBatchExpr",
           "employees_7ke39_IngestFilter",
           "DeduplicateEmployees",
-          "employee_careers_writer",
-          "employee_careers_final",
           "employee_demographics",
           "employee_compensation"
         ]
