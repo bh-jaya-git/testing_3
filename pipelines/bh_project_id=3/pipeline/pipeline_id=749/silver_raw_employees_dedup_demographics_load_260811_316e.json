@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-11T05:26:38.563100Z",
-  "updated_at": "2026-08-11T08:25:24.977936Z",
+  "updated_at": "2026-08-11T08:27:36.707224Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -91,33 +91,27 @@
     "parameters": [],
     "connections": {
       "databrick-26-06_main": {
-        "connection_config_id": 19,
         "name": "databrick-26-06_main",
-        "connection_config_name": "databrick-26-06",
-        "connection_type": "DatabricksDeltaLake",
-        "catalog": "main",
         "schema": "staging",
-        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+        "catalog": "main",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
       },
       "databrick-26-06_cinqdev": {
-        "connection_config_id": 19,
         "name": "databrick-26-06_cinqdev",
-        "connection_config_name": "databrick-26-06",
-        "connection_type": "DatabricksDeltaLake",
-        "catalog": "cinqdev",
         "schema": "silverraw_employees",
-        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+        "catalog": "cinqdev",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
       }
     },
     "sources": {
       "employees_ou2k5": {
-        "data_src_id": 256,
         "name": "employees_ou2k5",
-        "source_type": "Relational",
-        "table_name": "employees_ou2k5",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
         "fields": [
           "employee_id",
           "first_name",
@@ -236,71 +230,124 @@
             "nullable": true
           }
         ],
-        "db_schema": "staging"
+        "db_schema": "staging",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "table_name": "employees_ou2k5",
+        "data_src_id": 256,
+        "source_type": "Relational"
       }
     },
     "targets": {
       "employee_compensation": {
-        "data_src_id": 177,
         "name": "employee_compensation",
-        "target_type": "Relational",
-        "table_name": "employee_compensation",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
         "fields": [
           {
             "name": "employee_id",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
             "name": "salary",
             "type": "Long",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
             "name": "performance_rating",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           }
-        ]
+        ],
+        "schema": "silverraw_employees",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "employee_compensation",
+        "data_src_id": 177,
+        "target_type": "Relational"
+      },
+      "employee_demographics": {
+        "name": "employee_demographics",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "Date",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "silverraw_employees",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "employee_demographics",
+        "data_src_id": 176,
+        "target_type": "Relational"
       }
     },
     "transformations": [
       {
         "name": "employees_ou2k5",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employees_ou2k5"
-        },
-        "rename_columns": {
-          "employee_id": "employee_id_src_1",
-          "first_name": "first_name_src_1",
-          "last_name": "last_name_src_1",
-          "email": "email_src_1",
-          "phone": "phone_src_1",
-          "department": "department_src_1",
-          "job_title": "job_title_src_1",
-          "salary": "salary_src_1",
-          "hire_date": "hire_date_src_1",
-          "performance_rating": "performance_rating_src_1",
-          "office_location": "office_location_src_1",
-          "employment_status": "employment_status_src_1",
-          "corrupt_record": "corrupt_record_src_1",
-          "batch_id": "batch_id_src_1",
-          "feed_name": "feed_name_src_1",
-          "ingest_ts": "ingest_ts_src_1",
-          "ingest_year": "ingest_year_src_1",
-          "ingest_month": "ingest_month_src_1",
-          "ingest_day": "ingest_day_src_1"
-        },
         "schema": [
           {
             "name": "employee_id",
@@ -398,11 +445,36 @@
             "nullable": true
           }
         ],
-        "read_options": {}
+        "source": {
+          "$ref": "#/sources/employees_ou2k5"
+        },
+        "dependent_on": [],
+        "read_options": {},
+        "rename_columns": {
+          "email": "email_src_1",
+          "phone": "phone_src_1",
+          "salary": "salary_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "hire_date": "hire_date_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "job_title": "job_title_src_1",
+          "last_name": "last_name_src_1",
+          "department": "department_src_1",
+          "first_name": "first_name_src_1",
+          "ingest_day": "ingest_day_src_1",
+          "employee_id": "employee_id_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "office_location": "office_location_src_1",
+          "employment_status": "employment_status_src_1",
+          "performance_rating": "performance_rating_src_1"
+        },
+        "transformation": "Reader"
       },
       {
         "name": "employee_careers",
-        "transformation": "Expression",
         "dependent_on": [
           "employees_ou2k5_IngestFilter"
         ],
@@ -479,11 +551,11 @@
           "updated_by",
           "source_system",
           "batch_id"
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "employees_ou2k5_MaxBatchExpr",
-        "transformation": "Expression",
         "dependent_on": [
           "employees_ou2k5"
         ],
@@ -492,19 +564,19 @@
             "name": "max_batch_id",
             "expression": "max(batch_id_src_1) OVER ()"
           }
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "employees_ou2k5_IngestFilter",
-        "transformation": "Filter",
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
         "dependent_on": [
           "employees_ou2k5_MaxBatchExpr"
         ],
-        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+        "transformation": "Filter"
       },
       {
         "name": "employee_compensation_expr",
-        "transformation": "Expression",
         "dependent_on": [
           "employees_ou2k5_IngestFilter"
         ],
@@ -526,38 +598,71 @@
           "employee_id",
           "salary",
           "performance_rating"
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "employee_compensation",
-        "transformation": "Writer",
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        },
         "dependent_on": [
           "employee_compensation_expr"
         ],
+        "transformation": "Writer"
+      },
+      {
+        "name": "employee_demographics_expr",
+        "dependent_on": [
+          "employees_ou2k5_IngestFilter"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "employee_id_src_1"
+          },
+          {
+            "name": "personal_phone",
+            "expression": "phone_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "personal_phone"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_demographics",
         "target": {
-          "$ref": "#/targets/employee_compensation"
-        }
+          "$ref": "#/targets/employee_demographics"
+        },
+        "dependent_on": [
+          "employee_demographics_expr"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
-      "enabled": true,
-      "feed_name": "silver_raw_employees_dedup_demographics_load_260811_316e",
-      "business_date": "2026-08-11",
       "stages": [
         "silver_raw"
       ],
+      "enabled": true,
+      "feed_name": "silver_raw_employees_dedup_demographics_load_260811_316e",
+      "business_date": "2026-08-11",
+      "seed_stage_rows": true,
+      "require_input_acceptance": true,
       "stage_to_transformations": {
         "silver_raw": [
           "employees_ou2k5",
           "employee_careers",
           "employees_ou2k5_MaxBatchExpr",
           "employees_ou2k5_IngestFilter",
-          "employee_compensation"
+          "employee_compensation",
+          "employee_demographics"
         ]
       },
-      "require_input_acceptance": true,
-      "auto_accept_input_on_batch_init": true,
-      "seed_stage_rows": true
+      "auto_accept_input_on_batch_init": true
     }
   },
   "draft_pipeline_json": null,
