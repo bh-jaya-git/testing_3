@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-11T05:26:38.563100Z",
-  "updated_at": "2026-08-11T08:27:36.707224Z",
+  "updated_at": "2026-08-11T10:52:54.762339Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -21,57 +21,109 @@
       "test_impact": {
         "diff": {
           "removed_steps": [],
-          "added_steps": [],
+          "added_steps": [
+            "DeduplicateFilter"
+          ],
           "changed_steps": []
         },
         "change_set": {
           "bound_sources": [],
           "unbound_sources": [],
           "bound_targets": [],
-          "unbound_targets": [
-            "employee_careers"
-          ],
+          "unbound_targets": [],
           "column_changes": [],
-          "step_changes": [],
+          "step_changes": [
+            {
+              "step": "DeduplicateFilter",
+              "transformation": "Filter",
+              "kind": "membership",
+              "action": "added",
+              "detail": {
+                "affected_targets": []
+              }
+            }
+          ],
           "bound_source_targets": {},
           "bound_target_columns": {},
-          "membership_changed": false,
+          "membership_changed": true,
           "cardinality_changed": false,
           "cosmetic_only": false
         },
         "action_plan": {
-          "scenario_actions": [],
-          "generate": [
+          "scenario_actions": [
             {
-              "reason": "pipeline has no test scenarios yet",
-              "kind": "baseline"
+              "test_scenario_id": 1302,
+              "name": "baseline_single_employee_compensation_and_demographics",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1304,
+              "name": "corrupt_record_excluded_from_targets",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1303,
+              "name": "dedup_only_max_batch_id_rows_pass",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1306,
+              "name": "empty_string_corrupt_record_passes_filter",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1305,
+              "name": "multiple_employees_max_batch_all_clean",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
             }
           ],
+          "generate": [],
           "change_set": {
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [],
-            "unbound_targets": [
-              "employee_careers"
-            ],
+            "unbound_targets": [],
             "column_changes": [],
-            "step_changes": [],
+            "step_changes": [
+              {
+                "step": "DeduplicateFilter",
+                "transformation": "Filter",
+                "kind": "membership",
+                "action": "added",
+                "detail": {
+                  "affected_targets": []
+                }
+              }
+            ],
             "bound_source_targets": {},
             "bound_target_columns": {},
-            "membership_changed": false,
+            "membership_changed": true,
             "cardinality_changed": false,
             "cosmetic_only": false
           },
           "summary": {
-            "generate": 1
+            "reuse": 5
           }
         },
-        "total_scenarios": 0,
+        "total_scenarios": 5,
         "stale_scenario_count": 0,
         "stale_scenarios": [],
-        "coverage_gaps": [
-          "baseline"
-        ],
+        "coverage_gaps": [],
         "affected_steps": []
       },
       "saved_at": "2026-08-11T08:23:44.149877+00:00"
@@ -107,6 +159,19 @@
         "connection_type": "DatabricksDeltaLake",
         "connection_config_id": 19,
         "connection_config_name": "databrick-26-06"
+      },
+      "postgres_11_06": {
+        "connection_config_id": 15,
+        "name": "postgres_11_06",
+        "connection_config_name": "postgres_11_06",
+        "connection_type": "PostgreSQL",
+        "connection_name": "postgres",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres1106"
       }
     },
     "sources": {
@@ -237,6 +302,266 @@
         "table_name": "employees_ou2k5",
         "data_src_id": 256,
         "source_type": "Relational"
+      },
+      "source_table": {
+        "data_src_id": 155,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "email",
+          "created_at",
+          "is_active",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      },
+      "employees_lwdt9": {
+        "data_src_id": 203,
+        "name": "employees_lwdt9",
+        "source_type": "Relational",
+        "table_name": "employees_lwdt9",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "staging"
+      },
+      "testing_table_2": {
+        "data_src_id": 150,
+        "name": "testing_table_2",
+        "source_type": "Relational",
+        "table_name": "testing_table_2",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "first_name",
+          "last_name"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      },
+      "source_students": {
+        "data_src_id": 152,
+        "name": "source_students",
+        "source_type": "Relational",
+        "table_name": "source_students",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "fields": [
+          "id",
+          "name",
+          "marks"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
       }
     },
     "targets": {
@@ -555,6 +880,60 @@
         "transformation": "Expression"
       },
       {
+        "name": "DeduplicateEmployees",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employee_careers"
+        ],
+        "derived_fields": [
+          {
+            "name": "row_num",
+            "expression": "row_number() OVER (PARTITION BY employee_id ORDER BY hire_date DESC)"
+          }
+        ],
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id",
+          "row_num"
+        ]
+      },
+      {
+        "name": "DeduplicateFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "filter_expression": "row_num = 1",
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ]
+      },
+      {
         "name": "employees_ou2k5_MaxBatchExpr",
         "dependent_on": [
           "employees_ou2k5"
@@ -641,6 +1020,216 @@
           "employee_demographics_expr"
         ],
         "transformation": "Writer"
+      },
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "employees_lwdt9",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees_lwdt9"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "testing_table_2",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/testing_table_2"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "source_students",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_students"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
       }
     ],
     "batch_control": {
@@ -659,7 +1248,13 @@
           "employees_ou2k5_MaxBatchExpr",
           "employees_ou2k5_IngestFilter",
           "employee_compensation",
-          "employee_demographics"
+          "employee_demographics",
+          "DeduplicateEmployees",
+          "DeduplicateFilter",
+          "source_table",
+          "employees_lwdt9",
+          "testing_table_2",
+          "source_students"
         ]
       },
       "auto_accept_input_on_batch_init": true
