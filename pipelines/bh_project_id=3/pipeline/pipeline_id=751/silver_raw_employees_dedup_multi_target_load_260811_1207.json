@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-11T06:00:18.555475Z",
-  "updated_at": "2026-08-11T08:04:30.506144Z",
+  "updated_at": "2026-08-11T08:19:20.774687Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -20,9 +20,7 @@
       "pipeline_id": 751,
       "test_impact": {
         "diff": {
-          "removed_steps": [
-            "employee_careers_final"
-          ],
+          "removed_steps": [],
           "added_steps": [],
           "changed_steps": []
         },
@@ -34,19 +32,7 @@
             "employee_careers"
           ],
           "column_changes": [],
-          "step_changes": [
-            {
-              "step": "employee_careers_final",
-              "transformation": "Expression",
-              "kind": "structural",
-              "action": "removed",
-              "detail": {
-                "affected_targets": [
-                  "employee_careers"
-                ]
-              }
-            }
-          ],
+          "step_changes": [],
           "bound_source_targets": {},
           "bound_target_columns": {},
           "membership_changed": false,
@@ -54,13 +40,49 @@
           "cosmetic_only": false
         },
         "action_plan": {
-          "scenario_actions": [],
-          "generate": [
+          "scenario_actions": [
             {
-              "reason": "pipeline has no test scenarios yet",
-              "kind": "baseline"
+              "test_scenario_id": 1294,
+              "name": "baseline_single_employee_both_targets",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1297,
+              "name": "corrupt_record_filtered_out",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1296,
+              "name": "dedup_keeps_latest_batch_record",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1293,
+              "name": "max_batch_filter_keeps_only_latest_batch",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1295,
+              "name": "multiple_employees_same_batch_all_clean",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
             }
           ],
+          "generate": [],
           "change_set": {
             "bound_sources": [],
             "unbound_sources": [],
@@ -69,19 +91,7 @@
               "employee_careers"
             ],
             "column_changes": [],
-            "step_changes": [
-              {
-                "step": "employee_careers_final",
-                "transformation": "Expression",
-                "kind": "structural",
-                "action": "removed",
-                "detail": {
-                  "affected_targets": [
-                    "employee_careers"
-                  ]
-                }
-              }
-            ],
+            "step_changes": [],
             "bound_source_targets": {},
             "bound_target_columns": {},
             "membership_changed": false,
@@ -89,19 +99,14 @@
             "cosmetic_only": false
           },
           "summary": {
-            "generate": 1
+            "reuse": 5
           }
         },
-        "total_scenarios": 0,
+        "total_scenarios": 5,
         "stale_scenario_count": 0,
         "stale_scenarios": [],
-        "coverage_gaps": [
-          "baseline"
-        ],
-        "affected_steps": [
-          "employee_careers_final",
-          "employee_careers_writer"
-        ]
+        "coverage_gaps": [],
+        "affected_steps": []
       },
       "saved_at": "2026-08-11T08:03:09.422542+00:00"
     }
@@ -119,6 +124,19 @@
     "mode": "ENGINE",
     "parameters": [],
     "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_name": "postgres",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15,
+        "connection_config_name": "postgres_11_06"
+      },
       "databrick-26-06_main": {
         "name": "databrick-26-06_main",
         "schema": "staging",
@@ -269,6 +287,37 @@
       }
     },
     "targets": {
+      "source_students": {
+        "name": "source_students",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_students",
+        "data_src_id": 152,
+        "target_type": "Relational"
+      },
       "employee_compensation": {
         "name": "employee_compensation",
         "fields": [
@@ -688,6 +737,32 @@
           "employee_compensation_expr"
         ],
         "transformation": "Writer"
+      },
+      {
+        "name": "source_students_expr",
+        "dependent_on": [
+          "DeduplicateEmployees"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "employee_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "source_students",
+        "target": {
+          "$ref": "#/targets/source_students"
+        },
+        "dependent_on": [
+          "source_students_expr"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -707,7 +782,8 @@
           "employees_7ke39_IngestFilter",
           "DeduplicateEmployees",
           "employee_demographics",
-          "employee_compensation"
+          "employee_compensation",
+          "source_students"
         ]
       },
       "auto_accept_input_on_batch_init": true
