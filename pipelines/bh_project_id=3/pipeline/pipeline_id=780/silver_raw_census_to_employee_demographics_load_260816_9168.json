@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-16T18:47:53.290136Z",
-  "updated_at": "2026-08-17T04:37:52.308472Z",
+  "updated_at": "2026-08-17T05:16:04.507144Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,67 +15,7 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 2,
-    "pipeline_editor_save": {
-      "pipeline_id": 780,
-      "test_impact": {
-        "diff": {
-          "removed_steps": [],
-          "added_steps": [],
-          "changed_steps": []
-        },
-        "change_set": {
-          "bound_sources": [],
-          "unbound_sources": [],
-          "bound_targets": [],
-          "unbound_targets": [
-            "emergency_contacts"
-          ],
-          "column_changes": [],
-          "step_changes": [],
-          "bound_source_targets": {},
-          "bound_target_columns": {},
-          "membership_changed": false,
-          "cardinality_changed": false,
-          "cosmetic_only": false
-        },
-        "action_plan": {
-          "scenario_actions": [],
-          "generate": [
-            {
-              "reason": "pipeline has no test scenarios yet",
-              "kind": "baseline"
-            }
-          ],
-          "change_set": {
-            "bound_sources": [],
-            "unbound_sources": [],
-            "bound_targets": [],
-            "unbound_targets": [
-              "emergency_contacts"
-            ],
-            "column_changes": [],
-            "step_changes": [],
-            "bound_source_targets": {},
-            "bound_target_columns": {},
-            "membership_changed": false,
-            "cardinality_changed": false,
-            "cosmetic_only": false
-          },
-          "summary": {
-            "generate": 1
-          }
-        },
-        "total_scenarios": 0,
-        "stale_scenario_count": 0,
-        "stale_scenarios": [],
-        "coverage_gaps": [
-          "baseline"
-        ],
-        "affected_steps": []
-      },
-      "saved_at": "2026-08-16T18:52:49.669264+00:00"
-    }
+    "target_count": 2
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -110,6 +50,212 @@
       }
     },
     "sources": {
+      "members": {
+        "name": "members",
+        "fields": [
+          "source_system_id",
+          "first_name",
+          "last_name",
+          "middle_name",
+          "suffix",
+          "date_of_birth",
+          "gender",
+          "race",
+          "ethnicity",
+          "language",
+          "location",
+          "care_management_program",
+          "last_contact",
+          "dual_status_code",
+          "death_date",
+          "record_creation_date",
+          "secure_id",
+          "dnc",
+          "guardian_first_name",
+          "guardian_last_name",
+          "guardian_phone_number",
+          "guardian_email",
+          "is_active",
+          "record_hash",
+          "source_system_id_type",
+          "feed_name",
+          "source_system",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "batch_id"
+        ],
+        "schema": [
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "suffix",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "race",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "care_management_program",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_contact",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "death_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "record_creation_date",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "secure_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dnc",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "guardian_first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_phone_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "silverraw_enrollment",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "members",
+        "data_src_id": 166,
+        "source_type": "Relational"
+      },
       "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp": {
         "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
         "fields": [
@@ -360,6 +506,103 @@
       }
     },
     "targets": {
+      "members_phones": {
+        "name": "members_phones",
+        "fields": [
+          {
+            "name": "phone_type",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "phone_number",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "country_code",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "can_contact",
+            "type": "Boolean",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "Boolean",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "source_system_id",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "String",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "Timestamp",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "silverraw_enrollment",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "members_phones",
+        "data_src_id": 162,
+        "target_type": "Relational"
+      },
       "employee_careers": {
         "name": "employee_careers",
         "fields": [
@@ -1202,6 +1445,236 @@
           "employee_compensation_transform"
         ],
         "transformation": "Writer"
+      },
+      {
+        "name": "members",
+        "schema": [
+          {
+            "name": "source_system_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "suffix",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "race",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "language",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "care_management_program",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_contact",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "death_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "record_creation_date",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "secure_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dnc",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "guardian_first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_phone_number",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "guardian_email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system_id_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/members"
+        },
+        "dependent_on": [],
+        "rename_columns": {
+          "batch_id": "members_batch_id",
+          "source_system_id": "members_source_system_id"
+        },
+        "transformation": "Reader"
+      },
+      {
+        "name": "members_phones_transform",
+        "dependent_on": [
+          "members"
+        ],
+        "derived_fields": [
+          {
+            "name": "phone_type",
+            "expression": "'Mobile'"
+          },
+          {
+            "name": "source_system_id",
+            "expression": "members_source_system_id"
+          },
+          {
+            "name": "source_system",
+            "expression": "'MEMBERS'"
+          },
+          {
+            "name": "feed_name",
+            "expression": "'members'"
+          },
+          {
+            "name": "batch_id",
+            "expression": "members_batch_id"
+          },
+          {
+            "name": "created_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'ENROLLMENT_PIPELINE'"
+          }
+        ],
+        "select_columns": [
+          "phone_type",
+          "source_system_id",
+          "source_system",
+          "feed_name",
+          "batch_id",
+          "created_by",
+          "updated_by"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "members_phones",
+        "target": {
+          "$ref": "#/targets/members_phones"
+        },
+        "dependent_on": [
+          "members_phones_transform"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1224,7 +1697,9 @@
           "employee_demographics",
           "employee_careers_final",
           "employee_careers",
-          "employee_compensation"
+          "employee_compensation",
+          "members_phones",
+          "members"
         ]
       },
       "auto_accept_input_on_batch_init": true
