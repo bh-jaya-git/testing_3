@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-16T18:47:53.290136Z",
-  "updated_at": "2026-08-17T06:38:17.929164Z",
+  "updated_at": "2026-08-17T07:21:16.630443Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -20,19 +20,34 @@
       "pipeline_id": 780,
       "test_impact": {
         "diff": {
-          "removed_steps": [],
+          "removed_steps": [
+            "testing_table_transform"
+          ],
           "added_steps": [],
           "changed_steps": []
         },
         "change_set": {
           "bound_sources": [],
-          "unbound_sources": [
-            "members"
-          ],
+          "unbound_sources": [],
           "bound_targets": [],
-          "unbound_targets": [],
+          "unbound_targets": [
+            "testing_table"
+          ],
           "column_changes": [],
-          "step_changes": [],
+          "source_column_changes": [],
+          "step_changes": [
+            {
+              "step": "testing_table_transform",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "testing_table"
+                ]
+              }
+            }
+          ],
           "bound_source_targets": {},
           "bound_target_columns": {},
           "membership_changed": false,
@@ -41,6 +56,14 @@
         },
         "action_plan": {
           "scenario_actions": [
+            {
+              "test_scenario_id": 1328,
+              "name": "all_targets_with_complete_record",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
             {
               "test_scenario_id": 1315,
               "name": "basic_employee_data_load",
@@ -58,6 +81,14 @@
               "llm_directives": []
             },
             {
+              "test_scenario_id": 1326,
+              "name": "employee_careers_with_phone_number_conversion",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
               "test_scenario_id": 1320,
               "name": "employee_compensation_overwrite_mode",
               "action": "reuse",
@@ -66,46 +97,36 @@
               "llm_directives": []
             },
             {
+              "test_scenario_id": 1327,
+              "name": "employee_compensation_with_salary_from_age",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1325,
+              "name": "employee_demographics_with_numeric_zip_code",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
               "test_scenario_id": 1322,
               "name": "members_phones_basic_phone_extraction",
-              "action": "patch_llm",
-              "reasons": [
-                "source 'members' unbound; injection removed",
-                "expected rows depend on removed source 'members'"
-              ],
-              "deterministic_ops": [
-                {
-                  "op": "drop_input_block",
-                  "table": "members"
-                }
-              ],
-              "llm_directives": [
-                {
-                  "op": "recompute_expected_rows",
-                  "reason": "source 'members' no longer feeds the pipeline"
-                }
-              ]
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
             },
             {
               "test_scenario_id": 1323,
               "name": "members_phones_multiple_members_with_phones",
-              "action": "patch_llm",
-              "reasons": [
-                "source 'members' unbound; injection removed",
-                "expected rows depend on removed source 'members'"
-              ],
-              "deterministic_ops": [
-                {
-                  "op": "drop_input_block",
-                  "table": "members"
-                }
-              ],
-              "llm_directives": [
-                {
-                  "op": "recompute_expected_rows",
-                  "reason": "source 'members' no longer feeds the pipeline"
-                }
-              ]
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
             },
             {
               "test_scenario_id": 1316,
@@ -138,18 +159,41 @@
               "reasons": [],
               "deterministic_ops": [],
               "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1324,
+              "name": "testing_table_basic_data_load",
+              "action": "drop",
+              "reasons": [
+                "every verified target was unbound (testing_table)"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
             }
           ],
           "generate": [],
           "change_set": {
             "bound_sources": [],
-            "unbound_sources": [
-              "members"
-            ],
+            "unbound_sources": [],
             "bound_targets": [],
-            "unbound_targets": [],
+            "unbound_targets": [
+              "testing_table"
+            ],
             "column_changes": [],
-            "step_changes": [],
+            "source_column_changes": [],
+            "step_changes": [
+              {
+                "step": "testing_table_transform",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "testing_table"
+                  ]
+                }
+              }
+            ],
             "bound_source_targets": {},
             "bound_target_columns": {},
             "membership_changed": false,
@@ -157,42 +201,34 @@
             "cosmetic_only": false
           },
           "summary": {
-            "reuse": 7,
-            "patch_llm": 2
+            "reuse": 13,
+            "drop": 1
           }
         },
-        "total_scenarios": 9,
-        "stale_scenario_count": 2,
+        "total_scenarios": 14,
+        "stale_scenario_count": 1,
         "stale_scenarios": [
           {
-            "test_scenario_id": 1322,
-            "name": "members_phones_basic_phone_extraction",
+            "test_scenario_id": 1324,
+            "name": "testing_table_basic_data_load",
             "reasons": [
-              "source 'members' unbound; injection removed",
-              "expected rows depend on removed source 'members'"
+              "every verified target was unbound (testing_table)"
             ],
-            "action": "patch_llm",
-            "references_removed_steps": [],
-            "references_changed_steps": [],
-            "stale": true
-          },
-          {
-            "test_scenario_id": 1323,
-            "name": "members_phones_multiple_members_with_phones",
-            "reasons": [
-              "source 'members' unbound; injection removed",
-              "expected rows depend on removed source 'members'"
-            ],
-            "action": "patch_llm",
+            "action": "drop",
             "references_removed_steps": [],
             "references_changed_steps": [],
             "stale": true
           }
         ],
         "coverage_gaps": [],
-        "affected_steps": []
+        "affected_steps": [
+          "testing_table",
+          "testing_table_transform"
+        ]
       },
-      "saved_at": "2026-08-17T06:10:39.135452+00:00"
+      "saved_at": "2026-08-17T06:10:39.135452+00:00",
+      "published_at": "2026-08-17T06:38:27.185246+00:00",
+      "pending_test_updates": true
     }
   },
   "status": "active",
@@ -491,181 +527,6 @@
       }
     },
     "targets": {
-      "testing_table": {
-        "name": "testing_table",
-        "fields": [
-          {
-            "name": "id",
-            "type": "Integer",
-            "is_pk": true,
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name_",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name_2",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name_3",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "last_name_5",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "status",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "statuws",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col3",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col5",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col54",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col5r4",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col45r4",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col45r44",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col45r4r4",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "col454r4r4",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col2",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col4",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col5",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col54",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col454",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "test_col4454",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "address2",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "address633",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "address_city",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          }
-        ],
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "testing_table",
-        "data_src_id": 149,
-        "target_type": "Relational"
-      },
       "employee_careers": {
         "name": "employee_careers",
         "fields": [
@@ -1526,42 +1387,6 @@
           "employee_compensation_transform"
         ],
         "transformation": "Writer"
-      },
-      {
-        "name": "testing_table_transform",
-        "dependent_on": [
-          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp"
-        ],
-        "derived_fields": [
-          {
-            "name": "id",
-            "expression": "source_system_id_src_1"
-          },
-          {
-            "name": "first_name",
-            "expression": "first_name_src_1"
-          },
-          {
-            "name": "last_name",
-            "expression": "last_name_src_1"
-          }
-        ],
-        "select_columns": [
-          "id",
-          "first_name",
-          "last_name"
-        ],
-        "transformation": "Expression"
-      },
-      {
-        "name": "testing_table",
-        "target": {
-          "$ref": "#/targets/testing_table"
-        },
-        "dependent_on": [
-          "testing_table_transform"
-        ],
-        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1584,8 +1409,7 @@
           "employee_demographics",
           "employee_careers_final",
           "employee_careers",
-          "employee_compensation",
-          "testing_table"
+          "employee_compensation"
         ]
       },
       "auto_accept_input_on_batch_init": true
