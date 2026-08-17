@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-16T18:47:53.290136Z",
-  "updated_at": "2026-08-16T18:54:00.787165Z",
+  "updated_at": "2026-08-17T04:37:52.308472Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -91,33 +91,27 @@
     "parameters": [],
     "connections": {
       "databrick-26-06_main": {
-        "connection_config_id": 19,
         "name": "databrick-26-06_main",
-        "connection_config_name": "databrick-26-06",
-        "connection_type": "DatabricksDeltaLake",
-        "catalog": "main",
         "schema": "staging",
-        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+        "catalog": "main",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
       },
       "databrick-26-06_cinqdev": {
-        "connection_config_id": 19,
         "name": "databrick-26-06_cinqdev",
-        "connection_config_name": "databrick-26-06",
-        "connection_type": "DatabricksDeltaLake",
-        "catalog": "cinqdev",
         "schema": "silverraw_employees",
-        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606"
+        "catalog": "cinqdev",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databrick2606",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 19,
+        "connection_config_name": "databrick-26-06"
       }
     },
     "sources": {
       "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp": {
-        "data_src_id": 288,
         "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
-        "source_type": "Relational",
-        "table_name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
         "fields": [
           "vbp_id",
           "provider_id",
@@ -356,113 +350,85 @@
             "nullable": true
           }
         ],
-        "db_schema": "staging"
+        "db_schema": "staging",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "table_name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
+        "data_src_id": 288,
+        "source_type": "Relational"
       }
     },
     "targets": {
-      "employee_demographics": {
-        "data_src_id": 176,
-        "name": "employee_demographics",
-        "target_type": "Relational",
-        "table_name": "employee_demographics",
-        "load_mode": "merge",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
-        "merge_keys": [
-          "employee_id",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "personal_phone",
-          "street_address",
-          "City",
-          "State",
-          "zip_code"
-        ],
-        "process_deletes": true,
-        "scd_config": {
-          "scd_type_1_columns": []
-        },
-        "delete_config": {
-          "delete_type": "infer",
-          "delete_action": "soft_delete"
-        },
+      "employee_careers": {
+        "name": "employee_careers",
         "fields": [
           {
             "name": "employee_id",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
-            "name": "Gender",
+            "name": "first_name",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
-            "name": "date_of_birth",
+            "name": "last_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "Department",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "Work_Email",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "Work_Phone",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "hire_date",
             "type": "Date",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
-            "name": "marital_status",
+            "name": "office_location",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "personal_email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "personal_phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "street_address",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "City",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "State",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "zip_code",
-            "type": "Long",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           }
-        ]
-      },
-      "employee_careers": {
-        "data_src_id": 173,
-        "name": "employee_careers",
-        "target_type": "Relational",
-        "table_name": "employee_careers",
+        ],
+        "schema": "silverraw_employees",
         "load_mode": "merge",
         "connection": {
           "$ref": "#/connections/databrick-26-06_cinqdev"
         },
-        "schema": "silverraw_employees",
         "merge_keys": [
           "employee_id",
           "first_name",
@@ -475,127 +441,146 @@
           "hire_date",
           "office_location"
         ],
-        "process_deletes": true,
         "scd_config": {
           "scd_type_1_columns": []
         },
+        "table_name": "employee_careers",
+        "data_src_id": 173,
+        "target_type": "Relational",
         "delete_config": {
           "delete_type": "infer",
           "delete_action": "soft_delete"
         },
+        "process_deletes": true
+      },
+      "employee_compensation": {
+        "name": "employee_compensation",
         "fields": [
           {
             "name": "employee_id",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           },
           {
-            "name": "first_name",
+            "name": "salary",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "performance_rating",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "last_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Department",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "job_title",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "employment_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Email",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "Work_Phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "hire_date",
-            "type": "Date",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "office_location",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
+            "is_pk": false,
+            "nullable": true
           }
-        ]
+        ],
+        "schema": "silverraw_employees",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "table_name": "employee_compensation",
+        "data_src_id": 177,
+        "target_type": "Relational"
+      },
+      "employee_demographics": {
+        "name": "employee_demographics",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "Gender",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "Date",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "personal_email",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "personal_phone",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "street_address",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "City",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "State",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "silverraw_employees",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_cinqdev"
+        },
+        "merge_keys": [
+          "employee_id",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code"
+        ],
+        "scd_config": {
+          "scd_type_1_columns": []
+        },
+        "table_name": "employee_demographics",
+        "data_src_id": 176,
+        "target_type": "Relational",
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        },
+        "process_deletes": true
       }
     },
     "transformations": [
       {
         "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp"
-        },
-        "rename_columns": {
-          "vbp_id": "vbp_id_src_1",
-          "provider_id": "provider_id_src_1",
-          "group": "group_src_1",
-          "plan_id": "plan_id_src_1",
-          "auth_id": "auth_id_src_1",
-          "member_name": "member_name_src_1",
-          "date_of_birth": "date_of_birth_src_1",
-          "member_pcp": "member_pcp_src_1",
-          "pcp_phone": "pcp_phone_src_1",
-          "mbr_phone": "mbr_phone_src_1",
-          "age": "age_src_1",
-          "member_county": "member_county_src_1",
-          "member_zip_code": "member_zip_code_src_1",
-          "actual_admit_date": "actual_admit_date_src_1",
-          "facility_name": "facility_name_src_1",
-          "facility_county": "facility_county_src_1",
-          "confine_status": "confine_status_src_1",
-          "auth_los": "auth_los_src_1",
-          "los_to_date": "los_to_date_src_1",
-          "member_id": "member_id_src_1",
-          "mbr_elig": "mbr_elig_src_1",
-          "treatment_type": "treatment_type_src_1",
-          "type_of_care": "type_of_care_src_1",
-          "description": "description_src_1",
-          "sub_group": "sub_group_src_1",
-          "prev_inpt_admt": "prev_inpt_admt_src_1",
-          "health_home_id": "health_home_id_src_1",
-          "health_home_name": "health_home_name_src_1",
-          "health_home_status": "health_home_status_src_1",
-          "member_line_of_business": "member_line_of_business_src_1",
-          "diabetic_indicator": "diabetic_indicator_src_1",
-          "high_alert_30d_readmit": "high_alert_30d_readmit_src_1",
-          "corrupt_record": "corrupt_record_src_1",
-          "batch_id": "batch_id_src_1",
-          "feed_name": "feed_name_src_1",
-          "ingest_ts": "ingest_ts_src_1",
-          "ingest_year": "ingest_year_src_1",
-          "ingest_month": "ingest_month_src_1",
-          "ingest_day": "ingest_day_src_1"
-        },
         "schema": [
           {
             "name": "vbp_id",
@@ -793,61 +778,88 @@
             "nullable": true
           }
         ],
-        "read_options": {}
+        "source": {
+          "$ref": "#/sources/safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp"
+        },
+        "dependent_on": [],
+        "read_options": {},
+        "rename_columns": {
+          "age": "age_src_1",
+          "group": "group_src_1",
+          "vbp_id": "vbp_id_src_1",
+          "auth_id": "auth_id_src_1",
+          "plan_id": "plan_id_src_1",
+          "auth_los": "auth_los_src_1",
+          "batch_id": "batch_id_src_1",
+          "mbr_elig": "mbr_elig_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "mbr_phone": "mbr_phone_src_1",
+          "member_id": "member_id_src_1",
+          "pcp_phone": "pcp_phone_src_1",
+          "sub_group": "sub_group_src_1",
+          "ingest_day": "ingest_day_src_1",
+          "member_pcp": "member_pcp_src_1",
+          "description": "description_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "los_to_date": "los_to_date_src_1",
+          "member_name": "member_name_src_1",
+          "provider_id": "provider_id_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "type_of_care": "type_of_care_src_1",
+          "date_of_birth": "date_of_birth_src_1",
+          "facility_name": "facility_name_src_1",
+          "member_county": "member_county_src_1",
+          "confine_status": "confine_status_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "health_home_id": "health_home_id_src_1",
+          "prev_inpt_admt": "prev_inpt_admt_src_1",
+          "treatment_type": "treatment_type_src_1",
+          "facility_county": "facility_county_src_1",
+          "member_zip_code": "member_zip_code_src_1",
+          "health_home_name": "health_home_name_src_1",
+          "actual_admit_date": "actual_admit_date_src_1",
+          "diabetic_indicator": "diabetic_indicator_src_1",
+          "health_home_status": "health_home_status_src_1",
+          "high_alert_30d_readmit": "high_alert_30d_readmit_src_1",
+          "member_line_of_business": "member_line_of_business_src_1"
+        },
+        "transformation": "Reader"
       },
       {
         "name": "employee_demographics",
-        "transformation": "Writer",
-        "dependent_on": [
-          "employee_demographics_final"
-        ],
         "target": {
           "$ref": "#/targets/employee_demographics"
         },
+        "dependent_on": [
+          "employee_demographics_final"
+        ],
         "write_options": {
           "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
+          "writeMethod": "direct",
+          "createDisposition": "CREATE_IF_NEEDED"
+        },
+        "transformation": "Writer"
       },
       {
         "name": "employee_careers",
-        "transformation": "Writer",
-        "dependent_on": [
-          "employee_careers_final"
-        ],
         "target": {
           "$ref": "#/targets/employee_careers"
         },
+        "dependent_on": [
+          "employee_careers_final"
+        ],
         "write_options": {
           "mode": "merge",
-          "createDisposition": "CREATE_IF_NEEDED",
-          "writeMethod": "direct"
-        }
+          "writeMethod": "direct",
+          "createDisposition": "CREATE_IF_NEEDED"
+        },
+        "transformation": "Writer"
       },
       {
         "name": "employee_demographics_final",
-        "transformation": "Expression",
         "dependent_on": [
           "employee_demographics_transform"
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "date_of_birth",
-          "personal_phone",
-          "zip_code",
-          "employee_id",
-          "Gender",
-          "marital_status",
-          "personal_email",
-          "street_address",
-          "City",
-          "State",
-          "source_system_id",
-          "created_by",
-          "updated_by",
-          "source_system",
-          "batch_id"
         ],
         "derived_fields": [
           {
@@ -878,31 +890,31 @@
             "name": "State",
             "expression": "CAST(NULL AS STRING)"
           }
-        ]
-      },
-      {
-        "name": "employee_careers_final",
-        "transformation": "Expression",
-        "dependent_on": [
-          "employee_careers_transform"
         ],
         "rename_columns": {},
         "select_columns": [
+          "date_of_birth",
+          "personal_phone",
+          "zip_code",
           "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location",
+          "Gender",
+          "marital_status",
+          "personal_email",
+          "street_address",
+          "City",
+          "State",
           "source_system_id",
           "created_by",
           "updated_by",
           "source_system",
           "batch_id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_careers_final",
+        "dependent_on": [
+          "employee_careers_transform"
         ],
         "derived_fields": [
           {
@@ -945,11 +957,29 @@
             "name": "office_location",
             "expression": "CAST(NULL AS STRING)"
           }
-        ]
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "source_system_id",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp_MaxBatchExpr",
-        "transformation": "Expression",
         "dependent_on": [
           "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp"
         ],
@@ -958,55 +988,38 @@
             "name": "max_batch_id",
             "expression": "max(batch_id_src_1) OVER ()"
           }
-        ]
+        ],
+        "transformation": "Expression"
       },
       {
         "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp_IngestFilter",
-        "transformation": "Filter",
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
         "dependent_on": [
           "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp_MaxBatchExpr"
         ],
-        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+        "transformation": "Filter"
       },
       {
+        "keep": "first",
         "name": "dedup_by_auth_id",
-        "transformation": "Deduplicator",
-        "dependent_on": [
-          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp_IngestFilter"
-        ],
         "dedup_by": [
           "auth_id_src_1"
         ],
-        "keep": "first",
         "order_by": [
           {
-            "column": "auth_id_src_1",
-            "order": "asc"
+            "order": "asc",
+            "column": "auth_id_src_1"
           }
-        ]
+        ],
+        "dependent_on": [
+          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp_IngestFilter"
+        ],
+        "transformation": "Deduplicator"
       },
       {
         "name": "employee_demographics_transform",
-        "transformation": "Expression",
         "dependent_on": [
           "dedup_by_auth_id"
-        ],
-        "select_columns": [
-          "employee_id",
-          "Gender",
-          "date_of_birth",
-          "marital_status",
-          "personal_email",
-          "personal_phone",
-          "street_address",
-          "City",
-          "State",
-          "zip_code",
-          "source_system_id",
-          "created_by",
-          "updated_by",
-          "source_system",
-          "batch_id"
         ],
         "derived_fields": [
           {
@@ -1059,33 +1072,33 @@
           }
         ],
         "rename_columns": {
-          "member_zip_code_src_1": "zip_code",
           "auth_id_src_1": "source_system_id",
-          "batch_id_src_1": "batch_id"
-        }
-      },
-      {
-        "name": "employee_careers_transform",
-        "transformation": "Expression",
-        "dependent_on": [
-          "dedup_by_auth_id"
-        ],
+          "batch_id_src_1": "batch_id",
+          "member_zip_code_src_1": "zip_code"
+        },
         "select_columns": [
           "employee_id",
-          "first_name",
-          "last_name",
-          "Department",
-          "job_title",
-          "employment_status",
-          "Work_Email",
-          "Work_Phone",
-          "hire_date",
-          "office_location",
+          "Gender",
+          "date_of_birth",
+          "marital_status",
+          "personal_email",
+          "personal_phone",
+          "street_address",
+          "City",
+          "State",
+          "zip_code",
           "source_system_id",
           "created_by",
           "updated_by",
           "source_system",
           "batch_id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_careers_transform",
+        "dependent_on": [
+          "dedup_by_auth_id"
         ],
         "derived_fields": [
           {
@@ -1144,15 +1157,61 @@
         "rename_columns": {
           "auth_id_src_1": "source_system_id",
           "batch_id_src_1": "batch_id"
-        }
+        },
+        "select_columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "Department",
+          "job_title",
+          "employment_status",
+          "Work_Email",
+          "Work_Phone",
+          "hire_date",
+          "office_location",
+          "source_system_id",
+          "created_by",
+          "updated_by",
+          "source_system",
+          "batch_id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_compensation_transform",
+        "dependent_on": [
+          "dedup_by_auth_id"
+        ],
+        "derived_fields": [
+          {
+            "name": "employee_id",
+            "expression": "batch_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "employee_id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "employee_compensation",
+        "target": {
+          "$ref": "#/targets/employee_compensation"
+        },
+        "dependent_on": [
+          "employee_compensation_transform"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
-      "enabled": true,
-      "feed_name": "silver_raw_census_to_employee_demographics_load_260816_9168",
       "stages": [
         "silver_raw"
       ],
+      "enabled": true,
+      "feed_name": "silver_raw_census_to_employee_demographics_load_260816_9168",
+      "seed_stage_rows": true,
+      "require_input_acceptance": true,
       "stage_to_transformations": {
         "silver_raw": [
           "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_yhkvp",
@@ -1164,16 +1223,15 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "employee_compensation"
         ]
       },
-      "require_input_acceptance": true,
-      "auto_accept_input_on_batch_init": true,
-      "seed_stage_rows": true
+      "auto_accept_input_on_batch_init": true
     },
     "target_prep": {
-      "employee_demographics": "employee_demographics_transform",
-      "employee_careers": "employee_careers_transform"
+      "employee_careers": "employee_careers_transform",
+      "employee_demographics": "employee_demographics_transform"
     }
   },
   "draft_pipeline_json": null,
