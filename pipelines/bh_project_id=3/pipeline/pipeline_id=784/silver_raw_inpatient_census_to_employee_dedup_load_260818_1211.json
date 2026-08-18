@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-18T10:58:37.552930Z",
-  "updated_at": "2026-08-18T12:15:02.461460Z",
+  "updated_at": "2026-08-18T12:16:48.320888Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -20,7 +20,9 @@
       "pipeline_id": 784,
       "test_impact": {
         "diff": {
-          "removed_steps": [],
+          "removed_steps": [
+            "source_students_expr"
+          ],
           "added_steps": [],
           "changed_steps": []
         },
@@ -29,12 +31,23 @@
           "unbound_sources": [],
           "bound_targets": [],
           "unbound_targets": [
-            "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_j9yyw",
-            "testing_table"
+            "source_students"
           ],
           "column_changes": [],
           "source_column_changes": [],
-          "step_changes": [],
+          "step_changes": [
+            {
+              "step": "source_students_expr",
+              "transformation": "Expression",
+              "kind": "structural",
+              "action": "removed",
+              "detail": {
+                "affected_targets": [
+                  "source_students"
+                ]
+              }
+            }
+          ],
           "bound_source_targets": {},
           "bound_target_columns": {},
           "membership_changed": false,
@@ -54,12 +67,23 @@
             "unbound_sources": [],
             "bound_targets": [],
             "unbound_targets": [
-              "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_j9yyw",
-              "testing_table"
+              "source_students"
             ],
             "column_changes": [],
             "source_column_changes": [],
-            "step_changes": [],
+            "step_changes": [
+              {
+                "step": "source_students_expr",
+                "transformation": "Expression",
+                "kind": "structural",
+                "action": "removed",
+                "detail": {
+                  "affected_targets": [
+                    "source_students"
+                  ]
+                }
+              }
+            ],
             "bound_source_targets": {},
             "bound_target_columns": {},
             "membership_changed": false,
@@ -76,7 +100,10 @@
         "coverage_gaps": [
           "baseline"
         ],
-        "affected_steps": []
+        "affected_steps": [
+          "source_students",
+          "source_students_expr"
+        ]
       },
       "saved_at": "2026-08-18T11:52:20.606286+00:00"
     }
@@ -377,37 +404,6 @@
       }
     },
     "targets": {
-      "source_students": {
-        "name": "source_students",
-        "fields": [
-          {
-            "name": "id",
-            "type": "Integer",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "name",
-            "type": "String",
-            "is_pk": false,
-            "nullable": true
-          },
-          {
-            "name": "marks",
-            "type": "Integer",
-            "is_pk": false,
-            "nullable": true
-          }
-        ],
-        "schema": "smaller_data",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/postgres_11_06"
-        },
-        "table_name": "source_students",
-        "data_src_id": 152,
-        "target_type": "Relational"
-      },
       "employee_careers": {
         "name": "employee_careers",
         "fields": [
@@ -1111,33 +1107,6 @@
           "updated_by"
         ],
         "transformation": "Expression"
-      },
-      {
-        "name": "source_students_expr",
-        "dependent_on": [
-          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_gx963"
-        ],
-        "derived_fields": [
-          {
-            "name": "name",
-            "expression": "member_name_src_1"
-          }
-        ],
-        "rename_columns": {},
-        "select_columns": [
-          "name"
-        ],
-        "transformation": "Expression"
-      },
-      {
-        "name": "source_students",
-        "target": {
-          "$ref": "#/targets/source_students"
-        },
-        "dependent_on": [
-          "source_students_expr"
-        ],
-        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1159,8 +1128,7 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers",
-          "source_students"
+          "employee_careers"
         ]
       },
       "auto_accept_input_on_batch_init": true
