@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-18T10:58:37.552930Z",
-  "updated_at": "2026-08-18T12:16:48.320888Z",
+  "updated_at": "2026-08-19T05:34:45.190470Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -404,6 +404,37 @@
       }
     },
     "targets": {
+      "testing_table_2": {
+        "name": "testing_table_2",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "testing_table_2",
+        "data_src_id": 150,
+        "target_type": "Relational"
+      },
       "employee_careers": {
         "name": "employee_careers",
         "fields": [
@@ -1107,6 +1138,33 @@
           "updated_by"
         ],
         "transformation": "Expression"
+      },
+      {
+        "name": "testing_table_2_expr",
+        "dependent_on": [
+          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_gx963"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "auth_id_src_1"
+          }
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "testing_table_2",
+        "target": {
+          "$ref": "#/targets/testing_table_2"
+        },
+        "dependent_on": [
+          "testing_table_2_expr"
+        ],
+        "transformation": "Writer"
       }
     ],
     "batch_control": {
@@ -1128,7 +1186,8 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "testing_table_2"
         ]
       },
       "auto_accept_input_on_batch_init": true
