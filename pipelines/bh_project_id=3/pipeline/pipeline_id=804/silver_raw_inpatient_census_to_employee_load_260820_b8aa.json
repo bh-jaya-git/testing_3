@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-20T07:15:54.170934Z",
-  "updated_at": "2026-08-20T07:20:58.986839Z",
+  "updated_at": "2026-08-20T07:33:08.341100Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -29,7 +29,7 @@
           "unbound_sources": [],
           "bound_targets": [],
           "unbound_targets": [
-            "members_emails"
+            "members_phones"
           ],
           "column_changes": [],
           "source_column_changes": [],
@@ -41,19 +41,31 @@
           "cosmetic_only": false
         },
         "action_plan": {
-          "scenario_actions": [],
-          "generate": [
+          "scenario_actions": [
             {
-              "reason": "pipeline has no test scenarios yet",
-              "kind": "baseline"
+              "test_scenario_id": 1350,
+              "name": "basic_employee_career_load",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1351,
+              "name": "employee_demographics_load",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
             }
           ],
+          "generate": [],
           "change_set": {
             "bound_sources": [],
             "unbound_sources": [],
             "bound_targets": [],
             "unbound_targets": [
-              "members_emails"
+              "members_phones"
             ],
             "column_changes": [],
             "source_column_changes": [],
@@ -65,15 +77,13 @@
             "cosmetic_only": false
           },
           "summary": {
-            "generate": 1
+            "reuse": 2
           }
         },
-        "total_scenarios": 0,
+        "total_scenarios": 2,
         "stale_scenario_count": 0,
         "stale_scenarios": [],
-        "coverage_gaps": [
-          "baseline"
-        ],
+        "coverage_gaps": [],
         "affected_steps": []
       },
       "saved_at": "2026-08-20T07:20:46.294074+00:00"
