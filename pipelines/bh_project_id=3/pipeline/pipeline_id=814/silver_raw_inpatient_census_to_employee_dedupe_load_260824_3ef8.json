@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-24T05:34:24.038648Z",
-  "updated_at": "2026-08-24T05:38:19.228157Z",
+  "updated_at": "2026-08-24T05:38:54.161148Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -485,37 +485,6 @@
             "is_pk": false
           }
         ]
-      },
-      "employee_compensation": {
-        "data_src_id": 177,
-        "name": "employee_compensation",
-        "target_type": "Relational",
-        "table_name": "employee_compensation",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_cinqdev"
-        },
-        "schema": "silverraw_employees",
-        "fields": [
-          {
-            "name": "employee_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "salary",
-            "type": "Long",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
       }
     },
     "transformations": [
@@ -976,14 +945,6 @@
         "rename_columns": {
           "pcp_phone_src_1": "Work_Phone"
         }
-      },
-      {
-        "name": "employee_compensation",
-        "transformation": "Writer",
-        "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/employee_compensation"
-        }
       }
     ],
     "batch_control": {
@@ -1003,8 +964,7 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers",
-          "employee_compensation"
+          "employee_careers"
         ]
       },
       "require_input_acceptance": true,
