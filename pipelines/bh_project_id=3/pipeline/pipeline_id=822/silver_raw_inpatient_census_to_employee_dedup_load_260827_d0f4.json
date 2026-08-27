@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-27T12:16:36.955167Z",
-  "updated_at": "2026-08-27T21:58:36.087698Z",
+  "updated_at": "2026-08-27T22:29:20.714536Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,7 +15,95 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 2
+    "target_count": 2,
+    "pipeline_editor_save": {
+      "pipeline_id": 822,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
+          ],
+          "column_changes": [],
+          "source_column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1407,
+              "name": "employee_basic_load_from_employees_20260630",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1408,
+              "name": "employee_load_from_employees_20260630_gw7bm",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1410,
+              "name": "inactive_employee_status_handling",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1409,
+              "name": "multiple_employees_deduplication",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
+            ],
+            "column_changes": [],
+            "source_column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 4
+          }
+        },
+        "total_scenarios": 4,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-08-27T22:04:03.663122+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -553,6 +641,262 @@
           }
         ],
         "db_schema": "staging"
+      },
+      "employees_gcy1d": {
+        "data_src_id": 260,
+        "name": "employees_gcy1d",
+        "source_type": "Relational",
+        "table_name": "employees_gcy1d",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "staging"
+      },
+      "employees_20260630_ell06": {
+        "data_src_id": 266,
+        "name": "employees_20260630_ell06",
+        "source_type": "Relational",
+        "table_name": "employees_20260630_ell06",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "department",
+          "job_title",
+          "salary",
+          "hire_date",
+          "performance_rating",
+          "office_location",
+          "employment_status",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "staging"
       }
     },
     "targets": {
@@ -737,253 +1081,6 @@
           {
             "name": "office_location",
             "type": "String",
-            "nullable": true,
-            "is_pk": false
-          }
-        ]
-      },
-      "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n": {
-        "data_src_id": 328,
-        "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n",
-        "target_type": "Relational",
-        "table_name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n",
-        "load_mode": "overwrite",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "schema": "staging",
-        "fields": [
-          {
-            "name": "vbp_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "provider_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "group",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "plan_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "auth_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": true
-          },
-          {
-            "name": "member_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "date_of_birth",
-            "type": "Long",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "member_pcp",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "pcp_phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "mbr_phone",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "age",
-            "type": "Double",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "member_county",
-            "type": "Double",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "member_zip_code",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "actual_admit_date",
-            "type": "Long",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "facility_name",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "facility_county",
-            "type": "Double",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "confine_status",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "auth_los",
-            "type": "Long",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "los_to_date",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "member_id",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "mbr_elig",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "treatment_type",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "type_of_care",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "description",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "sub_group",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "prev_inpt_admt",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "health_home_id",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "health_home_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "health_home_status",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "member_line_of_business",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "diabetic_indicator",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "high_alert_30d_readmit",
-            "type": "String",
-            "nullable": false,
-            "is_pk": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "batch_id",
-            "type": "BigInteger",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "feed_name",
-            "type": "String",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_ts",
-            "type": "Timestamp",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_year",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_month",
-            "type": "Integer",
-            "nullable": true,
-            "is_pk": false
-          },
-          {
-            "name": "ingest_day",
-            "type": "Integer",
             "nullable": true,
             "is_pk": false
           }
@@ -1706,12 +1803,214 @@
         ]
       },
       {
-        "name": "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n",
-        "transformation": "Writer",
+        "name": "employees_gcy1d",
+        "transformation": "Reader",
         "dependent_on": [],
-        "target": {
-          "$ref": "#/targets/safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
-        }
+        "source": {
+          "$ref": "#/sources/employees_gcy1d"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "employees_20260630_ell06",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees_20260630_ell06"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "hire_date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "office_location",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "employment_status",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
       }
     ],
     "batch_control": {
@@ -1734,7 +2033,8 @@
           "employee_careers",
           "employees_20260630_gw7bm",
           "employees_20260630",
-          "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
+          "employees_gcy1d",
+          "employees_20260630_ell06"
         ]
       },
       "require_input_acceptance": true,
