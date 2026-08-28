@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-27T12:16:36.955167Z",
-  "updated_at": "2026-08-27T22:57:29.699275Z",
+  "updated_at": "2026-08-28T07:58:00.773393Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -26,11 +26,11 @@
         },
         "change_set": {
           "bound_sources": [],
-          "unbound_sources": [],
-          "bound_targets": [],
-          "unbound_targets": [
-            "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
+          "unbound_sources": [
+            "employees_gcy1d"
           ],
+          "bound_targets": [],
+          "unbound_targets": [],
           "column_changes": [],
           "source_column_changes": [],
           "step_changes": [],
@@ -51,12 +51,75 @@
               "llm_directives": []
             },
             {
+              "test_scenario_id": 1414,
+              "name": "employee_demographics_load_basic",
+              "action": "patch_llm",
+              "reasons": [
+                "source 'employees_gcy1d' unbound; injection removed",
+                "expected rows depend on removed source 'employees_gcy1d'"
+              ],
+              "deterministic_ops": [
+                {
+                  "op": "drop_input_block",
+                  "table": "employees_gcy1d"
+                }
+              ],
+              "llm_directives": [
+                {
+                  "op": "recompute_expected_rows",
+                  "reason": "source 'employees_gcy1d' no longer feeds the pipeline"
+                }
+              ]
+            },
+            {
+              "test_scenario_id": 1413,
+              "name": "employee_load_from_employees_20260630_ell06",
+              "action": "patch_llm",
+              "reasons": [
+                "source 'employees_gcy1d' unbound; injection removed",
+                "expected rows depend on removed source 'employees_gcy1d'"
+              ],
+              "deterministic_ops": [
+                {
+                  "op": "drop_input_block",
+                  "table": "employees_gcy1d"
+                }
+              ],
+              "llm_directives": [
+                {
+                  "op": "recompute_expected_rows",
+                  "reason": "source 'employees_gcy1d' no longer feeds the pipeline"
+                }
+              ]
+            },
+            {
               "test_scenario_id": 1408,
               "name": "employee_load_from_employees_20260630_gw7bm",
               "action": "reuse",
               "reasons": [],
               "deterministic_ops": [],
               "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1412,
+              "name": "employee_load_from_employees_gcy1d",
+              "action": "patch_llm",
+              "reasons": [
+                "source 'employees_gcy1d' unbound; injection removed",
+                "expected rows depend on removed source 'employees_gcy1d'"
+              ],
+              "deterministic_ops": [
+                {
+                  "op": "drop_input_block",
+                  "table": "employees_gcy1d"
+                }
+              ],
+              "llm_directives": [
+                {
+                  "op": "recompute_expected_rows",
+                  "reason": "source 'employees_gcy1d' no longer feeds the pipeline"
+                }
+              ]
             },
             {
               "test_scenario_id": 1410,
@@ -73,16 +136,37 @@
               "reasons": [],
               "deterministic_ops": [],
               "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1411,
+              "name": "multi_source_employee_load",
+              "action": "patch_llm",
+              "reasons": [
+                "source 'employees_gcy1d' unbound; injection removed",
+                "expected rows depend on removed source 'employees_gcy1d'"
+              ],
+              "deterministic_ops": [
+                {
+                  "op": "drop_input_block",
+                  "table": "employees_gcy1d"
+                }
+              ],
+              "llm_directives": [
+                {
+                  "op": "recompute_expected_rows",
+                  "reason": "source 'employees_gcy1d' no longer feeds the pipeline"
+                }
+              ]
             }
           ],
           "generate": [],
           "change_set": {
             "bound_sources": [],
-            "unbound_sources": [],
-            "bound_targets": [],
-            "unbound_targets": [
-              "safeharbor_vbp0211_inpatient_census_pg_report_cinqdownstate_20260428_to63n"
+            "unbound_sources": [
+              "employees_gcy1d"
             ],
+            "bound_targets": [],
+            "unbound_targets": [],
             "column_changes": [],
             "source_column_changes": [],
             "step_changes": [],
@@ -93,12 +177,62 @@
             "cosmetic_only": false
           },
           "summary": {
-            "reuse": 4
+            "reuse": 4,
+            "patch_llm": 4
           }
         },
-        "total_scenarios": 4,
-        "stale_scenario_count": 0,
-        "stale_scenarios": [],
+        "total_scenarios": 8,
+        "stale_scenario_count": 4,
+        "stale_scenarios": [
+          {
+            "test_scenario_id": 1414,
+            "name": "employee_demographics_load_basic",
+            "reasons": [
+              "source 'employees_gcy1d' unbound; injection removed",
+              "expected rows depend on removed source 'employees_gcy1d'"
+            ],
+            "action": "patch_llm",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1413,
+            "name": "employee_load_from_employees_20260630_ell06",
+            "reasons": [
+              "source 'employees_gcy1d' unbound; injection removed",
+              "expected rows depend on removed source 'employees_gcy1d'"
+            ],
+            "action": "patch_llm",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1412,
+            "name": "employee_load_from_employees_gcy1d",
+            "reasons": [
+              "source 'employees_gcy1d' unbound; injection removed",
+              "expected rows depend on removed source 'employees_gcy1d'"
+            ],
+            "action": "patch_llm",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          },
+          {
+            "test_scenario_id": 1411,
+            "name": "multi_source_employee_load",
+            "reasons": [
+              "source 'employees_gcy1d' unbound; injection removed",
+              "expected rows depend on removed source 'employees_gcy1d'"
+            ],
+            "action": "patch_llm",
+            "references_removed_steps": [],
+            "references_changed_steps": [],
+            "stale": true
+          }
+        ],
         "coverage_gaps": [],
         "affected_steps": []
       },
@@ -138,518 +272,6 @@
       }
     },
     "sources": {
-      "employees_20260630_gw7bm": {
-        "data_src_id": 264,
-        "name": "employees_20260630_gw7bm",
-        "source_type": "Relational",
-        "table_name": "employees_20260630_gw7bm",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "fields": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "email",
-          "phone",
-          "department",
-          "job_title",
-          "salary",
-          "hire_date",
-          "performance_rating",
-          "office_location",
-          "employment_status",
-          "corrupt_record",
-          "batch_id",
-          "feed_name",
-          "ingest_ts",
-          "ingest_year",
-          "ingest_month",
-          "ingest_day"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ],
-        "db_schema": "staging"
-      },
-      "employees_20260630": {
-        "data_src_id": 262,
-        "name": "employees_20260630",
-        "source_type": "Relational",
-        "table_name": "employees_20260630",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "fields": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "email",
-          "phone",
-          "department",
-          "job_title",
-          "salary",
-          "hire_date",
-          "performance_rating",
-          "office_location",
-          "employment_status",
-          "corrupt_record",
-          "batch_id",
-          "feed_name",
-          "ingest_ts",
-          "ingest_year",
-          "ingest_month",
-          "ingest_day"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ],
-        "db_schema": "staging"
-      },
-      "employees_gcy1d": {
-        "data_src_id": 260,
-        "name": "employees_gcy1d",
-        "source_type": "Relational",
-        "table_name": "employees_gcy1d",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "fields": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "email",
-          "phone",
-          "department",
-          "job_title",
-          "salary",
-          "hire_date",
-          "performance_rating",
-          "office_location",
-          "employment_status",
-          "corrupt_record",
-          "batch_id",
-          "feed_name",
-          "ingest_ts",
-          "ingest_year",
-          "ingest_month",
-          "ingest_day"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ],
-        "db_schema": "staging"
-      },
-      "employees_20260630_ell06": {
-        "data_src_id": 266,
-        "name": "employees_20260630_ell06",
-        "source_type": "Relational",
-        "table_name": "employees_20260630_ell06",
-        "connection": {
-          "$ref": "#/connections/databrick-26-06_main"
-        },
-        "fields": [
-          "employee_id",
-          "first_name",
-          "last_name",
-          "email",
-          "phone",
-          "department",
-          "job_title",
-          "salary",
-          "hire_date",
-          "performance_rating",
-          "office_location",
-          "employment_status",
-          "corrupt_record",
-          "batch_id",
-          "feed_name",
-          "ingest_ts",
-          "ingest_year",
-          "ingest_month",
-          "ingest_day"
-        ],
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ],
-        "db_schema": "staging"
-      },
       "employees_7ke39": {
         "data_src_id": 258,
         "name": "employees_7ke39",
@@ -1209,426 +831,6 @@
         "column_list": []
       },
       {
-        "name": "employees_20260630_gw7bm",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employees_20260630_gw7bm"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ]
-      },
-      {
-        "name": "employees_20260630",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employees_20260630"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ]
-      },
-      {
-        "name": "employees_gcy1d",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employees_gcy1d"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ]
-      },
-      {
-        "name": "employees_20260630_ell06",
-        "transformation": "Reader",
-        "dependent_on": [],
-        "source": {
-          "$ref": "#/sources/employees_20260630_ell06"
-        },
-        "schema": [
-          {
-            "name": "employee_id",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "first_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "last_name",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "email",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "phone",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "department",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "job_title",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "salary",
-            "type": "long",
-            "nullable": false
-          },
-          {
-            "name": "hire_date",
-            "type": "date",
-            "nullable": false
-          },
-          {
-            "name": "performance_rating",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "office_location",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "employment_status",
-            "type": "string",
-            "nullable": false
-          },
-          {
-            "name": "corrupt_record",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "batch_id",
-            "type": "biginteger",
-            "nullable": true
-          },
-          {
-            "name": "feed_name",
-            "type": "string",
-            "nullable": true
-          },
-          {
-            "name": "ingest_ts",
-            "type": "timestamp",
-            "nullable": true
-          },
-          {
-            "name": "ingest_year",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_month",
-            "type": "integer",
-            "nullable": true
-          },
-          {
-            "name": "ingest_day",
-            "type": "integer",
-            "nullable": true
-          }
-        ]
-      },
-      {
         "name": "employees_7ke39_MaxBatchExpr",
         "transformation": "Expression",
         "dependent_on": [
@@ -1793,11 +995,7 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers",
-          "employees_20260630_gw7bm",
-          "employees_20260630",
-          "employees_gcy1d",
-          "employees_20260630_ell06"
+          "employee_careers"
         ]
       },
       "require_input_acceptance": true,
