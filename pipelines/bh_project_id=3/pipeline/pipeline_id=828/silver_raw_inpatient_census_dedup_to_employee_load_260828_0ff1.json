@@ -1,6 +1,6 @@
 {
   "created_at": "2026-08-28T08:40:05.023201Z",
-  "updated_at": "2026-08-29T08:24:32.646485Z",
+  "updated_at": "2026-08-29T08:32:25.926177Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -15,112 +15,7 @@
     "data_domain_id": 4,
     "data_domain_name": "employee",
     "source_count": 1,
-    "target_count": 2,
-    "pipeline_editor_save": {
-      "pipeline_id": 828,
-      "test_impact": {
-        "diff": {
-          "removed_steps": [],
-          "added_steps": [],
-          "changed_steps": [
-            {
-              "step": "employee_careers_final",
-              "transformation": "Expression"
-            }
-          ]
-        },
-        "change_set": {
-          "bound_sources": [],
-          "unbound_sources": [],
-          "bound_targets": [],
-          "unbound_targets": [],
-          "column_changes": [
-            {
-              "target": "employee_careers",
-              "column": "office_location",
-              "kind": "changed",
-              "old_expression": "CAST(NULL AS STRING)",
-              "new_expression": "'HYD'"
-            }
-          ],
-          "source_column_changes": [],
-          "step_changes": [
-            {
-              "step": "employee_careers_final",
-              "transformation": "Expression",
-              "kind": "structural",
-              "action": "modified",
-              "detail": {
-                "affected_targets": [
-                  "employee_careers"
-                ]
-              }
-            }
-          ],
-          "bound_source_targets": {},
-          "bound_target_columns": {},
-          "membership_changed": false,
-          "cardinality_changed": false,
-          "cosmetic_only": false
-        },
-        "action_plan": {
-          "scenario_actions": [],
-          "generate": [
-            {
-              "reason": "pipeline has no test scenarios yet",
-              "kind": "baseline"
-            }
-          ],
-          "change_set": {
-            "bound_sources": [],
-            "unbound_sources": [],
-            "bound_targets": [],
-            "unbound_targets": [],
-            "column_changes": [
-              {
-                "target": "employee_careers",
-                "column": "office_location",
-                "kind": "changed",
-                "old_expression": "CAST(NULL AS STRING)",
-                "new_expression": "'HYD'"
-              }
-            ],
-            "source_column_changes": [],
-            "step_changes": [
-              {
-                "step": "employee_careers_final",
-                "transformation": "Expression",
-                "kind": "structural",
-                "action": "modified",
-                "detail": {
-                  "affected_targets": [
-                    "employee_careers"
-                  ]
-                }
-              }
-            ],
-            "bound_source_targets": {},
-            "bound_target_columns": {},
-            "membership_changed": false,
-            "cardinality_changed": false,
-            "cosmetic_only": false
-          },
-          "summary": {
-            "generate": 1
-          }
-        },
-        "total_scenarios": 0,
-        "stale_scenario_count": 0,
-        "stale_scenarios": [],
-        "coverage_gaps": [
-          "baseline"
-        ],
-        "affected_steps": [
-          "employee_careers"
-        ]
-      },
-      "saved_at": "2026-08-29T08:21:58.966787+00:00"
-    }
+    "target_count": 2
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -895,6 +790,10 @@
         ],
         "derived_fields": [
           {
+            "name": "date_of_birth",
+            "expression": "CAST(date_of_birth AS INT)"
+          },
+          {
             "name": "employee_id",
             "expression": "CAST(NULL AS STRING)"
           },
@@ -1063,7 +962,7 @@
         "derived_fields": [
           {
             "name": "date_of_birth",
-            "expression": "CAST(date_of_birth_src_1 AS DATE)"
+            "expression": "CAST(date_of_birth_src_1 AS INT)"
           },
           {
             "name": "zip_code",
