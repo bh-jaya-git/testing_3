@@ -1,6 +1,6 @@
 {
   "created_at": "2026-09-07T10:39:01.068151Z",
-  "updated_at": "2026-09-07T10:42:48.969341Z",
+  "updated_at": "2026-09-07T10:45:16.479634Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -553,6 +553,133 @@
             "is_pk": false
           }
         ]
+      },
+      "employees_20260630_ell06": {
+        "data_src_id": 266,
+        "name": "employees_20260630_ell06",
+        "target_type": "Relational",
+        "table_name": "employees_20260630_ell06",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/databrick-26-06_main"
+        },
+        "schema": "staging",
+        "fields": [
+          {
+            "name": "employee_id",
+            "type": "String",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "first_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "last_name",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "phone",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "department",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "job_title",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "salary",
+            "type": "Long",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "hire_date",
+            "type": "Date",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "performance_rating",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "office_location",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "employment_status",
+            "type": "String",
+            "nullable": false,
+            "is_pk": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "batch_id",
+            "type": "BigInteger",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "feed_name",
+            "type": "String",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "Timestamp",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
       }
     },
     "transformations": [
@@ -1059,6 +1186,14 @@
           "first_name_src_1": "first_name",
           "batch_id_src_1": "batch_id"
         }
+      },
+      {
+        "name": "employees_20260630_ell06",
+        "transformation": "Writer",
+        "dependent_on": [],
+        "target": {
+          "$ref": "#/targets/employees_20260630_ell06"
+        }
       }
     ],
     "batch_control": {
@@ -1078,7 +1213,8 @@
           "employee_demographics_final",
           "employee_demographics",
           "employee_careers_final",
-          "employee_careers"
+          "employee_careers",
+          "employees_20260630_ell06"
         ]
       },
       "require_input_acceptance": true,
