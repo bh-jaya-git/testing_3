@@ -1,0 +1,754 @@
+{
+  "created_at": "2026-10-29T03:43:05.617142Z",
+  "updated_at": "2026-11-04T09:35:31.595494Z",
+  "created_by": "jaya@bighammer.ai",
+  "updated_by": "jaya@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 936,
+  "pipeline_name": "smaller_data_filter_261029_2d43",
+  "pipeline_key": "smaller_data_filter_261029_2d43",
+  "bh_project_id": 3,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action"
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "smaller_data_filter_261029_2d43",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres_11_06": {
+        "host": "4.227.38.66",
+        "name": "postgres_11_06",
+        "port": "5434",
+        "driver": "org.postgresql.Driver",
+        "schema": "smaller_data",
+        "database": "sample_db",
+        "secret_name": "bh-postgres-postgres1106",
+        "connection_type": "PostgreSQL",
+        "connection_config_id": 15,
+        "connection_config_name": "postgres_11_06"
+      }
+    },
+    "sources": {
+      "source_table": {
+        "name": "source_table",
+        "fields": [
+          "id",
+          "id",
+          "id",
+          "id",
+          "id",
+          "email",
+          "email",
+          "email",
+          "email",
+          "email",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "created_at",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "is_active",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col45r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r4",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r44",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444",
+          "col456r4r4444"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "source_table",
+        "data_src_id": 155,
+        "source_type": "Relational"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "name": "target_table",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": false
+          },
+          {
+            "name": "amount",
+            "type": "Decimal",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "status",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table",
+        "data_src_id": 151,
+        "target_type": "Relational"
+      },
+      "target_table_skipped": {
+        "name": "target_table_skipped",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "is_pk": true,
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "Integer",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "description",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "smaller_data",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres_11_06"
+        },
+        "table_name": "target_table_skipped",
+        "data_src_id": 154,
+        "target_type": "Relational"
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col45r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r44",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "col456r4r4444",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "dependent_on": [],
+        "read_options": {
+          "dbtable": "source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "email": "email_src_1",
+          "col45r4r4": "col45r4r4_src_1",
+          "is_active": "is_active_src_1",
+          "col456r4r4": "col456r4r4_src_1",
+          "created_at": "created_at_src_1",
+          "col456r4r44": "col456r4r44_src_1",
+          "col456r4r444": "col456r4r444_src_1",
+          "col456r4r4444": "col456r4r4444_src_1"
+        },
+        "transformation": "Reader"
+      },
+      {
+        "name": "target_table",
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "write_options": {
+          "mode": "overwrite",
+          "dbtable": "target_table"
+        },
+        "transformation": "Writer"
+      },
+      {
+        "name": "target_table_final",
+        "dependent_on": [
+          "target_table_rename"
+        ],
+        "derived_fields": [
+          {
+            "name": "amount",
+            "expression": "CAST(NULL AS DECIMAL)"
+          }
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value",
+          "status",
+          "amount"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "filter_step",
+        "condition": "id_src_1 > 10",
+        "dependent_on": [
+          "source_table"
+        ],
+        "transformation": "Filter"
+      },
+      {
+        "name": "target_table_rename",
+        "dependent_on": [
+          "filter_step"
+        ],
+        "derived_fields": [
+          {
+            "name": "value",
+            "expression": "id_src_1"
+          }
+        ],
+        "rename_columns": {
+          "id_src_1": "id",
+          "col45r4r4_src_1": "status"
+        },
+        "select_columns": [
+          "id",
+          "value",
+          "status"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "target_table_skipped_expression",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          }
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "target_table_skipped",
+        "target": {
+          "$ref": "#/targets/target_table_skipped"
+        },
+        "dependent_on": [
+          "target_table_skipped_expression"
+        ],
+        "transformation": "Writer"
+      }
+    ],
+    "target_prep": {
+      "target_table": "target_table_rename"
+    }
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
