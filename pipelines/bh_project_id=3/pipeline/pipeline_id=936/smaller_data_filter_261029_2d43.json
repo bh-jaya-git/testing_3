@@ -1,6 +1,6 @@
 {
   "created_at": "2026-10-29T03:43:05.617142Z",
-  "updated_at": "2026-11-04T09:53:21.327794Z",
+  "updated_at": "2026-11-11T11:05:12.549555Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -12,7 +12,103 @@
   "bh_project_id": 3,
   "notes": "",
   "tags": {
-    "created_from": "chat-quick-action"
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 936,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [
+            "target_table_skipped"
+          ],
+          "column_changes": [],
+          "source_column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1623,
+              "name": "All Rows Filtered Out",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1622,
+              "name": "Data Type Integrity and Edge Values",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1620,
+              "name": "Filter Boundary and Exclusion",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1619,
+              "name": "Happy Path with Valid Filtered Data",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1621,
+              "name": "Null Handling in Nullable Source Fields",
+              "action": "reuse",
+              "reasons": [],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [
+              "target_table_skipped"
+            ],
+            "column_changes": [],
+            "source_column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-11-11T11:00:56.095131+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -364,8 +460,8 @@
         "data_src_id": 151,
         "target_type": "Relational"
       },
-      "target_table_skipped": {
-        "name": "target_table_skipped",
+      "target_students": {
+        "name": "target_students",
         "fields": [
           {
             "name": "id",
@@ -374,13 +470,19 @@
             "nullable": false
           },
           {
-            "name": "value",
+            "name": "name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "marks",
             "type": "Integer",
             "is_pk": false,
             "nullable": true
           },
           {
-            "name": "description",
+            "name": "grade",
             "type": "String",
             "is_pk": false,
             "nullable": true
@@ -391,8 +493,8 @@
         "connection": {
           "$ref": "#/connections/postgres_11_06"
         },
-        "table_name": "target_table_skipped",
-        "data_src_id": 154,
+        "table_name": "target_students",
+        "data_src_id": 153,
         "target_type": "Relational"
       }
     },
@@ -711,7 +813,7 @@
         "transformation": "Expression"
       },
       {
-        "name": "target_table_skipped_expression",
+        "name": "target_students_expression",
         "dependent_on": [
           "source_table"
         ],
@@ -721,25 +823,25 @@
             "expression": "id_src_1"
           }
         ],
-        "rename_columns": {},
         "select_columns": [
           "id"
         ],
         "transformation": "Expression"
       },
       {
-        "name": "target_table_skipped",
+        "name": "target_students",
         "target": {
-          "$ref": "#/targets/target_table_skipped"
+          "$ref": "#/targets/target_students"
         },
         "dependent_on": [
-          "target_table_skipped_expression"
+          "target_students_expression"
         ],
         "transformation": "Writer"
       }
     ],
     "target_prep": {
-      "target_table": "target_table_rename"
+      "target_table": "target_table_rename",
+      "target_students": "target_students_expression"
     }
   },
   "draft_pipeline_json": null,
