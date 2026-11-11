@@ -1,6 +1,6 @@
 {
   "created_at": "2026-11-05T12:10:16.362266Z",
-  "updated_at": "2026-11-05T12:43:45.149536Z",
+  "updated_at": "2026-11-11T04:45:52.146475Z",
   "created_by": "jaya@bighammer.ai",
   "updated_by": "jaya@bighammer.ai",
   "is_deleted": false,
@@ -12,7 +12,109 @@
   "bh_project_id": 3,
   "notes": "",
   "tags": {
-    "created_from": "chat-quick-action"
+    "created_from": "chat-quick-action",
+    "pipeline_editor_save": {
+      "pipeline_id": 945,
+      "test_impact": {
+        "diff": {
+          "removed_steps": [],
+          "added_steps": [],
+          "changed_steps": []
+        },
+        "change_set": {
+          "bound_sources": [],
+          "unbound_sources": [],
+          "bound_targets": [],
+          "unbound_targets": [],
+          "column_changes": [],
+          "source_column_changes": [],
+          "step_changes": [],
+          "bound_source_targets": {},
+          "bound_target_columns": {},
+          "membership_changed": false,
+          "cardinality_changed": false,
+          "cosmetic_only": false
+        },
+        "action_plan": {
+          "scenario_actions": [
+            {
+              "test_scenario_id": 1659,
+              "name": "Boolean and Timestamp Field Presence \u2013 Non-Mapped Fields Do Not Affect Transformation",
+              "action": "reuse",
+              "reasons": [
+                "edit does not affect target rows"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1658,
+              "name": "Data Type and Field Mapping Validation \u2013 Integer to Long Conversion",
+              "action": "reuse",
+              "reasons": [
+                "edit does not affect target rows"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1656,
+              "name": "Filter Boundary \u2013 Rows at and Around the Filter Threshold",
+              "action": "reuse",
+              "reasons": [
+                "edit does not affect target rows"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1655,
+              "name": "Happy Path \u2013 Valid Rows Passing Filter with Complete Non-Null Data",
+              "action": "reuse",
+              "reasons": [
+                "edit does not affect target rows"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            },
+            {
+              "test_scenario_id": 1657,
+              "name": "Null Handling \u2013 Nullable Source Fields with NULL Values",
+              "action": "reuse",
+              "reasons": [
+                "edit does not affect target rows"
+              ],
+              "deterministic_ops": [],
+              "llm_directives": []
+            }
+          ],
+          "generate": [],
+          "change_set": {
+            "bound_sources": [],
+            "unbound_sources": [],
+            "bound_targets": [],
+            "unbound_targets": [],
+            "column_changes": [],
+            "source_column_changes": [],
+            "step_changes": [],
+            "bound_source_targets": {},
+            "bound_target_columns": {},
+            "membership_changed": false,
+            "cardinality_changed": false,
+            "cosmetic_only": false
+          },
+          "summary": {
+            "reuse": 5
+          }
+        },
+        "total_scenarios": 5,
+        "stale_scenario_count": 0,
+        "stale_scenarios": [],
+        "coverage_gaps": [],
+        "affected_steps": []
+      },
+      "saved_at": "2026-11-10T13:39:28.940713+00:00"
+    }
   },
   "status": "active",
   "pipeline_version_id": null,
@@ -689,7 +791,7 @@
           "$ref": "#/targets/target_table"
         },
         "dependent_on": [
-          "target_table_final"
+          "filter_amount"
         ],
         "write_options": {
           "mode": "overwrite",
@@ -718,8 +820,16 @@
         "transformation": "Expression"
       },
       {
+        "name": "filter_amount",
+        "transformation": "Filter",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "condition": "amount > 500"
+      },
+      {
         "name": "filter_source_table",
-        "condition": "id_src_1 > 10",
+        "condition": "id_src_1 > 60",
         "dependent_on": [
           "source_table"
         ],
